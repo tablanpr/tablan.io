@@ -135,33 +135,18 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     if (!validateStep()) return
 
     setIsSubmitting(true)
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      })
-
-      if (response.ok) {
-        setMessage({ 
-          type: 'success', 
-          text: 'Thank you for your application! I will review your information and get back to you within 24 hours with next steps.' 
-        })
-        setTimeout(() => {
-          handleClose()
-        }, 3000)
-      } else {
-        throw new Error('Submission failed')
-      }
-    } catch (error) {
+    
+    // For static deployment, we'll simulate the submission
+    setTimeout(() => {
       setMessage({ 
-        type: 'error', 
-        text: 'Sorry, there was an error submitting your application. Please try again or contact me directly.' 
+        type: 'success', 
+        text: 'Thank you for your application! (Note: This is a demo - contact form data is not saved)' 
       })
-    }
-    setIsSubmitting(false)
+      setTimeout(() => {
+        handleClose()
+      }, 3000)
+      setIsSubmitting(false)
+    }, 1500)
   }
 
   if (!isOpen) return null
