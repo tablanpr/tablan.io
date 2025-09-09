@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>Tablan | Industrial AI Automation Expert - Boost Sales & Cut Manual Work</title>
+    <meta name="title" content="Tablan | Industrial AI Automation Expert - Boost Sales & Cut Manual Work">
+    <meta name="description" content="Industrial AI automation expert helping manufacturers, suppliers, and distributors improve sales, marketing and operations using no-code AI automation & workflow automation. 70% manual task reduction guaranteed.">
+    <meta name="keywords" content="industrial AI automation, manufacturing automation, no-code AI, workflow automation, industrial sales automation, manufacturing AI, distribution automation, technical sales AI">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="author" content="Tablan">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tablanio.netlify.app/">
+    <meta property="og:title" content="Tablan | Industrial AI Automation Expert">
+    <meta property="og:description" content="Industrial AI automation expert helping manufacturers improve sales & operations. 70% manual task reduction guaranteed.">
+    <meta property="og:image" content="https://tablanio.netlify.app/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://tablanio.netlify.app/">
+    <meta property="twitter:title" content="Tablan | Industrial AI Automation Expert">
+    <meta property="twitter:description" content="Industrial AI automation expert helping manufacturers improve sales & operations. 70% manual task reduction guaranteed.">
+    <meta property="twitter:image" content="https://tablanio.netlify.app/og-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://tablanio.netlify.app/">
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Tablan - Industrial AI Automation",
+        "description": "Industrial AI automation expert helping manufacturers, suppliers, and distributors improve sales, marketing and operations using no-code AI automation.",
+        "url": "https://tablanio.netlify.app",
+        "serviceType": "Industrial AI Automation",
+        "areaServed": "Global",
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Industrial AI Automation Services",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Custom Product Configurators"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Industrial Sales Automation"
+                    }
+                }
+            ]
+        }
+    }
+    </script>
+    
+    <!-- Fonts and Styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Supabase Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' https:;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#hero">Tablan</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#services" class="nav-link">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#stats" class="nav-link">Results</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="nav-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">More Sales. Less Manual Work.</h1>
+                <p class="hero-subtitle">I help industrial manufacturers, suppliers, and distributors improve sales, marketing and operations using no-code AI automation & workflow automation, so your team can focus on closing deals.</p>
+                <button class="cta-button" onclick="openContactPopup()">Show Me What's Possible</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>Industrial AI Automation Expert</h2>
+                <p class="section-subtitle">Leveraging AI & Automation for Industrial Excellence</p>
+                <p class="section-description">I specialize in transforming industrial operations through strategic AI implementation and workflow automation. With deep experience in manufacturing and distribution, I create cost-effective, actionable roadmaps for AI adoption that deliver measurable results.</p>
+            </div>
+            <div class="features-grid-2col">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Strategic Implementation</h3>
+                    <p>Cost-effective and actionable roadmaps for industrial AI automation adoption, tailored to manufacturing and distribution businesses.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Revenue-Focused Solutions</h3>
+                    <p>No-code AI and workflow automation solutions designed to scale your industrial sales and marketing processes for maximum ROI.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✅</div>
+                    <h3>Battle-Tested Results</h3>
+                    <p>Proven industrial AI automation solutions that deliver measurable results in high-volume manufacturing and distribution operations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏭</div>
+                    <h3>Built for Industry</h3>
+                    <p>Deep understanding of industrial challenges with solutions specifically designed for manufacturers, suppliers, and distributors.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>My Industrial AI Automation Solutions</h2>
+                <p class="section-subtitle">Proven No-Code AI & Workflow Automation Systems that Improve Your Industrial Sales, Marketing & Operations</p>
+            </div>
+            <div class="services-grid-2col">
+                <div class="service-card">
+                    <h3>Custom Product Configurators</h3>
+                    <p class="service-description">I create AI-powered tools that let your leads explore, customize, and request pricing automatically.</p>
+                    <ul class="service-features">
+                        <li>No-code AI automation solution for industrial products</li>
+                        <li>Streamlines the industrial sales process automatically</li>
+                        <li>Captures qualified lead data for manufacturing businesses</li>
+                        <li>Delivers smooth user experience with workflow automation</li>
+                        <li>Integration with existing industrial systems and CRM</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>Industrial Sales Automation</h3>
+                    <p class="service-description">I implement AI systems that capture and qualify industrial leads automatically, scaling your sales without adding staff.</p>
+                    <ul class="service-features">
+                        <li>AI-powered lead capture and qualification</li>
+                        <li>24/7 technical question answering with AI automation</li>
+                        <li>Automated proposal generation and meeting scheduling</li>
+                        <li>Scale industrial sales without adding more staff</li>
+                        <li>Performance analytics dashboard for sales tracking</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>Technical Writing & Content Automation</h3>
+                    <p class="service-description">I automate your content creation process, generating technical documentation and marketing materials at scale.</p>
+                    <ul class="service-features">
+                        <li>Automated product descriptions and technical documentation</li>
+                        <li>AI-powered marketing material generation</li>
+                        <li>Multi-language content for global industrial markets</li>
+                        <li>SEO-optimized content for manufacturing websites</li>
+                        <li>Consistent messaging across all platforms</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <h3>Industrial Workflow Automation</h3>
+                    <p class="service-description">I design custom automation solutions that cut manual tasks and reduce human error in your operations.</p>
+                    <ul class="service-features">
+                        <li>AI-powered workflow automation to reduce manual tasks</li>
+                        <li>Error reduction in manufacturing and distribution processes</li>
+                        <li>Custom no-code solutions for your industrial business</li>
+                        <li>Performance metrics and reporting for operations</li>
+                        <li>Cross-system integration for manufacturing</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="services-cta">
+                <button class="cta-button" onclick="openContactPopup()">Book Intro Call</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats">
+        <div class="container">
+            <div class="section-header">
+                <h2>Working with an AI Expert with Real Industrial Experience</h2>
+                <p class="section-subtitle">I'm an engineer and AI expert who understands the unique challenges of industrial technical sales, manufacturing operations, and distribution automation.</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">15+</div>
+                    <h3>Years Combined Experience</h3>
+                    <p>In industrial manufacturing, distribution automation, and technical sales AI solutions</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100+</div>
+                    <h3>Industrial Automation Solutions</h3>
+                    <p>Custom-built no-code AI and workflow automation for industrial businesses worldwide</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">70%</div>
+                    <h3>Manual Task Reduction</h3>
+                    <p>40% increase in qualified industrial leads and 25% shorter sales cycles with my automation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Work With Me Section -->
+    <section id="why" class="why">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Work with Me?</h2>
+                <p class="section-subtitle">Your partner in transforming industrial operations through no-code AI automation innovation</p>
+            </div>
+            <div class="why-grid-2col">
+                <div class="why-card">
+                    <h3>Industrial Expertise</h3>
+                    <p>I combine deep manufacturing and distribution experience with cutting-edge industrial AI automation expertise, ensuring solutions that truly understand your sector's challenges.</p>
+                </div>
+                <div class="why-card">
+                    <h3>Flexible Approach</h3>
+                    <p>I offer subscription-based, project-based, or credit-based engagements for industrial automation, all supported by dedicated strategic focus on your manufacturing success.</p>
+                </div>
+                <div class="why-card">
+                    <h3>Results-Driven</h3>
+                    <p>I focus on delivering measurable outcomes, implementing AI automation solutions that directly impact your industrial revenue growth and operational efficiency.</p>
+                </div>
+                <div class="why-card">
+                    <h3>Sustainable Implementation</h3>
+                    <p>Beyond deployment, I provide comprehensive training and support, empowering your industrial team to independently manage and optimize your AI automation solutions.</p>
+                </div>
+            </div>
+            <div class="why-cta">
+                <h3>Where Can I Save You Time?</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What types of industrial businesses do I work with?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>I specialize in working with industrial manufacturers, suppliers, and distributors across various sectors including heavy machinery, automation equipment, instrumentation, and industrial components. My solutions are tailored to businesses dealing with complex technical products and B2B sales processes.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How long does it take to implement industrial AI automation?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Implementation timelines vary based on complexity, but most no-code AI automation solutions can be deployed within 2-8 weeks. Simple lead capture systems can be live in as little as 1-2 weeks, while comprehensive workflow automation may take 6-12 weeks for full deployment.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you need technical expertise to use my no-code AI solutions?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No technical expertise is required. My no-code AI automation solutions are designed for business users. I provide comprehensive training and ongoing support to ensure your team can effectively manage and optimize the systems independently.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do I ensure data security for industrial automation?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Data security is paramount in industrial applications. All solutions are built with enterprise-grade security measures, including encrypted data transmission, secure API connections, and compliance with industrial data protection standards. I can work within your existing security frameworks.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What kind of ROI can you expect from my industrial AI automation solutions?</h3>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Clients typically see 40% increase in qualified leads, 25% shorter sales cycles, and 70% reduction in manual tasks. Most implementations pay for themselves within 6-12 months through increased efficiency and revenue growth. Specific ROI varies based on your current processes and implementation scope.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact/Footer Section -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <h2>Let's Transform Your Industrial Operations Together</h2>
+                <p>I help industrial businesses (manufacturers, suppliers, and distributors) accelerate sales growth cost-effectively through AI and automation solutions.</p>
+                <div class="contact-info">
+                    <button class="cta-button footer-cta" onclick="openContactPopup()">Get Started Today</button>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tablan | Empowering Industrial Businesses with AI & Automation</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Multi-Step Contact Popup Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeContactPopup()">&times;</span>
+            
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="step-indicator" id="stepIndicator">Step 1 of 6</div>
+            </div>
+            
+            <!-- Multi-Step Form -->
+            <form id="multiStepForm" class="multi-step-form">
+                
+                <!-- Step 1: Implementation Area -->
+                <div class="form-step active" data-step="1">
+                    <h2>Implementation Area</h2>
+                    <p>Select the area where you want to implement AI:</p>
+                    
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="implementation_area" value="sales">
+                            <div class="checkbox-content">
+                                <strong>Sales</strong>
+                                <span>Automate lead generation, qualification, and follow-ups</span>
+                            </div>
+                        </label>
+                        
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="implementation_area" value="marketing">
+                            <div class="checkbox-content">
+                                <strong>Marketing</strong>
+                                <span>Content creation, campaign automation, and analytics</span>
+                            </div>
+                        </label>
+                        
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="implementation_area" value="operations">
+                            <div class="checkbox-content">
+                                <strong>Operations</strong>
+                                <span>Streamline workflows and business processes</span>
+                            </div>
+                        </label>
+                        
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="implementation_area" value="custom">
+                            <div class="checkbox-content">
+                                <strong>Custom Project/Enterprise</strong>
+                                <span>Tailored AI solutions for specific needs</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Step 2: Current Challenges -->
+                <div class="form-step" data-step="2">
+                    <h2>Current Challenges</h2>
+                    <p>What specific challenges are you facing in your operations that affects efficiency, speed, downtime or quality of output/results? *</p>
+                    <textarea name="current_challenges" rows="5" placeholder="Describe your current challenges..." required></textarea>
+                </div>
+
+                <!-- Step 3: Current Solutions -->
+                <div class="form-step" data-step="3">
+                    <h2>Current Solutions</h2>
+                    <p>Are you currently using any automation or AI solutions? If so, what's working or not working? *</p>
+                    <textarea name="current_solutions" rows="5" placeholder="Tell us about your current solutions..." required></textarea>
+                </div>
+
+                <!-- Step 4: Business Goals -->
+                <div class="form-step" data-step="4">
+                    <h2>Business Goals</h2>
+                    <p>What are your business goals for the next 6-12 months? *</p>
+                    <textarea name="business_goals" rows="5" placeholder="Share your business goals..." required></textarea>
+                </div>
+
+                <!-- Step 5: Company Website -->
+                <div class="form-step" data-step="5">
+                    <h2>Company Website</h2>
+                    <p>What's your company website? *</p>
+                    <input type="url" name="company_website" placeholder="https://yourcompany.com" required>
+                </div>
+
+                <!-- Step 6: Contact Details -->
+                <div class="form-step" data-step="6">
+                    <h2>Contact Details</h2>
+                    <div class="form-row">
+                        <input type="text" name="full_name" placeholder="Full Name*" required>
+                        <input type="text" name="job_title" placeholder="Job Title*" required>
+                    </div>
+                    <input type="email" name="work_email" placeholder="Work Email*" required>
+                    <input type="tel" name="contact_number" placeholder="Contact Number*" required>
+                    <input type="text" name="company_name" placeholder="Company Name*" required>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="form-navigation">
+                    <button type="button" class="nav-button prev-button" onclick="previousStep()" style="display: none;">Previous</button>
+                    <button type="button" class="nav-button next-button" onclick="nextStep()">Next</button>
+                    <button type="submit" class="submit-button" style="display: none;">Submit Application</button>
+                </div>
+
+                <p class="form-disclaimer">Your information is secure and will never be shared. I'll respond within 24 hours.</p>
+            </form>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    
+    <!-- Emergency FAQ Test Script -->
+    <script>
+        console.log('🔥 INLINE SCRIPT RUNNING');
+        
+        // Wait for page to load then test FAQ
+        window.addEventListener('load', function() {
+            console.log('🔥 WINDOW LOADED - Testing FAQ');
+            
+            // Find FAQ items
+            const faqItems = document.querySelectorAll('.faq-item');
+            console.log('🔥 Found FAQ items:', faqItems.length);
+            
+            if (faqItems.length > 0) {
+                // Add click handlers to first FAQ item
+                const firstFaq = faqItems[0];
+                const question = firstFaq.querySelector('.faq-question');
+                const answer = firstFaq.querySelector('.faq-answer');
+                const toggle = firstFaq.querySelector('.faq-toggle');
+                
+                console.log('🔥 First FAQ elements:', {
+                    question: !!question,
+                    answer: !!answer,
+                    toggle: !!toggle
+                });
+                
+                if (question && answer && toggle) {
+                    question.onclick = function() {
+                        console.log('🔥 FAQ CLICKED!');
+                        if (answer.style.display === 'block') {
+                            answer.style.display = 'none';
+                            toggle.textContent = '+';
+                        } else {
+                            answer.style.display = 'block';
+                            toggle.textContent = '−';
+                        }
+                    };
+                    console.log('🔥 Click handler added to first FAQ');
+                }
+            }
+            
+            // Global test function
+            window.emergencyFAQTest = function() {
+                console.log('🔥 EMERGENCY FAQ TEST');
+                const firstAnswer = document.querySelector('.faq-answer');
+                if (firstAnswer) {
+                    firstAnswer.style.display = 'block';
+                    firstAnswer.style.backgroundColor = 'yellow';
+                    console.log('🔥 First FAQ answer should be visible now');
+                }
+            };
+        });
+    </script>
+</body>
+</html>
