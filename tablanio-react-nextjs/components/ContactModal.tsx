@@ -42,6 +42,10 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   
   const totalSteps = 6
 
+  const goToStep = (step: number) => {
+    setCurrentStep(step)
+  }
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden'
@@ -65,16 +69,19 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     setFormData(prev => ({ ...prev, ...updates }))
   }
 
-  const handleImplementationAreaChange = (area: string, checked: boolean) => {
-    const newAreas = checked 
-      ? [...formData.implementation_areas, area]
-      : formData.implementation_areas.filter(a => a !== area)
-    
-    updateFormData({ implementation_areas: newAreas })
+  const handleImplementationAreaSelect = (area: string) => {
+    updateFormData({ implementation_areas: [area] })
+    // Auto-advance to next step after selection
+    setTimeout(() => {
+      if (currentStep < totalSteps) {
+        setCurrentStep(currentStep + 1)
+      }
+    }, 300)
   }
 
-  const validateStep = (): boolean => {
-    switch (currentStep) {
+  const validateStep = (step?: number): boolean => {
+    const stepToValidate = step || currentStep
+    switch (stepToValidate) {
       case 1:
         return formData.implementation_areas.length > 0
       case 2:
@@ -164,17 +171,21 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
         <span className={styles.close} onClick={handleClose}>&times;</span>
         
-        {/* Progress Bar */}
-        <div className={styles.progressContainer}>
-          <div className={styles.progressBar}>
-            <div 
-              className={styles.progressFill} 
-              style={{ width: `${(currentStep / totalSteps) * 100}%` }}
-            />
-          </div>
-          <div className={styles.stepIndicator}>
-            Step {currentStep} of {totalSteps}
-          </div>
+        {/* Step Navigation */}
+        <div className={styles.stepNavigation}>
+          {Array.from({ length: totalSteps }, (_, i) => i + 1).map((step) => (
+            <div
+              key={step}
+              className={`${styles.stepCircle} ${
+                step === currentStep ? styles.active :
+                step < currentStep ? styles.completed :
+                styles.pending
+              }`}
+              onClick={() => goToStep(step)}
+            >
+              {step}
+            </div>
+          ))}
         </div>
 
         {message && (
@@ -188,24 +199,24 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
             <div>
               <h2>Implementation Area</h2>
               <p>Select the area where you want to implement AI:</p>
-              <div className={styles.checkboxGroup}>
+              <div className={styles.optionsGrid}>
                 {[
-                  { value: 'sales', label: 'Sales', desc: 'Automate lead generation, qualification, and follow-ups' },
-                  { value: 'marketing', label: 'Marketing', desc: 'Content creation, campaign automation, and analytics' },
-                  { value: 'operations', label: 'Operations', desc: 'Streamline workflows and business processes' },
-                  { value: 'custom', label: 'Custom Project/Enterprise', desc: 'Tailored AI solutions for specific needs' }
+                  { value: 'sales', label: 'Sales', desc: 'Lead generation & qualification' },
+                  { value: 'marketing', label: 'Marketing', desc: 'Content & campaign automation' },
+                  { value: 'operations', label: 'Operations', desc: 'Workflow automation' },
+                  { value: 'custom', label: 'Custom/Enterprise', desc: 'Tailored AI solutions' }
                 ].map((area) => (
-                  <label key={area.value} className={styles.checkboxItem}>
-                    <input 
-                      type="checkbox" 
-                      checked={formData.implementation_areas.includes(area.value)}
-                      onChange={(e) => handleImplementationAreaChange(area.value, e.target.checked)}
-                    />
-                    <div className={styles.checkboxContent}>
-                      <strong>{area.label}</strong>
-                      <span>{area.desc}</span>
-                    </div>
-                  </label>
+                  <button
+                    key={area.value}
+                    type="button"
+                    className={`${styles.optionCard} ${
+                      formData.implementation_areas.includes(area.value) ? styles.selected : ''
+                    }`}
+                    onClick={() => handleImplementationAreaSelect(area.value)}
+                  >
+                    <div className={styles.optionTitle}>{area.label}</div>
+                    <div className={styles.optionDesc}>{area.desc}</div>
+                  </button>
                 ))}
               </div>
             </div>
@@ -214,9 +225,9 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
           {currentStep === 2 && (
             <div>
               <h2>Current Challenges</h2>
-              <p>What specific challenges are you facing in your operations that affects efficiency, speed, downtime or quality of output/results? *</p>
+              <p>What specific challenges are you facing? *</p>
               <textarea 
-                rows={5} 
+                rows={3} 
                 value={formData.current_challenges}
                 onChange={(e) => updateFormData({ current_challenges: e.target.value })}
                 placeholder="Describe your current challenges..."
@@ -227,9 +238,9 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
           {currentStep === 3 && (
             <div>
               <h2>Current Solutions</h2>
-              <p>Are you currently using any automation or AI solutions? If so, what&apos;s working or not working? *</p>
+              <p>Any existing automation or AI solutions? *</p>
               <textarea 
-                rows={5} 
+                rows={3} 
                 value={formData.current_solutions}
                 onChange={(e) => updateFormData({ current_solutions: e.target.value })}
                 placeholder="Tell us about your current solutions..."
@@ -240,9 +251,9 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
           {currentStep === 4 && (
             <div>
               <h2>Business Goals</h2>
-              <p>What are your business goals for the next 6-12 months? *</p>
+              <p>Goals for the next 6-12 months? *</p>
               <textarea 
-                rows={5} 
+                rows={3} 
                 value={formData.business_goals}
                 onChange={(e) => updateFormData({ business_goals: e.target.value })}
                 placeholder="Share your business goals..."
@@ -266,7 +277,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
           {currentStep === 6 && (
             <div>
               <h2>Contact Details</h2>
-              <div className={styles.formRow}>
+              <div className={styles.contactGrid}>
                 <input 
                   type="text" 
                   value={formData.full_name}
@@ -279,25 +290,26 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                   onChange={(e) => updateFormData({ job_title: e.target.value })}
                   placeholder="Job Title*"
                 />
+                <input 
+                  type="email" 
+                  value={formData.work_email}
+                  onChange={(e) => updateFormData({ work_email: e.target.value })}
+                  placeholder="Work Email*"
+                />
+                <input 
+                  type="tel" 
+                  value={formData.contact_number}
+                  onChange={(e) => updateFormData({ contact_number: e.target.value })}
+                  placeholder="Contact Number*"
+                />
+                <input 
+                  type="text" 
+                  value={formData.company_name}
+                  onChange={(e) => updateFormData({ company_name: e.target.value })}
+                  placeholder="Company Name*"
+                  className={styles.fullWidth}
+                />
               </div>
-              <input 
-                type="email" 
-                value={formData.work_email}
-                onChange={(e) => updateFormData({ work_email: e.target.value })}
-                placeholder="Work Email*"
-              />
-              <input 
-                type="tel" 
-                value={formData.contact_number}
-                onChange={(e) => updateFormData({ contact_number: e.target.value })}
-                placeholder="Contact Number*"
-              />
-              <input 
-                type="text" 
-                value={formData.company_name}
-                onChange={(e) => updateFormData({ company_name: e.target.value })}
-                placeholder="Company Name*"
-              />
             </div>
           )}
         </div>
@@ -305,7 +317,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
         <div className={styles.formNavigation}>
           {currentStep > 1 && (
             <button type="button" className={styles.navButton} onClick={prevStep}>
-              Previous
+              ← Previous
             </button>
           )}
           
@@ -316,7 +328,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
               onClick={nextStep}
               disabled={!validateStep()}
             >
-              Next
+              Next →
             </button>
           ) : (
             <button 
