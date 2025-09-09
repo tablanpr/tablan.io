@@ -74,8 +74,8 @@
 }
 
 .stepCircle.active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-color: #667eea;
+  background: linear-gradient(135deg, #EC3928 0%, #1F3A5F 100%);
+  border-color: #EC3928;
   color: white;
   transform: scale(1.1);
 }
@@ -93,7 +93,7 @@
 }
 
 .stepCircle:hover {
-  border-color: #667eea;
+  border-color: #EC3928;
   transform: scale(1.05);
 }
 
@@ -151,14 +151,14 @@
 }
 
 .optionCard:hover {
-  border-color: #667eea;
-  background: #f8f9ff;
+  border-color: #EC3928;
+  background: #fef2f2;
   transform: translateY(-2px);
 }
 
 .optionCard.selected {
-  border-color: #667eea;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: #EC3928;
+  background: linear-gradient(135deg, #EC3928 0%, #1F3A5F 100%);
   color: white;
 }
 
@@ -199,8 +199,8 @@
 .formStep textarea:focus,
 .formStep input:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: #EC3928;
+  box-shadow: 0 0 0 3px rgba(236, 57, 40, 0.1);
 }
 
 .formStep textarea {
@@ -248,16 +248,17 @@
 
 .nextButton,
 .submitButton {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #EC3928 0%, #1F3A5F 100%);
   color: white;
   border: none;
   margin-left: auto;
+  box-shadow: 0 2px 8px rgba(236, 57, 40, 0.3);
 }
 
 .nextButton:hover:not(:disabled),
 .submitButton:hover:not(:disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 12px rgba(236, 57, 40, 0.4);
 }
 
 .disclaimer {

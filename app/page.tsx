@@ -19,13 +19,14 @@ function About() {
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px', marginTop: '50px' }}>
             {[
-              { title: 'Strategic Industrial AI Implementation', desc: 'Cost-effective and actionable roadmaps for industrial AI automation adoption, tailored to manufacturing and distribution businesses.' },
-              { title: 'Revenue-Focused Automation', desc: 'No-code AI and workflow automation solutions are designed to scale your industrial sales and marketing processes for maximum ROI.' },
-              { title: 'Built for Industrial Businesses', desc: 'Battle-tested industrial AI automation solutions that deliver measurable results in high-volume manufacturing and distribution operations.' }
+              { icon: '🎯', title: 'Strategic Industrial AI Implementation', desc: 'Cost-effective and actionable roadmaps for industrial AI automation adoption, tailored to manufacturing and distribution businesses.' },
+              { icon: '💰', title: 'Revenue-Focused Automation', desc: 'No-code AI and workflow automation solutions are designed to scale your industrial sales and marketing processes for maximum ROI.' },
+              { icon: '🏭', title: 'Built for Industrial Businesses', desc: 'Battle-tested industrial AI automation solutions that deliver measurable results in high-volume manufacturing and distribution operations.' }
             ].map((feature, index) => (
-              <div key={index} style={{ background: 'white', padding: '30px', borderRadius: '12px', boxShadow: '0 4px 16px rgba(0,0,0,0.08)' }}>
-                <h3 style={{ fontSize: '20px', fontWeight: '600', color: '#333', marginBottom: '12px' }}>{feature.title}</h3>
-                <p style={{ color: '#666', lineHeight: '1.6' }}>{feature.desc}</p>
+              <div key={index} style={{ background: 'white', padding: '30px', borderRadius: '12px', boxShadow: '0 4px 16px rgba(0,0,0,0.08)', border: '2px solid transparent', transition: 'all 0.3s ease' }} onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#EC3928'; e.currentTarget.style.transform = 'translateY(-2px)'; }} onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+                <div style={{ fontSize: '48px', marginBottom: '15px', textAlign: 'center' }}>{feature.icon}</div>
+                <h3 style={{ fontSize: '20px', fontWeight: '600', color: '#1F3A5F', marginBottom: '12px', textAlign: 'center' }}>{feature.title}</h3>
+                <p style={{ color: '#666', lineHeight: '1.6', textAlign: 'center' }}>{feature.desc}</p>
               </div>
             ))}
           </div>
@@ -50,32 +51,37 @@ function Services({ onContactClick }: { onContactClick: () => void }) {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '30px', marginBottom: '40px' }}>
           {[
             {
+              icon: '⚙️',
               title: 'Custom Product Configurators',
               features: ['Let leads explore, customize, and request pricing with AI-powered tools.', 'No-code AI automation solution for industrial products.', 'Streamlines the industrial sales process automatically.', 'Captures qualified lead data for manufacturing businesses.', 'Delivers smooth user experience with workflow automation', 'Integration with existing industrial systems and CRM'],
-              cta: 'View Examples→'
+              cta: 'View Examples →'
             },
             {
+              icon: '📊',
               title: 'Industrial Sales Automation',
               features: ['Use AI to capture and qualify industrial leads automatically.', 'Answer technical questions with AI-powered automation 24/7.', 'Send proposals and schedule meetings with workflow automation.', 'Scale industrial sales without adding more staff.', 'Fully no-code AI solution for manufacturing businesses.', 'Performance analytics dashboard for industrial sales tracking.'],
-              cta: 'View Examples→'
+              cta: 'View Examples →'
             },
             {
+              icon: '📝',
               title: 'Technical Writing & Content Automation',
               features: ['Create product descriptions and technical documentation automatically.', 'Generate marketing materials with AI-powered content automation.', 'Multi-language content generation for global industrial markets.', 'SEO-optimized content creation for manufacturing websites.', 'Maintain consistent messaging across all industrial platforms.', 'Content distribution automation for manufacturing businesses.'],
-              cta: 'View Examples→'
+              cta: 'View Examples →'
             },
             {
+              icon: '⚡',
               title: 'Industrial Workflow Automation',
               features: ['Cut down on manual tasks with AI-powered workflow automation.', 'Reduce human error in manufacturing and distribution processes.', 'Custom no-code automation solutions to fit your industrial business.', 'Performance metrics and reporting for industrial operations', 'Cross-system integration for manufacturing and distribution'],
-              cta: 'View Examples→'
+              cta: 'View Examples →'
             }
           ].map((service, index) => (
-            <div key={index} style={{ background: '#f8f9fa', padding: '40px', borderRadius: '12px' }}>
-              <h3 style={{ fontSize: '24px', fontWeight: '600', color: '#333', marginBottom: '20px' }}>{service.title}</h3>
+            <div key={index} style={{ background: '#f8f9fa', padding: '40px', borderRadius: '12px', border: '2px solid transparent', transition: 'all 0.3s ease' }} onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#EC3928'; e.currentTarget.style.transform = 'translateY(-2px)'; }} onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+              <div style={{ fontSize: '48px', marginBottom: '15px', textAlign: 'center' }}>{service.icon}</div>
+              <h3 style={{ fontSize: '24px', fontWeight: '600', color: '#1F3A5F', marginBottom: '20px', textAlign: 'center' }}>{service.title}</h3>
               <ul style={{ listStyle: 'none', padding: 0, marginBottom: '20px' }}>
                 {service.features.map((feature, i) => (
                   <li key={i} style={{ color: '#666', marginBottom: '8px', paddingLeft: '20px', position: 'relative' }}>
-                    <span style={{ position: 'absolute', left: 0, color: '#667eea' }}>•</span>
+                    <span style={{ position: 'absolute', left: 0, color: '#EC3928', fontWeight: 'bold' }}>✓</span>
                     {feature}
                   </li>
                 ))}
@@ -84,14 +90,17 @@ function Services({ onContactClick }: { onContactClick: () => void }) {
                 onClick={onContactClick}
                 style={{ 
                   background: 'transparent',
-                  color: '#667eea',
+                  color: '#EC3928',
                   padding: '8px 0',
                   fontSize: '16px',
                   fontWeight: '600',
                   border: 'none',
                   cursor: 'pointer',
-                  textDecoration: 'underline'
+                  textDecoration: 'underline',
+                  transition: 'color 0.3s ease'
                 }}
+                onMouseEnter={(e) => e.currentTarget.style.color = '#1F3A5F'}
+                onMouseLeave={(e) => e.currentTarget.style.color = '#EC3928'}
               >
                 {service.cta}
               </button>
@@ -102,14 +111,24 @@ function Services({ onContactClick }: { onContactClick: () => void }) {
           <button 
             onClick={onContactClick}
             style={{ 
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              background: 'linear-gradient(135deg, #EC3928 0%, #1F3A5F 100%)',
               color: 'white',
               padding: '16px 32px',
               fontSize: '18px',
               fontWeight: '600',
               border: 'none',
               borderRadius: '8px',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              boxShadow: '0 4px 16px rgba(236, 57, 40, 0.3)',
+              transition: 'all 0.3s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)'
+              e.currentTarget.style.boxShadow = '0 6px 20px rgba(236, 57, 40, 0.4)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = '0 4px 16px rgba(236, 57, 40, 0.3)'
             }}
           >
             Book Intro Call
@@ -134,14 +153,15 @@ function WhyCollaborate({ onContactClick }: { onContactClick: () => void }) {
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px', marginBottom: '40px' }}>
           {[
-            { title: 'Industrial Expertise', desc: 'Our team combines deep manufacturing and distribution experience with cutting-edge industrial AI automation expertise, ensuring solutions that truly understand your sector\'s challenges.' },
-            { title: 'Flexible', desc: 'Choose from subscription-based, project-based, or credit-based engagements for industrial automation, all supported by dedicated strategists focused on your manufacturing success.' },
-            { title: 'Results-Driven', desc: 'We focus on delivering measurable outcomes, implementing AI automation solutions that directly impact your industrial revenue growth and operational efficiency.' },
-            { title: 'Sustainable Implementation', desc: 'Beyond deployment, we provide comprehensive training and support, empowering your industrial team to independently manage and optimize your AI automation solutions.' }
+            { icon: '🏭', title: 'Industrial Expertise', desc: 'Our team combines deep manufacturing and distribution experience with cutting-edge industrial AI automation expertise, ensuring solutions that truly understand your sector\'s challenges.' },
+            { icon: '🔄', title: 'Flexible', desc: 'Choose from subscription-based, project-based, or credit-based engagements for industrial automation, all supported by dedicated strategists focused on your manufacturing success.' },
+            { icon: '📈', title: 'Results-Driven', desc: 'We focus on delivering measurable outcomes, implementing AI automation solutions that directly impact your industrial revenue growth and operational efficiency.' },
+            { icon: '🎯', title: 'Sustainable Implementation', desc: 'Beyond deployment, we provide comprehensive training and support, empowering your industrial team to independently manage and optimize your AI automation solutions.' }
           ].map((feature, index) => (
-            <div key={index} style={{ background: 'white', padding: '30px', borderRadius: '12px', boxShadow: '0 4px 16px rgba(0,0,0,0.08)' }}>
-              <h3 style={{ fontSize: '20px', fontWeight: '600', color: '#333', marginBottom: '12px' }}>{feature.title}</h3>
-              <p style={{ color: '#666', lineHeight: '1.6' }}>{feature.desc}</p>
+            <div key={index} style={{ background: 'white', padding: '30px', borderRadius: '12px', boxShadow: '0 4px 16px rgba(0,0,0,0.08)', border: '2px solid transparent', transition: 'all 0.3s ease' }} onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#EC3928'; e.currentTarget.style.transform = 'translateY(-2px)'; }} onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+              <div style={{ fontSize: '48px', marginBottom: '15px', textAlign: 'center' }}>{feature.icon}</div>
+              <h3 style={{ fontSize: '20px', fontWeight: '600', color: '#1F3A5F', marginBottom: '12px', textAlign: 'center' }}>{feature.title}</h3>
+              <p style={{ color: '#666', lineHeight: '1.6', textAlign: 'center' }}>{feature.desc}</p>
             </div>
           ))}
         </div>
@@ -149,14 +169,24 @@ function WhyCollaborate({ onContactClick }: { onContactClick: () => void }) {
           <button 
             onClick={onContactClick}
             style={{ 
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              background: 'linear-gradient(135deg, #EC3928 0%, #1F3A5F 100%)',
               color: 'white',
               padding: '16px 32px',
               fontSize: '18px',
               fontWeight: '600',
               border: 'none',
               borderRadius: '8px',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              boxShadow: '0 4px 16px rgba(236, 57, 40, 0.3)',
+              transition: 'all 0.3s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)'
+              e.currentTarget.style.boxShadow = '0 6px 20px rgba(236, 57, 40, 0.4)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = '0 4px 16px rgba(236, 57, 40, 0.3)'
             }}
           >
             Where Can We Save You Time?
@@ -185,9 +215,9 @@ function Stats() {
             { number: '100+', title: 'Industrial Automation Solutions', desc: 'Custom-built no-code AI and workflow automation for industrial businesses worldwide' },
             { number: '70%', title: 'Manual Task Reduction', desc: '40% increase in qualified industrial leads and 25% shorter sales cycles with our automation' }
           ].map((stat, index) => (
-            <div key={index} style={{ textAlign: 'center', background: '#f8f9fa', padding: '40px', borderRadius: '12px', boxShadow: '0 4px 16px rgba(0,0,0,0.08)' }}>
-              <div style={{ fontSize: '48px', fontWeight: '700', color: '#667eea', marginBottom: '15px' }}>{stat.number}</div>
-              <h3 style={{ fontSize: '20px', fontWeight: '600', color: '#333', marginBottom: '12px' }}>{stat.title}</h3>
+            <div key={index} style={{ textAlign: 'center', background: '#f8f9fa', padding: '40px', borderRadius: '12px', boxShadow: '0 4px 16px rgba(0,0,0,0.08)', border: '2px solid transparent', transition: 'all 0.3s ease' }} onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#EC3928'; e.currentTarget.style.transform = 'translateY(-2px)'; }} onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+              <div style={{ fontSize: '48px', fontWeight: '700', color: '#EC3928', marginBottom: '15px' }}>{stat.number}</div>
+              <h3 style={{ fontSize: '20px', fontWeight: '600', color: '#1F3A5F', marginBottom: '12px' }}>{stat.title}</h3>
               <p style={{ color: '#666', lineHeight: '1.6' }}>{stat.desc}</p>
             </div>
           ))}
@@ -240,14 +270,24 @@ function Footer({ onContactClick }: { onContactClick: () => void }) {
           <button 
             onClick={onContactClick}
             style={{ 
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              background: 'linear-gradient(135deg, #EC3928 0%, #1F3A5F 100%)',
               color: 'white',
               padding: '16px 32px',
               fontSize: '18px',
               fontWeight: '600',
               border: 'none',
               borderRadius: '8px',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              boxShadow: '0 4px 16px rgba(236, 57, 40, 0.3)',
+              transition: 'all 0.3s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)'
+              e.currentTarget.style.boxShadow = '0 6px 20px rgba(236, 57, 40, 0.4)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = '0 4px 16px rgba(236, 57, 40, 0.3)'
             }}
           >
             Show me what\'s possible

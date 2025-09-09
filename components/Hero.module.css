@@ -13,7 +13,7 @@
   font-size: 56px;
   font-weight: 700;
   line-height: 1.1;
-  color: #333333;
+  color: #1F3A5F;
   margin-bottom: 24px;
   letter-spacing: -0.02em;
 }
@@ -29,7 +29,7 @@
 }
 
 .ctaButton {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #EC3928 0%, #1F3A5F 100%);
   color: white;
   padding: 16px 32px;
   font-size: 18px;
@@ -40,11 +40,12 @@
   transition: all 0.3s ease;
   text-decoration: none;
   display: inline-block;
+  box-shadow: 0 4px 16px rgba(236, 57, 40, 0.3);
 }
 
 .ctaButton:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 6px 20px rgba(236, 57, 40, 0.4);
 }
 
 @media (max-width: 768px) {
