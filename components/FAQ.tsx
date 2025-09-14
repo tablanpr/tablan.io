@@ -16,17 +16,17 @@ const faqData = [
   },
   {
     id: 3,
-    question: "Do you need technical expertise to use my no-code AI solutions?",
-    answer: "No technical expertise is required. My no-code AI automation solutions are designed for business users. I provide comprehensive training and ongoing support to ensure your team can effectively manage and optimize the systems independently."
+    question: "Do you need technical expertise to use our no-code AI solutions?",
+    answer: "No technical expertise is required. Our no-code AI automation solutions are designed for business users. We provide comprehensive training and ongoing support to ensure your team can effectively manage and optimize the systems independently."
   },
   {
     id: 4,
-    question: "How do I ensure data security for industrial automation?",
-    answer: "Data security is paramount in industrial applications. All solutions are built with enterprise-grade security measures, including encrypted data transmission, secure API connections, and compliance with industrial data protection standards. I can work within your existing security frameworks."
+    question: "How do you ensure data security for industrial automation?",
+    answer: "Data security is paramount in industrial applications. All solutions are built with enterprise-grade security measures, including encrypted data transmission, secure API connections, and compliance with industrial data protection standards. We can work within your existing security frameworks."
   },
   {
     id: 5,
-    question: "What kind of ROI can you expect from my industrial AI automation solutions?",
+    question: "What kind of ROI can you expect from our industrial AI automation solutions?",
     answer: "Clients typically see 40% increase in qualified leads, 25% shorter sales cycles, and 70% reduction in manual tasks. Most implementations pay for themselves within 6-12 months through increased efficiency and revenue growth. Specific ROI varies based on your current processes and implementation scope."
   }
 ]

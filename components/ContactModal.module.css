@@ -74,7 +74,7 @@
 }
 
 .stepCircle.active {
-  background: linear-gradient(135deg, #EC3928 0%, #1F3A5F 100%);
+  background: #EC3928;
   border-color: #EC3928;
   color: white;
   transform: scale(1.1);
@@ -158,7 +158,7 @@
 
 .optionCard.selected {
   border-color: #EC3928;
-  background: linear-gradient(135deg, #EC3928 0%, #1F3A5F 100%);
+  background: #EC3928;
   color: white;
 }
 
@@ -248,7 +248,7 @@
 
 .nextButton,
 .submitButton {
-  background: linear-gradient(135deg, #EC3928 0%, #1F3A5F 100%);
+  background: #EC3928;
   color: white;
   border: none;
   margin-left: auto;

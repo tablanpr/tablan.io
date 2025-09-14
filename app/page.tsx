@@ -5,6 +5,8 @@ import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
 import FAQ from '@/components/FAQ'
 import ContactModal from '@/components/ContactModal'
+import PhotoGallery from '@/components/PhotoGallery'
+import { getLogoUrl } from '@/lib/supabase'
 
 function About() {
   return (
@@ -111,7 +113,7 @@ function Services({ onContactClick }: { onContactClick: () => void }) {
           <button 
             onClick={onContactClick}
             style={{ 
-              background: 'linear-gradient(135deg, #EC3928 0%, #1F3A5F 100%)',
+              background: '#EC3928',
               color: 'white',
               padding: '16px 32px',
               fontSize: '18px',
@@ -151,7 +153,21 @@ function WhyCollaborate({ onContactClick }: { onContactClick: () => void }) {
             Your partner in transforming industrial operations through no-code AI automation innovation
           </p>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px', marginBottom: '40px' }}>
+        <>
+          <style jsx>{`
+            .collaborate-grid {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 30px;
+              margin-bottom: 40px;
+            }
+            @media (max-width: 768px) {
+              .collaborate-grid {
+                grid-template-columns: 1fr;
+              }
+            }
+          `}</style>
+          <div className="collaborate-grid">
           {[
             { icon: '🏭', title: 'Industrial Expertise', desc: 'Our team combines deep manufacturing and distribution experience with cutting-edge industrial AI automation expertise, ensuring solutions that truly understand your sector\'s challenges.' },
             { icon: '🔄', title: 'Flexible', desc: 'Choose from subscription-based, project-based, or credit-based engagements for industrial automation, all supported by dedicated strategists focused on your manufacturing success.' },
@@ -164,12 +180,13 @@ function WhyCollaborate({ onContactClick }: { onContactClick: () => void }) {
               <p style={{ color: '#666', lineHeight: '1.6', textAlign: 'center' }}>{feature.desc}</p>
             </div>
           ))}
-        </div>
+          </div>
+        </>
         <div style={{ textAlign: 'center' }}>
           <button 
             onClick={onContactClick}
             style={{ 
-              background: 'linear-gradient(135deg, #EC3928 0%, #1F3A5F 100%)',
+              background: '#EC3928',
               color: 'white',
               padding: '16px 32px',
               fontSize: '18px',
@@ -240,7 +257,16 @@ function Integrations() {
           </p>
         </div>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '40px', flexWrap: 'wrap' }}>
-          {['Microsoft 365', 'Power Automate', 'SharePoint', 'Teams', 'Dynamics 365', 'SAP', 'Salesforce', 'HubSpot'].map((tool, index) => (
+          {[
+            { name: 'Microsoft 365', icon: '🏢' },
+            { name: 'Power Automate', icon: '🔄' },
+            { name: 'SharePoint', icon: '📊' },
+            { name: 'Teams', icon: '💬' },
+            { name: 'Dynamics 365', icon: '📈' },
+            { name: 'SAP', icon: '🏭' },
+            { name: 'Salesforce', icon: '☁️' },
+            { name: 'HubSpot', icon: '🎯' }
+          ].map((tool, index) => (
             <div key={index} style={{ 
               background: 'white', 
               padding: '20px 30px', 
@@ -248,9 +274,23 @@ function Integrations() {
               boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
               fontSize: '16px',
               fontWeight: '600',
-              color: '#333'
+              color: '#333',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              transition: 'all 0.3s ease',
+              border: '2px solid transparent'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = '#EC3928'
+              e.currentTarget.style.transform = 'translateY(-2px)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'transparent'
+              e.currentTarget.style.transform = 'translateY(0)'
             }}>
-              {tool}
+              <span style={{ fontSize: '24px' }}>{tool.icon}</span>
+              <span>{tool.name}</span>
             </div>
           ))}
         </div>
@@ -260,43 +300,214 @@ function Integrations() {
 }
 
 function Footer({ onContactClick }: { onContactClick: () => void }) {
+  const logoUrl = getLogoUrl()
+  const [email, setEmail] = useState('')
+  const [isSubscribing, setIsSubscribing] = useState(false)
+  const [subscribeMessage, setSubscribeMessage] = useState('')
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!email || !email.includes('@')) {
+      setSubscribeMessage('Please enter a valid email address')
+      return
+    }
+
+    setIsSubscribing(true)
+    // For static deployment, simulate subscription
+    setTimeout(() => {
+      setSubscribeMessage('Thank you for subscribing! We\'ll be in touch.')
+      setEmail('')
+      setIsSubscribing(false)
+      setTimeout(() => setSubscribeMessage(''), 3000)
+    }, 1000)
+  }
+  
   return (
-    <footer id="contact" style={{ background: '#1F3A5F', color: 'white', padding: '60px 0 40px' }}>
+    <footer id="contact" style={{ background: '#1F3A5F', color: 'white', padding: '80px 0 40px' }}>
       <div className="container">
-        <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-          <p style={{ fontSize: '18px', opacity: 0.9, marginBottom: '30px', maxWidth: '600px', margin: '0 auto 30px' }}>
-            I help industrial businesses (manufacturers, suppliers, and distributors) accelerate sales growth cost-effectively through AI and automation solutions.
-          </p>
-          <button 
-            onClick={onContactClick}
-            style={{ 
-              background: 'linear-gradient(135deg, #EC3928 0%, #1F3A5F 100%)',
-              color: 'white',
-              padding: '16px 32px',
-              fontSize: '18px',
-              fontWeight: '600',
-              border: 'none',
-              borderRadius: '8px',
-              cursor: 'pointer',
-              boxShadow: '0 4px 16px rgba(236, 57, 40, 0.3)',
-              transition: 'all 0.3s ease'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)'
-              e.currentTarget.style.boxShadow = '0 6px 20px rgba(236, 57, 40, 0.4)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)'
-              e.currentTarget.style.boxShadow = '0 4px 16px rgba(236, 57, 40, 0.3)'
-            }}
-          >
-            Show me what\'s possible
-          </button>
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: '1fr 1fr', 
+          gap: '60px', 
+          alignItems: 'start',
+          marginBottom: '50px' 
+        }}>
+          {/* Left Column - Logo and Description */}
+          <div>
+            <img 
+              src={logoUrl} 
+              alt="Tablan Logo" 
+              style={{ 
+                height: '60px', 
+                width: 'auto', 
+                marginBottom: '24px',
+                filter: 'brightness(0) invert(1)'
+              }}
+            />
+            <p style={{ 
+              fontSize: '18px', 
+              lineHeight: '1.7', 
+              opacity: 0.9,
+              margin: 0,
+              maxWidth: '500px'
+            }}>
+              The Industrial AI Automation Agency (TIAAA) helps industrial businesses (manufacturers, suppliers, and distributors) accelerate sales growth cost-effectively through AI and automation solutions.
+            </p>
+          </div>
+
+          {/* Right Column - Subscribe Form */}
+          <div>
+            <h3 style={{ 
+              fontSize: '24px', 
+              fontWeight: '600', 
+              marginBottom: '16px',
+              color: 'white'
+            }}>
+              Stay Updated on Industrial AI
+            </h3>
+            <p style={{ 
+              fontSize: '16px', 
+              opacity: 0.8, 
+              marginBottom: '24px',
+              lineHeight: '1.6'
+            }}>
+              Get the latest insights on industrial automation, AI trends, and growth strategies delivered to your inbox.
+            </p>
+            
+            <form onSubmit={handleSubscribe} style={{ marginBottom: '16px' }}>
+              <div style={{ display: 'flex', gap: '12px', marginBottom: '12px' }}>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your work email"
+                  style={{
+                    flex: 1,
+                    padding: '14px 16px',
+                    border: '1px solid rgba(255,255,255,0.3)',
+                    borderRadius: '6px',
+                    background: 'rgba(255,255,255,0.1)',
+                    color: 'white',
+                    fontSize: '16px',
+                    outline: 'none',
+                    transition: 'all 0.3s ease'
+                  }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = '#EC3928'
+                    e.target.style.background = 'rgba(255,255,255,0.15)'
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = 'rgba(255,255,255,0.3)'
+                    e.target.style.background = 'rgba(255,255,255,0.1)'
+                  }}
+                />
+                <button
+                  type="submit"
+                  disabled={isSubscribing}
+                  style={{
+                    background: '#EC3928',
+                    color: 'white',
+                    border: 'none',
+                    padding: '14px 24px',
+                    borderRadius: '6px',
+                    fontSize: '16px',
+                    fontWeight: '600',
+                    cursor: isSubscribing ? 'not-allowed' : 'pointer',
+                    opacity: isSubscribing ? 0.7 : 1,
+                    transition: 'all 0.3s ease',
+                    whiteSpace: 'nowrap'
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isSubscribing) {
+                      e.currentTarget.style.background = '#d32f1f'
+                      e.currentTarget.style.transform = 'translateY(-1px)'
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isSubscribing) {
+                      e.currentTarget.style.background = '#EC3928'
+                      e.currentTarget.style.transform = 'translateY(0)'
+                    }
+                  }}
+                >
+                  {isSubscribing ? 'Subscribing...' : 'Subscribe'}
+                </button>
+              </div>
+            </form>
+
+            {subscribeMessage && (
+              <p style={{ 
+                fontSize: '14px', 
+                color: subscribeMessage.includes('Thank you') ? '#4ade80' : '#fbbf24',
+                margin: '0 0 16px 0',
+                fontWeight: '500'
+              }}>
+                {subscribeMessage}
+              </p>
+            )}
+
+            <button 
+              onClick={onContactClick}
+              style={{ 
+                background: 'transparent',
+                color: '#EC3928',
+                padding: '12px 0',
+                fontSize: '16px',
+                fontWeight: '600',
+                border: '2px solid #EC3928',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                width: '100%',
+                transition: 'all 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#EC3928'
+                e.currentTarget.style.color = 'white'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'transparent'
+                e.currentTarget.style.color = '#EC3928'
+              }}
+            >
+              Get Started Today
+            </button>
+          </div>
         </div>
-        <div style={{ textAlign: 'center', paddingTop: '30px', borderTop: '1px solid rgba(255,255,255,0.2)', opacity: 0.8 }}>
-          <p>&copy; 2025 Tablan | Empowering Industrial Businesses with AI & Automation</p>
+
+        <div style={{ 
+          textAlign: 'center', 
+          paddingTop: '40px', 
+          borderTop: '1px solid rgba(255,255,255,0.2)', 
+          opacity: 0.8 
+        }}>
+          <p style={{ margin: 0, fontSize: '14px' }}>
+            &copy; 2025 The Industrial AI Automation Agency (TIAAA) | Empowering Industrial Businesses with AI & Automation
+          </p>
         </div>
       </div>
+
+      <style jsx>{`
+        .container input::placeholder {
+          color: rgba(255,255,255,0.7);
+        }
+        
+        @media (max-width: 768px) {
+          .container > div:first-child {
+            grid-template-columns: 1fr !important;
+            gap: 40px !important;
+            text-align: center;
+          }
+          
+          .container input,
+          .container button {
+            width: 100%;
+          }
+          
+          .container > div:first-child > div:last-child > div {
+            flex-direction: column !important;
+          }
+        }
+      `}</style>
     </footer>
   )
 }
@@ -313,6 +524,12 @@ export default function Home() {
       <Hero onContactClick={openContactModal} />
       <About />
       <Services onContactClick={openContactModal} />
+      <PhotoGallery 
+        title="Our Industrial AI Solutions in Action"
+        subtitle="See real examples of our successful industrial automation implementations"
+        maxPhotos={8}
+        columns={4}
+      />
       <WhyCollaborate onContactClick={openContactModal} />
       <Stats />
       <Integrations />

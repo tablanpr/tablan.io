@@ -30,6 +30,19 @@
   font-weight: 700;
   color: #333333;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.logoImage {
+  height: 40px;
+  width: auto;
+  transition: all 0.3s ease;
+}
+
+.logoImage:hover {
+  transform: scale(1.05);
 }
 
 .navMenu {

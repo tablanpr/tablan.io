@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { getLogoUrl } from '@/lib/supabase'
 import styles from './Navbar.module.css'
 
 interface NavbarProps {
@@ -10,6 +11,7 @@ interface NavbarProps {
 export default function Navbar({ onContactClick }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const logoUrl = getLogoUrl()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,7 +39,11 @@ export default function Navbar({ onContactClick }: NavbarProps) {
       <div className={styles.navContainer}>
         <div className={styles.navLogo}>
           <a href="#hero" onClick={(e) => { e.preventDefault(); scrollToSection('hero') }}>
-            Tablan
+            <img 
+              src={logoUrl} 
+              alt="Tablan Logo" 
+              className={styles.logoImage}
+            />
           </a>
         </div>
         
