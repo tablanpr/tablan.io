@@ -55,6 +55,116 @@ export function getLogoUrl() {
   const { data } = supabase.storage
     .from('Photos')
     .getPublicUrl('tablaniologo.png')
-  
+
   return data.publicUrl
+}
+
+// Database functions for form submissions
+export async function submitContactForm(formData: {
+  implementationAreas: string[]
+  currentChallenges: string
+  currentSolutions: string
+  businessGoals: string
+  companyWebsite: string
+  fullName: string
+  jobTitle: string
+  workEmail: string
+  contactNumber: string
+  companyName: string
+}) {
+  try {
+    const { data, error } = await supabase
+      .from('contact_submissions')
+      .insert([
+        {
+          implementation_areas: formData.implementationAreas,
+          current_challenges: formData.currentChallenges,
+          current_solutions: formData.currentSolutions,
+          business_goals: formData.businessGoals,
+          company_website: formData.companyWebsite,
+          full_name: formData.fullName,
+          job_title: formData.jobTitle,
+          work_email: formData.workEmail,
+          contact_number: formData.contactNumber,
+          company_name: formData.companyName
+        }
+      ])
+      .select()
+
+    if (error) {
+      console.error('Error submitting contact form:', error)
+      throw error
+    }
+
+    return data
+  } catch (error) {
+    console.error('Error in submitContactForm:', error)
+    throw error
+  }
+}
+
+// Function to submit subscription form
+export async function submitSubscription(email: string, source?: string) {
+  try {
+    const { data, error } = await supabase
+      .from('subscriptions')
+      .insert([
+        {
+          email,
+          source: source || 'website',
+          subscribed_at: new Date().toISOString()
+        }
+      ])
+      .select()
+
+    if (error) {
+      console.error('Error submitting subscription:', error)
+      throw error
+    }
+
+    return data
+  } catch (error) {
+    console.error('Error in submitSubscription:', error)
+    throw error
+  }
+}
+
+// Function to get all contact submissions (admin use)
+export async function getContactSubmissions() {
+  try {
+    const { data, error } = await supabase
+      .from('contact_submissions')
+      .select('*')
+      .order('created_at', { ascending: false })
+
+    if (error) {
+      console.error('Error fetching contact submissions:', error)
+      throw error
+    }
+
+    return data
+  } catch (error) {
+    console.error('Error in getContactSubmissions:', error)
+    throw error
+  }
+}
+
+// Function to get all subscriptions (admin use)
+export async function getSubscriptions() {
+  try {
+    const { data, error } = await supabase
+      .from('subscriptions')
+      .select('*')
+      .order('subscribed_at', { ascending: false })
+
+    if (error) {
+      console.error('Error fetching subscriptions:', error)
+      throw error
+    }
+
+    return data
+  } catch (error) {
+    console.error('Error in getSubscriptions:', error)
+    throw error
+  }
 }

@@ -11,7 +11,7 @@ interface NavbarProps {
 export default function Navbar({ onContactClick }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const logoUrl = getLogoUrl()
+  const logoUrl = 'https://mlwcbcvlqzjbgriwhino.supabase.co/storage/v1/object/public/Photos/tablaniologo.png'
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,15 +64,6 @@ export default function Navbar({ onContactClick }: NavbarProps) {
               onClick={(e) => { e.preventDefault(); scrollToSection('services') }}
             >
               Services
-            </a>
-          </li>
-          <li className={styles.navItem}>
-            <a
-              href="#stats"
-              className={styles.navLink}
-              onClick={(e) => { e.preventDefault(); scrollToSection('stats') }}
-            >
-              Results
             </a>
           </li>
           <li className={styles.navItem}>

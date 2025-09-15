@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { submitContactForm } from '@/lib/supabase'
 import styles from './ContactModal.module.css'
 
 interface ContactModalProps {
@@ -41,6 +42,15 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null)
   
   const totalSteps = 6
+
+  const stepTitles = [
+    'Implementation Area',
+    'Current Challenges',
+    'Current Solutions',
+    'Business Goals',
+    'Company Website',
+    'Contact Details'
+  ]
 
   const goToStep = (step: number) => {
     setCurrentStep(step)
@@ -132,21 +142,56 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   }
 
   const handleSubmit = async () => {
-    if (!validateStep()) return
+    console.log('🚀 Submit button clicked!')
+    console.log('Current step validation:', validateStep())
+    console.log('Form data:', formData)
 
+    if (!validateStep()) {
+      console.log('❌ Validation failed, not submitting')
+      return
+    }
+
+    console.log('✅ Starting submission...')
     setIsSubmitting(true)
-    
-    // For static deployment, we'll simulate the submission
-    setTimeout(() => {
-      setMessage({ 
-        type: 'success', 
-        text: 'Thank you for your application! (Note: This is a demo - contact form data is not saved)' 
+    setMessage(null)
+
+    try {
+      // Submit to Supabase database
+      console.log('📤 Submitting to Supabase...')
+      const result = await submitContactForm({
+        implementationAreas: formData.implementation_areas,
+        currentChallenges: formData.current_challenges,
+        currentSolutions: formData.current_solutions,
+        businessGoals: formData.business_goals,
+        companyWebsite: formData.company_website,
+        fullName: formData.full_name,
+        jobTitle: formData.job_title,
+        workEmail: formData.work_email,
+        contactNumber: formData.contact_number,
+        companyName: formData.company_name
       })
+
+      console.log('✅ Submission successful:', result)
+      setMessage({
+        type: 'success',
+        text: 'Thank you for your application! Your information has been successfully submitted. I\'ll respond within 24 hours.'
+      })
+
+      // Auto-close after showing success message
       setTimeout(() => {
         handleClose()
       }, 3000)
+
+    } catch (error) {
+      console.error('❌ Error submitting form:', error)
+      setMessage({
+        type: 'error',
+        text: 'Sorry, there was an error submitting your application. Please try again or contact us directly.'
+      })
+    } finally {
+      console.log('🏁 Submission process complete')
       setIsSubmitting(false)
-    }, 1500)
+    }
   }
 
   if (!isOpen) return null
@@ -156,21 +201,34 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
         <span className={styles.close} onClick={handleClose}>&times;</span>
         
-        {/* Step Navigation */}
-        <div className={styles.stepNavigation}>
-          {Array.from({ length: totalSteps }, (_, i) => i + 1).map((step) => (
+        {/* Professional Status Bar */}
+        <div className={styles.statusContainer}>
+          <div className={styles.statusHeader}>
+            <span className={styles.statusText}>Step {currentStep} of {totalSteps}</span>
+            <span className={styles.statusPercentage}>{Math.round((currentStep / totalSteps) * 100)}%</span>
+          </div>
+          <div className={styles.progressBar}>
             <div
-              key={step}
-              className={`${styles.stepCircle} ${
-                step === currentStep ? styles.active :
-                step < currentStep ? styles.completed :
-                styles.pending
-              }`}
-              onClick={() => goToStep(step)}
-            >
-              {step}
-            </div>
-          ))}
+              className={styles.progressFill}
+              style={{ width: `${(currentStep / totalSteps) * 100}%` }}
+            />
+          </div>
+          <div className={styles.stepIndicators}>
+            {Array.from({ length: totalSteps }, (_, i) => i + 1).map((step) => (
+              <div
+                key={step}
+                className={`${styles.stepDot} ${
+                  step === currentStep ? styles.active :
+                  step < currentStep ? styles.completed :
+                  styles.upcoming
+                }`}
+                onClick={() => goToStep(step)}
+                title={`Step ${step}: ${stepTitles[step - 1]}`}
+              >
+                {step < currentStep ? '✓' : step}
+              </div>
+            ))}
+          </div>
         </div>
 
         {message && (

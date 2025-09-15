@@ -50,51 +50,124 @@
   color: #333333;
 }
 
-.stepNavigation {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 30px;
-  padding: 0 20px;
+/* Professional Status Bar */
+.statusContainer {
+  margin-bottom: 32px;
+  padding: 0 4px;
 }
 
-.stepCircle {
-  width: 40px;
-  height: 40px;
+.statusHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.statusText {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  letter-spacing: 0.025em;
+}
+
+.statusPercentage {
+  font-size: 13px;
+  font-weight: 500;
+  color: #6B7280;
+  background: #F3F4F6;
+  padding: 2px 8px;
+  border-radius: 12px;
+  min-width: 40px;
+  text-align: center;
+}
+
+.stepTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1F2937;
+  margin: 8px 0 16px 0;
+  text-align: center;
+  letter-spacing: -0.025em;
+}
+
+.progressBar {
+  height: 6px;
+  background: #E5E7EB;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #EC3928 0%, #F56565 100%);
+  border-radius: 6px;
+  transition: width 0.4s ease;
+  position: relative;
+}
+
+.progressFill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 6px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3));
+  border-radius: 0 6px 6px 0;
+}
+
+.stepIndicators {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stepDot {
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 600;
-  font-size: 14px;
+  font-size: 11px;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
-  border: 2px solid #e0e0e0;
-  background: white;
-  color: #999;
+  transition: all 0.15s ease;
+  background: #F3F4F6;
+  border: 1.5px solid #E5E7EB;
+  color: #6B7280;
 }
 
-.stepCircle.active {
+.stepDot.completed {
   background: #EC3928;
   border-color: #EC3928;
   color: white;
-  transform: scale(1.1);
+  font-size: 9px;
 }
 
-.stepCircle.completed {
-  background: #28a745;
-  border-color: #28a745;
-  color: white;
-}
-
-.stepCircle.pending {
-  background: white;
-  border-color: #e0e0e0;
-  color: #999;
-}
-
-.stepCircle:hover {
+.stepDot.active {
+  background: #EC3928;
   border-color: #EC3928;
+  color: white;
   transform: scale(1.05);
+}
+
+.stepDot.upcoming {
+  background: #F3F4F6;
+  border-color: #E5E7EB;
+  color: #6B7280;
+}
+
+.stepDot:hover:not(.active) {
+  border-color: #EC3928;
+  color: #EC3928;
+}
+
+.stepDot.completed:hover {
+  background: #d32f2f;
+  border-color: #d32f2f;
 }
 
 .message {
@@ -248,17 +321,72 @@
 
 .nextButton,
 .submitButton {
-  background: #EC3928;
+  background: linear-gradient(135deg, #EC3928 0%, #d32f2f 100%);
   color: white;
   border: none;
   margin-left: auto;
-  box-shadow: 0 2px 8px rgba(236, 57, 40, 0.3);
+  box-shadow: 0 4px 12px rgba(236, 57, 40, 0.25);
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 14px 28px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.nextButton::before,
+.submitButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
 }
 
 .nextButton:hover:not(:disabled),
 .submitButton:hover:not(:disabled) {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(236, 57, 40, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(236, 57, 40, 0.35);
+  background: linear-gradient(135deg, #f44336 0%, #c62828 100%);
+}
+
+.nextButton:hover:not(:disabled)::before,
+.submitButton:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.nextButton:active:not(:disabled),
+.submitButton:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(236, 57, 40, 0.25);
+}
+
+.submitButton {
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+  font-size: 16px;
+  padding: 16px 32px;
+  border-radius: 10px;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  text-transform: none;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.35);
+}
+
+.submitButton:disabled {
+  background: #9CA3AF;
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 .disclaimer {
@@ -276,14 +404,29 @@
     width: 95%;
   }
 
-  .stepNavigation {
-    padding: 0 10px;
+  .statusContainer {
+    margin-bottom: 24px;
+    padding: 0;
   }
 
-  .stepCircle {
-    width: 35px;
-    height: 35px;
+  .statusText {
+    font-size: 13px;
+  }
+
+  .statusPercentage {
     font-size: 12px;
+    padding: 1px 6px;
+    min-width: 35px;
+  }
+
+  .stepDot {
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+  }
+
+  .stepDot.completed {
+    font-size: 8px;
   }
 
   .optionsGrid {
@@ -300,5 +443,18 @@
 
   .navButton {
     width: 100%;
+  }
+
+  .nextButton,
+  .submitButton {
+    width: 100%;
+    margin-left: 0;
+    padding: 16px 24px;
+    font-size: 16px;
+  }
+
+  .submitButton {
+    padding: 18px 24px;
+    font-size: 17px;
   }
 }
