@@ -12,10 +12,10 @@ function About() {
     <section id="about" className="about">
       <div className="container">
         <div style={{ padding: '80px 0', textAlign: 'center' }}>
-          <h2 style={{ fontSize: '40px', fontWeight: '700', color: '#333', marginBottom: '20px' }}>
+          <h2 style={{ fontSize: 'clamp(28px, 6vw, 40px)', fontWeight: '700', color: '#333', marginBottom: '20px' }}>
             Industrial AI Automation
           </h2>
-          <p style={{ fontSize: '18px', color: '#666', maxWidth: '800px', margin: '0 auto 40px', lineHeight: '1.6' }}>
+          <p style={{ fontSize: 'clamp(16px, 4vw, 18px)', color: '#666', maxWidth: '800px', margin: '0 auto 40px', lineHeight: '1.6', padding: '0 16px' }}>
             Leveraging AI & automation tools to improve your industrial sales, marketing and operations
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px', marginTop: '50px' }}>
@@ -24,9 +24,9 @@ function About() {
               { icon: '💰', title: 'Revenue-Focused Automation', desc: 'No-code AI and workflow automation solutions are designed to scale your industrial sales and marketing processes for maximum ROI.' },
               { icon: '🏭', title: 'Built for Industrial Businesses', desc: 'Battle-tested industrial AI automation solutions that deliver measurable results in high-volume manufacturing and distribution operations.' }
             ].map((feature, index) => (
-              <div key={index} style={{ background: 'white', padding: '30px', borderRadius: '12px', boxShadow: '0 4px 16px rgba(0,0,0,0.08)', border: '2px solid transparent', transition: 'all 0.3s ease' }} onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#EC3928'; e.currentTarget.style.transform = 'translateY(-2px)'; }} onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; }}>
-                <div style={{ fontSize: '48px', marginBottom: '15px', textAlign: 'center' }}>{feature.icon}</div>
-                <h3 style={{ fontSize: '20px', fontWeight: '600', color: '#1F3A5F', marginBottom: '12px', textAlign: 'center' }}>{feature.title}</h3>
+              <div key={index} style={{ background: 'white', padding: '30px', borderRadius: '12px', boxShadow: '0 4px 16px rgba(0,0,0,0.08)', border: '2px solid transparent', transition: 'all 0.3s ease', minHeight: '280px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }} onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#EC3928'; e.currentTarget.style.transform = 'translateY(-2px)'; }} onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+                <div style={{ fontSize: 'clamp(36px, 8vw, 48px)', marginBottom: '15px', textAlign: 'center' }}>{feature.icon}</div>
+                <h3 style={{ fontSize: 'clamp(18px, 4vw, 20px)', fontWeight: '600', color: '#1F3A5F', marginBottom: '12px', textAlign: 'center' }}>{feature.title}</h3>
                 <p style={{ color: '#666', lineHeight: '1.6', textAlign: 'center' }}>{feature.desc}</p>
               </div>
             ))}
@@ -42,14 +42,14 @@ function Services({ onContactClick }: { onContactClick: () => void }) {
     <section id="services" style={{ padding: '80px 0', background: 'white' }}>
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-          <h2 style={{ fontSize: '40px', fontWeight: '700', color: '#333', marginBottom: '20px' }}>
+          <h2 style={{ fontSize: 'clamp(28px, 6vw, 40px)', fontWeight: '700', color: '#333', marginBottom: '20px' }}>
             Our Industrial AI Automation Solutions
           </h2>
-          <p style={{ fontSize: '18px', color: '#666', maxWidth: '800px', margin: '0 auto' }}>
+          <p style={{ fontSize: 'clamp(16px, 4vw, 18px)', color: '#666', maxWidth: '800px', margin: '0 auto', padding: '0 16px' }}>
             Proven No-Code AI & Workflow Automation Systems that Improve Your Industrial Sales, Marketing & Operations
           </p>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '30px', marginBottom: '40px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '30px', marginBottom: '40px', maxWidth: '900px', margin: '0 auto 40px auto' }} className="solutions-grid">
           {[
             {
               icon: '⚙️',
@@ -72,12 +72,12 @@ function Services({ onContactClick }: { onContactClick: () => void }) {
               features: ['Cut down on manual tasks with AI-powered workflow automation.', 'Reduce human error in manufacturing and distribution processes.', 'Custom no-code automation solutions to fit your industrial business.', 'Performance metrics and reporting for industrial operations', 'Cross-system integration for manufacturing and distribution'],
             }
           ].map((service, index) => (
-            <div key={index} style={{ background: '#f8f9fa', padding: '40px', borderRadius: '12px', border: '2px solid transparent', transition: 'all 0.3s ease' }} onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#EC3928'; e.currentTarget.style.transform = 'translateY(-2px)'; }} onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+            <div key={index} style={{ background: '#f8f9fa', padding: '32px', borderRadius: '12px', border: '2px solid transparent', transition: 'all 0.3s ease', minHeight: '580px', height: 'auto', display: 'flex', flexDirection: 'column' }} onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#EC3928'; e.currentTarget.style.transform = 'translateY(-2px)'; }} onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; }}>
               <div style={{ fontSize: '48px', marginBottom: '15px', textAlign: 'center' }}>{service.icon}</div>
               <h3 style={{ fontSize: '24px', fontWeight: '600', color: '#1F3A5F', marginBottom: '20px', textAlign: 'center' }}>{service.title}</h3>
-              <ul style={{ listStyle: 'none', padding: 0, marginBottom: '20px' }}>
+              <ul style={{ listStyle: 'none', padding: 0, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 {service.features.map((feature, i) => (
-                  <li key={i} style={{ color: '#666', marginBottom: '8px', paddingLeft: '20px', position: 'relative' }}>
+                  <li key={i} style={{ color: '#666', marginBottom: '10px', paddingLeft: '20px', position: 'relative', fontSize: '14px', lineHeight: '1.4' }}>
                     <span style={{ position: 'absolute', left: 0, color: '#EC3928', fontWeight: 'bold' }}>✓</span>
                     {feature}
                   </li>
@@ -196,20 +196,20 @@ function Stats() {
     <section id="stats" style={{ padding: '80px 0', background: 'white' }}>
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-          <h2 style={{ fontSize: '40px', fontWeight: '700', color: '#333', marginBottom: '20px' }}>
+          <h2 style={{ fontSize: 'clamp(28px, 6vw, 40px)', fontWeight: '700', color: '#333', marginBottom: '20px' }}>
             Work with AI Experts with Real-Life Industrial Experience
           </h2>
-          <p style={{ fontSize: '18px', color: '#666', maxWidth: '800px', margin: '0 auto' }}>
+          <p style={{ fontSize: 'clamp(16px, 4vw, 18px)', color: '#666', maxWidth: '800px', margin: '0 auto', padding: '0 16px' }}>
             We are a team of engineers and AI experts who understand the unique challenges of industrial technical sales, manufacturing operations, and distribution automation.
           </p>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '40px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px' }}>
           {[
             { number: '15+', title: 'Years Combined Experience', desc: 'In industrial manufacturing, distribution automation, and technical sales AI solutions' },
             { number: '100+', title: 'Industrial Automation Solutions', desc: 'Custom-built no-code AI and workflow automation for industrial businesses worldwide' },
             { number: '70%', title: 'Manual Task Reduction', desc: '40% increase in qualified industrial leads and 25% shorter sales cycles with our automation' }
           ].map((stat, index) => (
-            <div key={index} style={{ textAlign: 'center', background: '#f8f9fa', padding: '40px', borderRadius: '12px', boxShadow: '0 4px 16px rgba(0,0,0,0.08)', border: '2px solid transparent', transition: 'all 0.3s ease' }} onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#EC3928'; e.currentTarget.style.transform = 'translateY(-2px)'; }} onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; }}>
+            <div key={index} style={{ textAlign: 'center', background: '#f8f9fa', padding: '40px', borderRadius: '12px', boxShadow: '0 4px 16px rgba(0,0,0,0.08)', border: '2px solid transparent', transition: 'all 0.3s ease', minHeight: '240px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }} onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#EC3928'; e.currentTarget.style.transform = 'translateY(-2px)'; }} onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; }}>
               <div style={{ fontSize: '48px', fontWeight: '700', color: '#EC3928', marginBottom: '15px' }}>{stat.number}</div>
               <h3 style={{ fontSize: '20px', fontWeight: '600', color: '#1F3A5F', marginBottom: '12px' }}>{stat.title}</h3>
               <p style={{ color: '#666', lineHeight: '1.6' }}>{stat.desc}</p>
@@ -244,17 +244,17 @@ function Integrations() {
     <section style={{ padding: '80px 0', background: '#f8f9fa' }}>
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-          <h2 style={{ fontSize: '40px', fontWeight: '700', color: '#333', marginBottom: '20px' }}>
+          <h2 style={{ fontSize: 'clamp(28px, 6vw, 40px)', fontWeight: '700', color: '#333', marginBottom: '20px' }}>
             Integrates With Your Existing Industrial Tools
           </h2>
-          <p style={{ fontSize: '18px', color: '#666', maxWidth: '800px', margin: '0 auto' }}>
+          <p style={{ fontSize: 'clamp(16px, 4vw, 18px)', color: '#666', maxWidth: '800px', margin: '0 auto', padding: '0 16px' }}>
             Our industrial AI automation solutions work seamlessly with your Microsoft ecosystem and manufacturing software
           </p>
         </div>
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
-          gap: '40px',
+          gap: '30px',
           maxWidth: '800px',
           margin: '0 auto',
           justifyItems: 'center'
@@ -357,14 +357,14 @@ function Footer({ onContactClick }: { onContactClick: () => void }) {
   }
   
   return (
-    <footer id="contact" style={{ background: '#1F3A5F', color: 'white', padding: '80px 0 40px' }}>
+    <footer style={{ background: '#1F3A5F', color: 'white', padding: '30px 0' }}>
       <div className="container">
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: '1fr 1fr', 
-          gap: '60px', 
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: '60px',
           alignItems: 'start',
-          marginBottom: '50px' 
+          marginBottom: '50px'
         }}>
           {/* Left Column - Logo and Description */}
           <div>
@@ -396,9 +396,9 @@ function Footer({ onContactClick }: { onContactClick: () => void }) {
                 />
               )}
             </div>
-            <p style={{ 
-              fontSize: '18px', 
-              lineHeight: '1.7', 
+            <p style={{
+              fontSize: '18px',
+              lineHeight: '1.7',
               opacity: 0.9,
               margin: 0,
               maxWidth: '500px'
@@ -409,23 +409,23 @@ function Footer({ onContactClick }: { onContactClick: () => void }) {
 
           {/* Right Column - Subscribe Form */}
           <div>
-            <h3 style={{ 
-              fontSize: '24px', 
-              fontWeight: '600', 
+            <h3 style={{
+              fontSize: '24px',
+              fontWeight: '600',
               marginBottom: '16px',
               color: 'white'
             }}>
               Stay Updated on Industrial AI
             </h3>
-            <p style={{ 
-              fontSize: '16px', 
-              opacity: 0.8, 
+            <p style={{
+              fontSize: '16px',
+              opacity: 0.8,
               marginBottom: '24px',
               lineHeight: '1.6'
             }}>
               Get the latest insights on industrial automation, AI trends, and growth strategies delivered to your inbox.
             </p>
-            
+
             <form onSubmit={handleSubscribe} style={{ marginBottom: '16px' }}>
               <div style={{ display: 'flex', gap: '12px', marginBottom: '12px' }}>
                 <input
@@ -488,8 +488,8 @@ function Footer({ onContactClick }: { onContactClick: () => void }) {
             </form>
 
             {subscribeMessage && (
-              <p style={{ 
-                fontSize: '14px', 
+              <p style={{
+                fontSize: '14px',
                 color: subscribeMessage.includes('Thank you') ? '#4ade80' : '#fbbf24',
                 margin: '0 0 16px 0',
                 fontWeight: '500'
@@ -501,40 +501,17 @@ function Footer({ onContactClick }: { onContactClick: () => void }) {
           </div>
         </div>
 
-        <div style={{ 
-          textAlign: 'center', 
-          paddingTop: '40px', 
-          borderTop: '1px solid rgba(255,255,255,0.2)', 
-          opacity: 0.8 
+        <div style={{
+          textAlign: 'center',
+          paddingTop: '40px',
+          borderTop: '1px solid rgba(255,255,255,0.2)',
+          opacity: 0.8
         }}>
           <p style={{ margin: 0, fontSize: '14px' }}>
             &copy; 2025 Tablan | Empowering Industrial Businesses with AI & Automation
           </p>
         </div>
       </div>
-
-      <style jsx>{`
-        .container input::placeholder {
-          color: rgba(255,255,255,0.7);
-        }
-        
-        @media (max-width: 768px) {
-          .container > div:first-child {
-            grid-template-columns: 1fr !important;
-            gap: 40px !important;
-            text-align: center;
-          }
-          
-          .container input,
-          .container button {
-            width: 100%;
-          }
-          
-          .container > div:first-child > div:last-child > div {
-            flex-direction: column !important;
-          }
-        }
-      `}</style>
     </footer>
   )
 }

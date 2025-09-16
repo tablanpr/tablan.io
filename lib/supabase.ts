@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = 'https://mlwcbcvlqzjbgriwhino.supabase.co'
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://mlwcbcvlqzjbgriwhino.supabase.co'
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
@@ -60,6 +60,72 @@ export function getLogoUrl() {
 }
 
 // Database functions for form submissions
+// Test Supabase connection
+export async function testSupabaseConnection() {
+  try {
+    console.log('🔍 Testing Supabase connection...')
+    console.log('Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL)
+    console.log('Anon key present:', !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
+    console.log('Anon key first 20 chars:', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.substring(0, 20))
+
+    // Test 1: Basic connection
+    console.log('📡 Testing basic table access...')
+    const { data: countData, error: countError } = await supabase
+      .from('contact_submissions')
+      .select('*', { count: 'exact', head: true })
+
+    if (countError) {
+      console.error('❌ Table access failed:', countError)
+      console.error('Error code:', countError.code)
+      console.error('Error message:', countError.message)
+      console.error('Error details:', countError.details)
+    } else {
+      console.log('✅ Table access successful')
+    }
+
+    // Test 2: Try a simple insert
+    console.log('📤 Testing insert permissions...')
+    const testData = {
+      full_name: 'Connection Test',
+      work_email: 'test@connection.com',
+      implementation_areas: ['Sales'],
+      current_challenges: 'Testing connection',
+      current_solutions: 'Running diagnostics',
+      business_goals: 'Verify database access',
+      company_website: 'test.com',
+      job_title: 'Tester',
+      contact_number: '000-000-0000',
+      company_name: 'Test Company'
+    }
+
+    const { data: insertData, error: insertError } = await supabase
+      .from('contact_submissions')
+      .insert([testData])
+      .select()
+
+    if (insertError) {
+      console.error('❌ Insert test failed:', insertError)
+      console.error('Insert error code:', insertError.code)
+      console.error('Insert error message:', insertError.message)
+      console.error('Insert error details:', insertError.details)
+      console.error('Insert error hint:', insertError.hint)
+      return false
+    } else {
+      console.log('✅ Insert test successful:', insertData)
+      // Clean up test data
+      if (insertData?.[0]?.id) {
+        await supabase.from('contact_submissions').delete().eq('id', insertData[0].id)
+        console.log('🧹 Test data cleaned up')
+      }
+      return true
+    }
+
+  } catch (error) {
+    console.error('💥 Connection test crashed:', error)
+    return false
+  }
+}
+
 export async function submitContactForm(formData: {
   implementationAreas: string[]
   currentChallenges: string
@@ -73,6 +139,21 @@ export async function submitContactForm(formData: {
   companyName: string
 }) {
   try {
+    console.log('🔍 Starting form submission process...')
+    console.log('Form data received:', formData)
+
+    // Test connection first
+    const connectionOk = await testSupabaseConnection()
+    if (!connectionOk) {
+      throw new Error('Database connection failed')
+    }
+
+    // Validate required fields
+    if (!formData.workEmail || !formData.fullName) {
+      throw new Error('Email and full name are required')
+    }
+
+    console.log('📤 Inserting data into contact_submissions table...')
     const { data, error } = await supabase
       .from('contact_submissions')
       .insert([
@@ -92,13 +173,18 @@ export async function submitContactForm(formData: {
       .select()
 
     if (error) {
-      console.error('Error submitting contact form:', error)
+      console.error('❌ Supabase error details:', error)
+      console.error('Error code:', error.code)
+      console.error('Error message:', error.message)
+      console.error('Error details:', error.details)
+      console.error('Error hint:', error.hint)
       throw error
     }
 
+    console.log('✅ Contact form submitted successfully:', data)
     return data
   } catch (error) {
-    console.error('Error in submitContactForm:', error)
+    console.error('❌ Error in submitContactForm:', error)
     throw error
   }
 }

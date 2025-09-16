@@ -182,11 +182,30 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
         handleClose()
       }, 3000)
 
-    } catch (error) {
+    } catch (error: any) {
       console.error('❌ Error submitting form:', error)
+
+      // More specific error messages
+      let errorMessage = 'Sorry, there was an error submitting your application. Please try again or contact us directly.'
+
+      if (error?.message) {
+        console.error('Error message:', error.message)
+        if (error.message.includes('RLS') || error.message.includes('policy')) {
+          errorMessage = 'Database access issue. Please contact us directly at work@tablan.io'
+        } else if (error.message.includes('Network') || error.message.includes('fetch')) {
+          errorMessage = 'Network connection issue. Please check your internet and try again.'
+        } else if (error.message.includes('required')) {
+          errorMessage = 'Please fill in all required fields and try again.'
+        }
+      }
+
+      if (error?.code) {
+        console.error('Error code:', error.code)
+      }
+
       setMessage({
         type: 'error',
-        text: 'Sorry, there was an error submitting your application. Please try again or contact us directly.'
+        text: errorMessage
       })
     } finally {
       console.log('🏁 Submission process complete')
@@ -205,7 +224,6 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
         <div className={styles.statusContainer}>
           <div className={styles.statusHeader}>
             <span className={styles.statusText}>Step {currentStep} of {totalSteps}</span>
-            <span className={styles.statusPercentage}>{Math.round((currentStep / totalSteps) * 100)}%</span>
           </div>
           <div className={styles.progressBar}>
             <div

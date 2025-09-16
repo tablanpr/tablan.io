@@ -30,8 +30,15 @@ export default function Navbar({ onContactClick }: NavbarProps) {
         top: offsetTop,
         behavior: 'smooth'
       })
-      setIsMenuOpen(false)
+      // Close mobile menu after navigation
+      setTimeout(() => setIsMenuOpen(false), 100)
     }
+  }
+
+  const handleContactClick = () => {
+    onContactClick()
+    // Close mobile menu when opening contact modal
+    setTimeout(() => setIsMenuOpen(false), 100)
   }
 
   return (
@@ -39,11 +46,33 @@ export default function Navbar({ onContactClick }: NavbarProps) {
       <div className={styles.navContainer}>
         <div className={styles.navLogo}>
           <a href="#hero" onClick={(e) => { e.preventDefault(); scrollToSection('hero') }}>
-            <img 
-              src={logoUrl} 
-              alt="Tablan Logo" 
+            <img
+              src="https://mlwcbcvlqzjbgriwhino.supabase.co/storage/v1/object/public/Photos/tablaniologo.png"
+              alt="Tablan Logo"
               className={styles.logoImage}
+              onError={(e) => {
+                // Hide the image and show text fallback
+                e.currentTarget.style.display = 'none'
+                const fallback = e.currentTarget.nextElementSibling as HTMLElement
+                if (fallback) {
+                  fallback.style.display = 'flex'
+                }
+              }}
             />
+            <div
+              style={{
+                height: '40px',
+                fontSize: '20px',
+                fontWeight: '700',
+                color: '#333333',
+                display: 'none',
+                alignItems: 'center',
+                letterSpacing: '1px',
+                fontFamily: 'Inter, sans-serif'
+              }}
+            >
+              TABLAN
+            </div>
           </a>
         </div>
         
@@ -70,7 +99,7 @@ export default function Navbar({ onContactClick }: NavbarProps) {
             <a
               href="#contact"
               className={styles.navLink}
-              onClick={(e) => { e.preventDefault(); onContactClick() }}
+              onClick={(e) => { e.preventDefault(); handleContactClick() }}
             >
               Contact
             </a>

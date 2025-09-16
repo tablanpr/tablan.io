@@ -397,9 +397,32 @@
   margin-bottom: 0;
 }
 
+@media (max-width: 480px) {
+  .modalContent {
+    margin: 1% auto;
+    padding: 16px 12px;
+    width: 98%;
+    max-height: 98vh;
+  }
+
+  .close {
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+  }
+
+  .formStep h2 {
+    font-size: 18px;
+  }
+
+  .formStep p {
+    font-size: 13px;
+  }
+}
+
 @media (max-width: 768px) {
   .modalContent {
-    margin: 3% auto;
+    margin: 2% auto;
     padding: 20px 16px;
     width: 95%;
   }
