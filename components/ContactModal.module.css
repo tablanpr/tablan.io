@@ -13,10 +13,10 @@
 .modalContent {
   background-color: #ffffff;
   margin: 2% auto;
-  padding: 30px;
+  padding: 24px;
   border-radius: 12px;
   width: 90%;
-  max-width: 680px;
+  max-width: 620px;
   max-height: 95vh;
   overflow-y: auto;
   position: relative;
@@ -52,7 +52,7 @@
 
 /* Professional Status Bar */
 .statusContainer {
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   padding: 0 4px;
 }
 
@@ -190,15 +190,15 @@
 }
 
 .formStep h2 {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
   color: #333333;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .formStep p {
   color: #666666;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   line-height: 1.5;
   font-size: 14px;
 }
@@ -293,7 +293,7 @@
 .formNavigation {
   display: flex;
   justify-content: space-between;
-  margin-top: 30px;
+  margin-top: 24px;
   gap: 12px;
 }
 

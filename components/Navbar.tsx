@@ -45,7 +45,13 @@ export default function Navbar({ onContactClick }: NavbarProps) {
     <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.navContainer}>
         <div className={styles.navLogo}>
-          <a href="#hero" onClick={(e) => { e.preventDefault(); scrollToSection('hero') }}>
+          <a href="/" onClick={(e) => {
+            // If we're on the home page, scroll to hero. Otherwise, navigate to home.
+            if (window.location.pathname === '/') {
+              e.preventDefault();
+              scrollToSection('hero');
+            }
+          }}>
             <img
               src="https://mlwcbcvlqzjbgriwhino.supabase.co/storage/v1/object/public/Photos/tablaniologo.png"
               alt="Tablan Logo"
@@ -111,15 +117,6 @@ export default function Navbar({ onContactClick }: NavbarProps) {
               onClick={(e) => { e.preventDefault(); scrollToSection('faq') }}
             >
               FAQ
-            </a>
-          </li>
-          <li className={styles.navItem}>
-            <a
-              href="/contact"
-              className={styles.navLink}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Contact
             </a>
           </li>
         </ul>
