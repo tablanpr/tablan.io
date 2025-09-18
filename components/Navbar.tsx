@@ -95,6 +95,51 @@ export default function Navbar({ onContactClick }: NavbarProps) {
               Services
             </a>
           </li>
+          <li className={styles.navItem}>
+            <a
+              href="#why-work-with-me"
+              className={styles.navLink}
+              onClick={(e) => { e.preventDefault(); scrollToSection('why-work-with-me') }}
+            >
+              Why Me
+            </a>
+          </li>
+          <li className={styles.navItem}>
+            <a
+              href="#stats"
+              className={styles.navLink}
+              onClick={(e) => { e.preventDefault(); scrollToSection('stats') }}
+            >
+              Experience
+            </a>
+          </li>
+          <li className={styles.navItem}>
+            <a
+              href="#integrations"
+              className={styles.navLink}
+              onClick={(e) => { e.preventDefault(); scrollToSection('integrations') }}
+            >
+              Integrations
+            </a>
+          </li>
+          <li className={styles.navItem}>
+            <a
+              href="#faq"
+              className={styles.navLink}
+              onClick={(e) => { e.preventDefault(); scrollToSection('faq') }}
+            >
+              FAQ
+            </a>
+          </li>
+          <li className={styles.navItem}>
+            <a
+              href="/contact"
+              className={styles.navLink}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Contact
+            </a>
+          </li>
         </ul>
         
         <div

@@ -120,7 +120,7 @@ function Services({ onContactClick }: { onContactClick: () => void }) {
 
 function WhyCollaborate({ onContactClick }: { onContactClick: () => void }) {
   return (
-    <section style={{ padding: '80px 0', background: '#f8f9fa' }}>
+    <section id="why-work-with-me" style={{ padding: '80px 0', background: '#f8f9fa' }}>
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '60px' }}>
           <h2 style={{ fontSize: '40px', fontWeight: '700', color: '#333', marginBottom: '20px' }}>
@@ -241,7 +241,7 @@ function Integrations() {
   }
 
   return (
-    <section style={{ padding: '80px 0', background: '#f8f9fa' }}>
+    <section id="integrations" style={{ padding: '80px 0', background: '#f8f9fa' }}>
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '40px' }}>
           <h2 style={{ fontSize: 'clamp(28px, 6vw, 40px)', fontWeight: '700', color: '#333', marginBottom: '20px' }}>
