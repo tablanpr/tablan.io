@@ -165,129 +165,123 @@ export default function ContactPage() {
     switch (currentStep) {
       case 1:
         return (
-          <div className="form-step">
-            <h2>Which area would you like to implement AI automation?</h2>
-            <p>Select the primary area where you'd like to see the biggest impact from AI automation</p>
+          <div>
+            <h2>Implementation Area</h2>
+            <p>Select the area where you want to implement AI:</p>
             <div className="options-grid">
               {[
-                { title: 'Sales', desc: 'Lead generation, qualification, and conversion automation' },
-                { title: 'Marketing', desc: 'Content creation, campaign automation, and analytics' },
-                { title: 'Operations', desc: 'Workflow optimization, process automation, and efficiency' },
-                { title: 'Customer Service', desc: 'Support automation, chatbots, and response systems' }
-              ].map((option, index) => (
+                { value: 'sales', label: 'Sales', desc: 'Lead generation & qualification' },
+                { value: 'marketing', label: 'Marketing', desc: 'Content & campaign automation' },
+                { value: 'operations', label: 'Operations', desc: 'Workflow automation' },
+                { value: 'custom', label: 'Custom/Enterprise', desc: 'Tailored AI solutions' }
+              ].map((area) => (
                 <button
-                  key={index}
-                  className={`option-card ${formData.implementation_areas.includes(option.title) ? 'selected' : ''}`}
-                  onClick={() => handleImplementationAreaSelect(option.title)}
+                  key={area.value}
+                  type="button"
+                  className={`option-card ${
+                    formData.implementation_areas.includes(area.value) ? 'selected' : ''
+                  }`}
+                  onClick={() => handleImplementationAreaSelect(area.value)}
                 >
-                  <div className="option-title">{option.title}</div>
-                  <div className="option-desc">{option.desc}</div>
+                  <div className="option-title">{area.label}</div>
+                  <div className="option-desc">{area.desc}</div>
                 </button>
               ))}
             </div>
-            <p className="disclaimer">
-              This information helps me understand your specific needs and tailor my recommendations accordingly.
-              Your data is securely stored and will only be used to provide you with relevant AI automation solutions.
-            </p>
           </div>
         )
 
       case 2:
         return (
-          <div className="form-step">
-            <h2>What are your current challenges?</h2>
-            <p>Describe the main challenges you're facing that AI automation could help solve</p>
-            <div className="full-width-field">
-              <textarea
-                value={formData.current_challenges}
-                onChange={(e) => updateFormData({ current_challenges: e.target.value })}
-                placeholder="e.g., Manual lead qualification takes too much time, struggling to generate consistent content, repetitive tasks slowing down operations..."
-              />
-            </div>
+          <div>
+            <h2>Current Challenges</h2>
+            <p>What specific challenges are you facing? *</p>
+            <textarea
+              rows={3}
+              value={formData.current_challenges}
+              onChange={(e) => updateFormData({ current_challenges: e.target.value })}
+              placeholder="Describe your current challenges..."
+            />
           </div>
         )
 
       case 3:
         return (
-          <div className="form-step">
-            <h2>What solutions have you tried?</h2>
-            <p>Tell me about any current tools or methods you're using to address these challenges</p>
-            <div className="full-width-field">
-              <textarea
-                value={formData.current_solutions}
-                onChange={(e) => updateFormData({ current_solutions: e.target.value })}
-                placeholder="e.g., Using basic CRM, manual spreadsheets, hiring more staff, tried some automation tools but they didn't fit our needs..."
-              />
-            </div>
+          <div>
+            <h2>Current Solutions</h2>
+            <p>Any existing automation or AI solutions? *</p>
+            <textarea
+              rows={3}
+              value={formData.current_solutions}
+              onChange={(e) => updateFormData({ current_solutions: e.target.value })}
+              placeholder="Tell us about your current solutions..."
+            />
           </div>
         )
 
       case 4:
         return (
-          <div className="form-step">
-            <h2>What are your business goals?</h2>
-            <p>Share your key objectives and what success would look like for your business</p>
-            <div className="full-width-field">
-              <textarea
-                value={formData.business_goals}
-                onChange={(e) => updateFormData({ business_goals: e.target.value })}
-                placeholder="e.g., Increase sales by 30%, reduce manual work by 50%, improve customer response time, scale operations without adding staff..."
-              />
-            </div>
+          <div>
+            <h2>Business Goals</h2>
+            <p>Goals for the next 6-12 months? *</p>
+            <textarea
+              rows={3}
+              value={formData.business_goals}
+              onChange={(e) => updateFormData({ business_goals: e.target.value })}
+              placeholder="Share your business goals..."
+            />
           </div>
         )
 
       case 5:
         return (
-          <div className="form-step">
-            <h2>What's your company website?</h2>
-            <p>This helps me understand your business and industry better</p>
-            <div className="full-width-field">
-              <input
-                type="url"
-                value={formData.company_website}
-                onChange={(e) => updateFormData({ company_website: e.target.value })}
-                placeholder="https://yourcompany.com"
-              />
-            </div>
+          <div>
+            <h2>Company Website</h2>
+            <p>What's your company website? *</p>
+            <input
+              type="url"
+              value={formData.company_website}
+              onChange={(e) => updateFormData({ company_website: e.target.value })}
+              placeholder="https://yourcompany.com"
+            />
           </div>
         )
 
       case 6:
         return (
-          <div className="form-step">
-            <h2>Contact Information</h2>
-            <p>Please provide your contact details so I can reach out to discuss your needs</p>
-            <div className="full-width-fields">
+          <div>
+            <h2>Contact Details</h2>
+            <div className="contact-grid">
               <input
                 type="text"
                 value={formData.full_name}
                 onChange={(e) => updateFormData({ full_name: e.target.value })}
-                placeholder="Full Name"
+                placeholder="Full Name*"
               />
               <input
                 type="text"
                 value={formData.job_title}
                 onChange={(e) => updateFormData({ job_title: e.target.value })}
-                placeholder="Job Title"
+                placeholder="Job Title*"
               />
               <input
                 type="email"
                 value={formData.work_email}
                 onChange={(e) => updateFormData({ work_email: e.target.value })}
-                placeholder="Work Email"
+                placeholder="Work Email*"
               />
               <input
                 type="tel"
                 value={formData.contact_number}
                 onChange={(e) => updateFormData({ contact_number: e.target.value })}
-                placeholder="Phone Number"
+                placeholder="Contact Number*"
               />
               <input
                 type="text"
                 value={formData.company_name}
                 onChange={(e) => updateFormData({ company_name: e.target.value })}
-                placeholder="Company Name"
+                placeholder="Company Name*"
+                className="full-width"
               />
             </div>
           </div>
@@ -313,13 +307,11 @@ export default function ContactPage() {
           </div>
 
           <div className="contact-form-container">
-            {/* Progress Bar */}
-            <div className="progress-container">
-              <div className="progress-header">
-                <span className="progress-text">Step {currentStep} of {totalSteps}</span>
-                <span className="progress-percentage">{Math.round((currentStep / totalSteps) * 100)}%</span>
+            {/* Professional Status Bar */}
+            <div className="status-container">
+              <div className="status-header">
+                <span className="status-text">Step {currentStep} of {totalSteps}</span>
               </div>
-              <h3 className="step-title">{stepTitles[currentStep - 1]}</h3>
               <div className="progress-bar">
                 <div
                   className="progress-fill"
@@ -327,21 +319,23 @@ export default function ContactPage() {
                 />
               </div>
               <div className="step-indicators">
-                {Array.from({ length: totalSteps }, (_, i) => (
-                  <button
-                    key={i + 1}
+                {Array.from({ length: totalSteps }, (_, i) => i + 1).map((step) => (
+                  <div
+                    key={step}
                     className={`step-dot ${
-                      i + 1 < currentStep ? 'completed' :
-                      i + 1 === currentStep ? 'active' : 'upcoming'
+                      step === currentStep ? 'active' :
+                      step < currentStep ? 'completed' :
+                      'upcoming'
                     }`}
                     onClick={() => {
-                      if (i + 1 < currentStep || (i + 1 === currentStep)) {
-                        setCurrentStep(i + 1)
+                      if (step < currentStep || step === currentStep) {
+                        setCurrentStep(step)
                       }
                     }}
+                    title={`Step ${step}: ${stepTitles[step - 1]}`}
                   >
-                    {i + 1 < currentStep ? '✓' : i + 1}
-                  </button>
+                    {step < currentStep ? '✓' : step}
+                  </div>
                 ))}
               </div>
             </div>
@@ -353,37 +347,46 @@ export default function ContactPage() {
               </div>
             )}
 
-            {renderStep()}
+            <div className="form-step">
+              {renderStep()}
+            </div>
 
             {/* Navigation */}
             <div className="form-navigation">
               {currentStep > 1 && (
                 <button
-                  onClick={prevStep}
+                  type="button"
                   className="nav-button"
+                  onClick={prevStep}
                 >
-                  Previous
+                  ← Previous
                 </button>
               )}
 
               {currentStep < totalSteps ? (
                 <button
+                  type="button"
+                  className="nav-button next-button"
                   onClick={nextStep}
                   disabled={!validateStep()}
-                  className="next-button"
                 >
-                  Next
+                  Next →
                 </button>
               ) : (
                 <button
+                  type="button"
+                  className="submit-button"
                   onClick={handleSubmit}
                   disabled={!validateStep() || isSubmitting}
-                  className="submit-button"
                 >
-                  {isSubmitting ? 'Submitting...' : 'Submit'}
+                  {isSubmitting ? 'Submitting...' : 'Submit Application'}
                 </button>
               )}
             </div>
+
+            <p className="disclaimer">
+              Your information is secure and will never be shared. I'll respond within 24 hours.
+            </p>
           </div>
         </div>
       </main>
@@ -446,40 +449,23 @@ export default function ContactPage() {
           margin: 0 auto;
         }
 
-        .progress-container {
+        .status-container {
           margin-bottom: 32px;
           padding: 0 4px;
         }
 
-        .progress-header {
+        .status-header {
           display: flex;
           justify-content: space-between;
           align-items: center;
           margin-bottom: 12px;
         }
 
-        .progress-text {
+        .status-text {
           font-size: 14px;
           font-weight: 600;
           color: #374151;
-        }
-
-        .progress-percentage {
-          font-size: 13px;
-          font-weight: 500;
-          color: #6B7280;
-          background: #F3F4F6;
-          padding: 2px 8px;
-          border-radius: 12px;
-        }
-
-        .step-title {
-          font-size: 16px;
-          font-weight: 600;
-          color: #1F2937;
-          margin: 8px 0 16px 0;
-          text-align: center;
-          letter-spacing: -0.025em;
+          letter-spacing: 0.025em;
         }
 
         .progress-bar {
@@ -539,20 +525,11 @@ export default function ContactPage() {
           color: #EC3928;
         }
 
-        .form-step {
-          min-height: 320px;
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-start;
-          width: 100%;
-        }
-
         .form-step h2 {
           font-size: 22px;
           font-weight: 700;
           color: #333333;
           margin-bottom: 10px;
-          text-align: left;
         }
 
         .form-step p {
@@ -560,7 +537,6 @@ export default function ContactPage() {
           margin-bottom: 16px;
           line-height: 1.5;
           font-size: 14px;
-          text-align: left;
         }
 
         .options-grid {
@@ -607,20 +583,14 @@ export default function ContactPage() {
           line-height: 1.3;
         }
 
-        .full-width-field {
-          width: 100%;
-          max-width: none;
-        }
-
-        .full-width-fields {
-          display: flex;
-          flex-direction: column;
+        .contact-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
           gap: 12px;
-          width: 100%;
         }
 
-        .full-width-fields input {
-          width: 100%;
+        .contact-grid .full-width {
+          grid-column: 1 / -1;
         }
 
         textarea, input {
@@ -844,7 +814,8 @@ export default function ContactPage() {
             line-height: 1.2;
           }
 
-          .full-width-fields {
+          .contact-grid {
+            grid-template-columns: 1fr;
             gap: 12px;
           }
 
