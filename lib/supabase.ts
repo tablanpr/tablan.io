@@ -192,25 +192,47 @@ export async function submitContactForm(formData: {
 // Function to submit subscription form
 export async function submitSubscription(email: string, source?: string) {
   try {
+    console.log('🔍 Starting subscription process...')
+    console.log('Email:', email)
+    console.log('Source:', source || 'website')
+
+    // Validate email format
+    if (!email || !email.includes('@')) {
+      throw new Error('Invalid email format')
+    }
+
+    const subscriptionData = {
+      email: email.toLowerCase().trim(),
+      source: source || 'website',
+      subscribed_at: new Date().toISOString()
+    }
+
+    console.log('📤 Inserting subscription data:', subscriptionData)
+
     const { data, error } = await supabase
       .from('subscriptions')
-      .insert([
-        {
-          email,
-          source: source || 'website',
-          subscribed_at: new Date().toISOString()
-        }
-      ])
+      .insert([subscriptionData])
       .select()
 
     if (error) {
-      console.error('Error submitting subscription:', error)
+      console.error('❌ Subscription error details:', error)
+      console.error('Error code:', error.code)
+      console.error('Error message:', error.message)
+      console.error('Error details:', error.details)
+      console.error('Error hint:', error.hint)
+
+      // Handle duplicate email error
+      if (error.code === '23505' || error.message?.includes('duplicate')) {
+        throw new Error('duplicate')
+      }
+
       throw error
     }
 
+    console.log('✅ Subscription submitted successfully:', data)
     return data
   } catch (error) {
-    console.error('Error in submitSubscription:', error)
+    console.error('❌ Error in submitSubscription:', error)
     throw error
   }
 }

@@ -319,8 +319,12 @@ function SubscribeSection() {
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!email || !email.includes('@')) {
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!email || !emailRegex.test(email)) {
       setSubscribeMessage('Please enter a valid email address')
+      setTimeout(() => setSubscribeMessage(''), 4000)
       return
     }
 
@@ -328,14 +332,21 @@ function SubscribeSection() {
     setSubscribeMessage('')
 
     try {
+      console.log('🚀 Starting subscription for:', email)
       await submitSubscription(email, 'subscribe-section')
       setSubscribeMessage('Thank you for subscribing! You\'ll receive the latest industrial AI insights.')
       setEmail('')
       setTimeout(() => setSubscribeMessage(''), 5000)
     } catch (error) {
-      console.error('Error subscribing:', error)
-      if (error instanceof Error && error.message.includes('duplicate')) {
-        setSubscribeMessage('You\'re already subscribed to our newsletter!')
+      console.error('Subscription error:', error)
+      if (error instanceof Error) {
+        if (error.message.includes('duplicate')) {
+          setSubscribeMessage('You\'re already subscribed to our newsletter!')
+        } else if (error.message.includes('Invalid email')) {
+          setSubscribeMessage('Please enter a valid email address')
+        } else {
+          setSubscribeMessage('Sorry, there was an error. Please try again.')
+        }
       } else {
         setSubscribeMessage('Sorry, there was an error. Please try again.')
       }
