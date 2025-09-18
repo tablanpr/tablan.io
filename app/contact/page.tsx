@@ -536,30 +536,25 @@ export default function ContactPage() {
         }
 
         .form-step h2 {
-          font-size: 28px;
+          font-size: 22px;
           font-weight: 700;
-          color: #1f2937;
-          margin-bottom: 16px;
-          text-align: center;
-          line-height: 1.3;
+          color: #333333;
+          margin-bottom: 10px;
+          text-align: left;
         }
 
         .form-step p {
-          color: #6b7280;
-          margin-bottom: 32px;
-          line-height: 1.6;
-          text-align: center;
-          font-size: 16px;
-          max-width: 600px;
-          margin-left: auto;
-          margin-right: auto;
+          color: #666666;
+          margin-bottom: 16px;
+          line-height: 1.5;
+          font-size: 14px;
+          text-align: left;
         }
 
         .options-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 16px;
-          margin-bottom: 24px;
+          gap: 12px;
         }
 
         .option-card {
@@ -567,9 +562,9 @@ export default function ContactPage() {
           flex-direction: column;
           align-items: center;
           text-align: center;
-          padding: 24px 20px;
+          padding: 20px 16px;
           border: 2px solid #e0e0e0;
-          border-radius: 12px;
+          border-radius: 8px;
           cursor: pointer;
           transition: all 0.3s ease;
           background: white;
@@ -590,12 +585,12 @@ export default function ContactPage() {
 
         .option-title {
           font-weight: 600;
-          font-size: 18px;
-          margin-bottom: 8px;
+          font-size: 16px;
+          margin-bottom: 6px;
         }
 
         .option-desc {
-          font-size: 13px;
+          font-size: 12px;
           opacity: 0.8;
           line-height: 1.3;
         }
@@ -603,47 +598,33 @@ export default function ContactPage() {
         .contact-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 20px;
-          align-items: start;
+          gap: 12px;
         }
 
         .contact-grid .full-width {
           grid-column: 1 / -1;
         }
 
-        .form-step {
-          width: 100%;
-        }
-
         textarea, input {
           width: 100%;
-          padding: 18px 20px;
-          border: 2px solid #e5e7eb;
-          border-radius: 12px;
-          font-size: 16px;
-          font-family: 'Inter', sans-serif;
-          transition: all 0.3s ease;
-          margin-bottom: 20px;
-          background: #ffffff;
-          box-sizing: border-box;
+          padding: 12px;
+          border: 1px solid #ddd;
+          border-radius: 6px;
+          font-size: 14px;
+          font-family: inherit;
+          transition: border-color 0.3s ease;
+          margin-bottom: 12px;
         }
 
         textarea {
           resize: vertical;
-          min-height: 140px;
-          line-height: 1.6;
+          min-height: 80px;
         }
 
         textarea:focus, input:focus {
           outline: none;
           border-color: #EC3928;
-          box-shadow: 0 0 0 4px rgba(236, 57, 40, 0.1);
-          background: #ffffff;
-        }
-
-        input::placeholder, textarea::placeholder {
-          color: #9CA3AF;
-          font-size: 15px;
+          box-shadow: 0 0 0 3px rgba(236, 57, 40, 0.1);
         }
 
         .message {
@@ -669,18 +650,18 @@ export default function ContactPage() {
         .form-navigation {
           display: flex;
           justify-content: space-between;
-          margin-top: 32px;
-          gap: 16px;
+          margin-top: 30px;
+          gap: 12px;
         }
 
         .nav-button {
-          padding: 14px 28px;
+          padding: 12px 24px;
           border: 1px solid #ddd;
           background: white;
-          color: #333;
-          border-radius: 8px;
+          color: #333333;
+          border-radius: 6px;
           cursor: pointer;
-          font-size: 16px;
+          font-size: 14px;
           font-weight: 500;
           transition: all 0.3s ease;
         }
@@ -688,6 +669,11 @@ export default function ContactPage() {
         .nav-button:hover:not(:disabled) {
           background: #f8f9fa;
           border-color: #999;
+        }
+
+        .nav-button:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
         }
 
         .next-button, .submit-button {
@@ -698,16 +684,38 @@ export default function ContactPage() {
           box-shadow: 0 4px 12px rgba(236, 57, 40, 0.25);
           font-weight: 600;
           border-radius: 8px;
-          padding: 16px 32px;
-          font-size: 16px;
+          padding: 14px 28px;
+          font-size: 15px;
           cursor: pointer;
-          transition: all 0.3s ease;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          position: relative;
+          overflow: hidden;
+        }
+
+        .next-button::before, .submit-button::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+          transition: left 0.5s;
         }
 
         .next-button:hover:not(:disabled), .submit-button:hover:not(:disabled) {
           transform: translateY(-2px);
-          box-shadow: 0 6px 16px rgba(236, 57, 40, 0.35);
+          box-shadow: 0 8px 20px rgba(236, 57, 40, 0.35);
           background: linear-gradient(135deg, #f44336 0%, #c62828 100%);
+        }
+
+        .next-button:hover:not(:disabled)::before, .submit-button:hover:not(:disabled)::before {
+          left: 100%;
+        }
+
+        .next-button:active:not(:disabled), .submit-button:active:not(:disabled) {
+          transform: translateY(0);
+          box-shadow: 0 4px 12px rgba(236, 57, 40, 0.25);
         }
 
         .next-button:disabled, .submit-button:disabled {
@@ -720,19 +728,42 @@ export default function ContactPage() {
         .submit-button {
           background: linear-gradient(135deg, #10B981 0%, #059669 100%);
           box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+          font-size: 16px;
+          padding: 16px 32px;
+          border-radius: 10px;
+          font-weight: 700;
+          letter-spacing: 0.025em;
         }
 
         .submit-button:hover:not(:disabled) {
           background: linear-gradient(135deg, #059669 0%, #047857 100%);
-          box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
+          box-shadow: 0 8px 20px rgba(16, 185, 129, 0.35);
+        }
+
+        .submit-button:disabled {
+          background: #9CA3AF;
+          box-shadow: none;
+          cursor: not-allowed;
+          opacity: 0.6;
         }
 
         .disclaimer {
           text-align: center;
           font-size: 12px;
           color: #888;
-          margin-top: 24px;
+          margin-top: 20px;
           margin-bottom: 0;
+        }
+
+        .disclaimer a {
+          color: #EC3928;
+          text-decoration: none;
+          transition: color 0.3s ease;
+        }
+
+        .disclaimer a:hover {
+          color: #d32f2f;
+          text-decoration: underline;
         }
 
         @media (max-width: 768px) {
