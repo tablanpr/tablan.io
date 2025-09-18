@@ -397,6 +397,17 @@
   margin-bottom: 0;
 }
 
+.disclaimer a {
+  color: #EC3928;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.disclaimer a:hover {
+  color: #d32f2f;
+  text-decoration: underline;
+}
+
 @media (max-width: 480px) {
   .modalContent {
     margin: 2vh auto;

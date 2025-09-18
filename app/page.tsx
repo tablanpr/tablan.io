@@ -43,7 +43,7 @@ function Services({ onContactClick }: { onContactClick: () => void }) {
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '60px' }}>
           <h2 style={{ fontSize: 'clamp(28px, 6vw, 40px)', fontWeight: '700', color: '#333', marginBottom: '20px' }}>
-            Our Industrial AI Automation Solutions
+            Industrial AI Automation Solutions
           </h2>
           <p style={{ fontSize: 'clamp(16px, 4vw, 18px)', color: '#666', maxWidth: '800px', margin: '0 auto', padding: '0 16px' }}>
             Proven No-Code AI & Workflow Automation Systems that Improve Your Industrial Sales, Marketing & Operations
@@ -124,7 +124,7 @@ function WhyCollaborate({ onContactClick }: { onContactClick: () => void }) {
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '60px' }}>
           <h2 style={{ fontSize: '40px', fontWeight: '700', color: '#333', marginBottom: '20px' }}>
-            Why Collaborate with Us?
+            Why Work With Me?
           </h2>
           <p style={{ fontSize: '18px', color: '#666', maxWidth: '800px', margin: '0 auto' }}>
             Your partner in transforming industrial operations through no-code AI automation innovation
@@ -146,10 +146,10 @@ function WhyCollaborate({ onContactClick }: { onContactClick: () => void }) {
           `}</style>
           <div className="collaborate-grid">
           {[
-            { icon: '🏭', title: 'Industrial Expertise', desc: 'Our team combines deep manufacturing and distribution experience with cutting-edge industrial AI automation expertise, ensuring solutions that truly understand your sector\'s challenges.' },
+            { icon: '🏭', title: 'Industrial Expertise', desc: 'I combine deep manufacturing and distribution experience with cutting-edge industrial AI automation expertise, ensuring solutions that truly understand your sector\'s challenges.' },
             { icon: '🔄', title: 'Flexible', desc: 'Choose from subscription-based, project-based, or credit-based engagements for industrial automation, all supported by dedicated strategists focused on your manufacturing success.' },
             { icon: '📈', title: 'Results-Driven', desc: 'We focus on delivering measurable outcomes, implementing AI automation solutions that directly impact your industrial revenue growth and operational efficiency.' },
-            { icon: '🎯', title: 'Sustainable Implementation', desc: 'Beyond deployment, we provide comprehensive training and support, empowering your industrial team to independently manage and optimize your AI automation solutions.' }
+            { icon: '🎯', title: 'Sustainable Implementation', desc: 'Beyond deployment, I provide comprehensive training and support, empowering your industrial team to independently manage and optimize your AI automation solutions.' }
           ].map((feature, index) => (
             <div key={index} style={{ background: 'white', padding: '30px', borderRadius: '12px', boxShadow: '0 4px 16px rgba(0,0,0,0.08)', border: '2px solid transparent', transition: 'all 0.3s ease' }} onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#EC3928'; e.currentTarget.style.transform = 'translateY(-2px)'; }} onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.transform = 'translateY(0)'; }}>
               <div style={{ fontSize: '48px', marginBottom: '15px', textAlign: 'center' }}>{feature.icon}</div>
@@ -183,7 +183,7 @@ function WhyCollaborate({ onContactClick }: { onContactClick: () => void }) {
               e.currentTarget.style.boxShadow = '0 4px 16px rgba(236, 57, 40, 0.3)'
             }}
           >
-            Where Can We Save You Time?
+            Where Can I Save You Time?
           </button>
         </div>
       </div>
@@ -197,10 +197,10 @@ function Stats() {
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '60px' }}>
           <h2 style={{ fontSize: 'clamp(28px, 6vw, 40px)', fontWeight: '700', color: '#333', marginBottom: '20px' }}>
-            Work with AI Experts with Real-Life Industrial Experience
+            Work with an AI Expert with Real-Life Industrial Experience
           </h2>
           <p style={{ fontSize: 'clamp(16px, 4vw, 18px)', color: '#666', maxWidth: '800px', margin: '0 auto', padding: '0 16px' }}>
-            We are a team of engineers and AI experts who understand the unique challenges of industrial technical sales, manufacturing operations, and distribution automation.
+            I'm an engineer and AI expert who understands the unique challenges of industrial technical sales, manufacturing operations, and distribution automation.
           </p>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px' }}>
@@ -248,7 +248,7 @@ function Integrations() {
             Integrates With Your Existing Industrial Tools
           </h2>
           <p style={{ fontSize: 'clamp(16px, 4vw, 18px)', color: '#666', maxWidth: '800px', margin: '0 auto', padding: '0 16px' }}>
-            Our industrial AI automation solutions work seamlessly with your Microsoft ecosystem and manufacturing software
+            My industrial AI automation solutions work seamlessly with your Microsoft ecosystem and manufacturing software
           </p>
         </div>
         <div style={{

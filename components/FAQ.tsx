@@ -7,7 +7,7 @@ const faqData = [
   {
     id: 1,
     question: "What types of industrial businesses do I work with?",
-    answer: "I specialize in working with industrial manufacturers, suppliers, and distributors across various sectors including heavy machinery, automation equipment, instrumentation, and industrial components. My solutions are tailored to businesses dealing with complex technical products and B2B sales processes."
+    answer: "I specialize in working with industrial manufacturers, suppliers, and distributors across various sectors including instrumentation and process components. My solutions are tailored to businesses dealing with complex technical products and B2B sales processes."
   },
   {
     id: 2,
