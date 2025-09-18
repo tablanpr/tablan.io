@@ -312,12 +312,10 @@ function Integrations() {
   )
 }
 
-function Footer({ onContactClick }: { onContactClick: () => void }) {
-  const logoUrl = 'https://mlwcbcvlqzjbgriwhino.supabase.co/storage/v1/object/public/Photos/tablaniologo.png'
+function SubscribeSection() {
   const [email, setEmail] = useState('')
   const [isSubscribing, setIsSubscribing] = useState(false)
   const [subscribeMessage, setSubscribeMessage] = useState('')
-  const [logoFailed, setLogoFailed] = useState(false)
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -330,187 +328,152 @@ function Footer({ onContactClick }: { onContactClick: () => void }) {
     setSubscribeMessage('')
 
     try {
-      // Submit to Supabase database
-      await submitSubscription(email, 'footer')
-
+      await submitSubscription(email, 'subscribe-section')
       setSubscribeMessage('Thank you for subscribing! You\'ll receive the latest industrial AI insights.')
       setEmail('')
-
-      // Clear success message after 5 seconds
       setTimeout(() => setSubscribeMessage(''), 5000)
-
     } catch (error) {
       console.error('Error subscribing:', error)
-
-      // Check if it's a duplicate subscription error
       if (error instanceof Error && error.message.includes('duplicate')) {
         setSubscribeMessage('You\'re already subscribed to our newsletter!')
       } else {
         setSubscribeMessage('Sorry, there was an error. Please try again.')
       }
-
-      // Clear error message after 4 seconds
       setTimeout(() => setSubscribeMessage(''), 4000)
     } finally {
       setIsSubscribing(false)
     }
   }
-  
-  return (
-    <footer style={{ background: '#1F3A5F', color: 'white', padding: '30px 0' }}>
-      <div className="container">
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '60px',
-          alignItems: 'start',
-          marginBottom: '50px'
-        }}>
-          {/* Left Column - Logo and Description */}
-          <div>
-            <div style={{ position: 'relative', height: '60px', marginBottom: '24px' }}>
-              {logoFailed ? (
-                <div style={{
-                  height: '60px',
-                  fontSize: '32px',
-                  fontWeight: '700',
-                  color: 'white',
-                  display: 'flex',
-                  alignItems: 'center',
-                  letterSpacing: '2px'
-                }}>
-                  TABLAN
-                </div>
-              ) : (
-                <img
-                  src="https://mlwcbcvlqzjbgriwhino.supabase.co/storage/v1/object/public/Photos/tablaniologo.png"
-                  alt="Tablan Logo"
-                  style={{
-                    height: '60px',
-                    width: 'auto',
-                    display: 'block',
-                    maxWidth: '200px',
-                    filter: 'brightness(0) invert(1)'
-                  }}
-                  onError={() => setLogoFailed(true)}
-                />
-              )}
-            </div>
-            <p style={{
-              fontSize: '18px',
-              lineHeight: '1.7',
-              opacity: 0.9,
-              margin: 0,
-              maxWidth: '500px'
-            }}>
-              Tablan helps industrial businesses (manufacturers, suppliers, and distributors) accelerate sales growth cost-effectively through AI and automation solutions.
-            </p>
-          </div>
 
-          {/* Right Column - Subscribe Form */}
-          <div>
-            <h3 style={{
-              fontSize: '24px',
-              fontWeight: '600',
-              marginBottom: '16px',
-              color: 'white'
-            }}>
-              Stay Updated on Industrial AI
-            </h3>
+  return (
+    <section style={{ padding: '80px 0', background: '#f8f9fa' }}>
+      <div className="container">
+        <div style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto', padding: '0 20px' }}>
+          <h2 style={{
+            fontSize: 'clamp(28px, 6vw, 36px)',
+            fontWeight: '700',
+            color: '#333',
+            marginBottom: '16px'
+          }}>
+            Stay Updated on Industrial AI
+          </h2>
+          <p style={{
+            fontSize: 'clamp(16px, 4vw, 18px)',
+            color: '#666',
+            marginBottom: '40px',
+            lineHeight: '1.6'
+          }}>
+            Get the latest insights on industrial automation, AI trends, and growth strategies delivered to your inbox.
+          </p>
+
+          <style jsx>{`
+            .subscribe-form {
+              display: flex;
+              gap: 12px;
+              max-width: 500px;
+              margin: 0 auto;
+              flex-direction: row;
+            }
+            @media (max-width: 640px) {
+              .subscribe-form {
+                flex-direction: column;
+                gap: 16px;
+              }
+            }
+          `}</style>
+
+          <form onSubmit={handleSubscribe} style={{ marginBottom: '20px' }}>
+            <div className="subscribe-form">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your work email"
+                style={{
+                  flex: 1,
+                  padding: '16px 20px',
+                  border: '2px solid #e0e0e0',
+                  borderRadius: '8px',
+                  background: 'white',
+                  color: '#333',
+                  fontSize: '16px',
+                  outline: 'none',
+                  transition: 'all 0.3s ease'
+                }}
+                onFocus={(e) => {
+                  e.target.style.borderColor = '#EC3928'
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = '#e0e0e0'
+                }}
+              />
+              <button
+                type="submit"
+                disabled={isSubscribing}
+                style={{
+                  background: '#EC3928',
+                  color: 'white',
+                  border: 'none',
+                  padding: '16px 32px',
+                  borderRadius: '8px',
+                  fontSize: '16px',
+                  fontWeight: '600',
+                  cursor: isSubscribing ? 'not-allowed' : 'pointer',
+                  opacity: isSubscribing ? 0.7 : 1,
+                  transition: 'all 0.3s ease',
+                  whiteSpace: 'nowrap',
+                  boxShadow: '0 4px 12px rgba(236, 57, 40, 0.25)'
+                }}
+                onMouseEnter={(e) => {
+                  if (!isSubscribing) {
+                    e.currentTarget.style.transform = 'translateY(-2px)'
+                    e.currentTarget.style.boxShadow = '0 6px 16px rgba(236, 57, 40, 0.35)'
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!isSubscribing) {
+                    e.currentTarget.style.transform = 'translateY(0)'
+                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(236, 57, 40, 0.25)'
+                  }
+                }}
+              >
+                {isSubscribing ? 'Subscribing...' : 'Subscribe'}
+              </button>
+            </div>
+          </form>
+
+          {subscribeMessage && (
             <p style={{
               fontSize: '16px',
-              opacity: 0.8,
-              marginBottom: '24px',
-              lineHeight: '1.6'
+              color: subscribeMessage.includes('Thank you') ? '#10B981' : '#EF4444',
+              margin: '0',
+              fontWeight: '500'
             }}>
-              Get the latest insights on industrial automation, AI trends, and growth strategies delivered to your inbox.
+              {subscribeMessage}
             </p>
-
-            <form onSubmit={handleSubscribe} style={{ marginBottom: '16px' }}>
-              <div style={{ display: 'flex', gap: '12px', marginBottom: '12px' }}>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your work email"
-                  style={{
-                    flex: 1,
-                    padding: '14px 16px',
-                    border: '1px solid rgba(255,255,255,0.3)',
-                    borderRadius: '6px',
-                    background: 'rgba(255,255,255,0.1)',
-                    color: 'white',
-                    fontSize: '16px',
-                    outline: 'none',
-                    transition: 'all 0.3s ease'
-                  }}
-                  onFocus={(e) => {
-                    e.target.style.borderColor = '#EC3928'
-                    e.target.style.background = 'rgba(255,255,255,0.15)'
-                  }}
-                  onBlur={(e) => {
-                    e.target.style.borderColor = 'rgba(255,255,255,0.3)'
-                    e.target.style.background = 'rgba(255,255,255,0.1)'
-                  }}
-                />
-                <button
-                  type="submit"
-                  disabled={isSubscribing}
-                  style={{
-                    background: '#EC3928',
-                    color: 'white',
-                    border: 'none',
-                    padding: '14px 24px',
-                    borderRadius: '6px',
-                    fontSize: '16px',
-                    fontWeight: '600',
-                    cursor: isSubscribing ? 'not-allowed' : 'pointer',
-                    opacity: isSubscribing ? 0.7 : 1,
-                    transition: 'all 0.3s ease',
-                    whiteSpace: 'nowrap'
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!isSubscribing) {
-                      e.currentTarget.style.background = '#d32f1f'
-                      e.currentTarget.style.transform = 'translateY(-1px)'
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!isSubscribing) {
-                      e.currentTarget.style.background = '#EC3928'
-                      e.currentTarget.style.transform = 'translateY(0)'
-                    }
-                  }}
-                >
-                  {isSubscribing ? 'Subscribing...' : 'Subscribe'}
-                </button>
-              </div>
-            </form>
-
-            {subscribeMessage && (
-              <p style={{
-                fontSize: '14px',
-                color: subscribeMessage.includes('Thank you') ? '#4ade80' : '#fbbf24',
-                margin: '0 0 16px 0',
-                fontWeight: '500'
-              }}>
-                {subscribeMessage}
-              </p>
-            )}
-
-          </div>
+          )}
         </div>
+      </div>
+    </section>
+  )
+}
 
-        <div style={{
-          textAlign: 'center',
-          paddingTop: '40px',
-          borderTop: '1px solid rgba(255,255,255,0.2)',
+function Footer() {
+  return (
+    <footer style={{
+      background: '#1F3A5F',
+      color: 'white',
+      padding: '20px 0',
+      textAlign: 'center'
+    }}>
+      <div className="container">
+        <p style={{
+          margin: 0,
+          fontSize: '14px',
           opacity: 0.8
         }}>
-          <p style={{ margin: 0, fontSize: '14px' }}>
-            &copy; 2025 Tablan | Empowering Industrial Businesses with AI & Automation
-          </p>
-        </div>
+          &copy; 2025 Tablan | Empowering Industrial Businesses with AI & Automation
+        </p>
       </div>
     </footer>
   )
@@ -532,7 +495,8 @@ export default function Home() {
       <Stats />
       <Integrations />
       <FAQ />
-      <Footer onContactClick={openContactModal} />
+      <SubscribeSection />
+      <Footer />
       <ContactModal isOpen={isContactModalOpen} onClose={closeContactModal} />
     </main>
   )
