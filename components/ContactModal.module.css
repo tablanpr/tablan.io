@@ -399,73 +399,197 @@
 
 @media (max-width: 480px) {
   .modalContent {
-    margin: 1% auto;
-    padding: 16px 12px;
-    width: 98%;
-    max-height: 98vh;
+    margin: 2vh auto;
+    padding: 20px 16px;
+    width: 95%;
+    max-height: 96vh;
+    border-radius: 16px;
   }
 
   .close {
-    top: 10px;
-    right: 15px;
-    font-size: 24px;
+    top: 12px;
+    right: 16px;
+    font-size: 28px;
+    background: rgba(0,0,0,0.05);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .close:hover {
+    background: rgba(0,0,0,0.1);
   }
 
   .formStep h2 {
-    font-size: 18px;
+    font-size: 20px;
+    margin-bottom: 8px;
   }
 
   .formStep p {
-    font-size: 13px;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .statusContainer {
+    margin-bottom: 20px;
+  }
+
+  .stepIndicators {
+    gap: 2px;
+  }
+
+  .stepDot {
+    width: 28px;
+    height: 28px;
+    font-size: 11px;
+  }
+
+  .stepDot.completed {
+    font-size: 10px;
+  }
+
+  .progressBar {
+    height: 4px;
+    margin-bottom: 12px;
+  }
+
+  .optionCard {
+    padding: 16px 12px;
+    border-radius: 12px;
+  }
+
+  .optionTitle {
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+
+  .optionDesc {
+    font-size: 11px;
+    line-height: 1.2;
+  }
+
+  .formStep textarea,
+  .formStep input {
+    padding: 14px 16px;
+    border-radius: 12px;
+    font-size: 16px;
+    border: 1.5px solid #e0e0e0;
+    margin-bottom: 16px;
+  }
+
+  .formStep textarea:focus,
+  .formStep input:focus {
+    border-color: #EC3928;
+    box-shadow: 0 0 0 3px rgba(236, 57, 40, 0.08);
+  }
+
+  .formNavigation {
+    margin-top: 24px;
+    gap: 12px;
+  }
+
+  .navButton {
+    padding: 14px 20px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .nextButton,
+  .submitButton {
+    padding: 16px 24px;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .submitButton {
+    padding: 18px 28px;
+    font-size: 17px;
+  }
+
+  .disclaimer {
+    font-size: 11px;
+    margin-top: 16px;
+    opacity: 0.7;
   }
 }
 
 @media (max-width: 768px) {
   .modalContent {
-    margin: 2% auto;
-    padding: 20px 16px;
-    width: 95%;
+    margin: 3vh auto;
+    padding: 24px 20px;
+    width: 92%;
+    border-radius: 16px;
   }
 
   .statusContainer {
     margin-bottom: 24px;
-    padding: 0;
+    padding: 0 4px;
   }
 
   .statusText {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .statusPercentage {
     font-size: 12px;
-    padding: 1px 6px;
-    min-width: 35px;
+    padding: 2px 8px;
+    min-width: 40px;
   }
 
   .stepDot {
-    width: 20px;
-    height: 20px;
-    font-size: 10px;
+    width: 24px;
+    height: 24px;
+    font-size: 11px;
   }
 
   .stepDot.completed {
-    font-size: 8px;
+    font-size: 9px;
+  }
+
+  .progressBar {
+    height: 5px;
+    margin-bottom: 14px;
   }
 
   .optionsGrid {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .optionCard {
+    padding: 18px 16px;
+    border-radius: 12px;
   }
 
   .contactGrid {
     grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .formStep textarea,
+  .formStep input {
+    padding: 14px 16px;
+    border-radius: 10px;
+    font-size: 16px;
+    margin-bottom: 14px;
   }
 
   .formNavigation {
     flex-direction: column-reverse;
+    margin-top: 28px;
+    gap: 12px;
   }
 
   .navButton {
     width: 100%;
+    padding: 14px 20px;
+    border-radius: 10px;
+    font-size: 15px;
   }
 
   .nextButton,
@@ -474,10 +598,16 @@
     margin-left: 0;
     padding: 16px 24px;
     font-size: 16px;
+    border-radius: 12px;
   }
 
   .submitButton {
     padding: 18px 24px;
     font-size: 17px;
+  }
+
+  .disclaimer {
+    font-size: 12px;
+    margin-top: 18px;
   }
 }

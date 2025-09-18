@@ -95,15 +95,6 @@ export default function Navbar({ onContactClick }: NavbarProps) {
               Services
             </a>
           </li>
-          <li className={styles.navItem}>
-            <a
-              href="#contact"
-              className={styles.navLink}
-              onClick={(e) => { e.preventDefault(); handleContactClick() }}
-            >
-              Contact
-            </a>
-          </li>
         </ul>
         
         <div
