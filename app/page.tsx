@@ -234,6 +234,12 @@ function Integrations() {
     { name: 'LinkedIn', url: 'https://mlwcbcvlqzjbgriwhino.supabase.co/storage/v1/object/public/Photos/linkedin.webp' }
   ]
 
+  const [failedImages, setFailedImages] = useState<Set<number>>(new Set())
+
+  const handleImageError = (index: number) => {
+    setFailedImages(prev => new Set(prev).add(index))
+  }
+
   return (
     <section style={{ padding: '80px 0', background: '#f8f9fa' }}>
       <div className="container">
@@ -272,26 +278,22 @@ function Integrations() {
               e.currentTarget.style.transform = 'translateY(0)'
               e.currentTarget.style.background = 'transparent'
             }}>
-              <img
-                src={tool.url}
-                alt={tool.name}
-                style={{
-                  width: '56px',
-                  height: '56px',
-                  objectFit: 'contain',
-                  borderRadius: '8px',
-                  transition: 'all 0.3s ease'
-                }}
-                onError={(e) => {
-                  console.log(`Failed to load logo: ${tool.name}`)
-                  // Fallback to generic icon if image fails
-                  e.currentTarget.style.display = 'none'
-                  const span = document.createElement('span')
-                  span.innerHTML = '🔧'
-                  span.style.fontSize = '56px'
-                  e.currentTarget.parentNode?.insertBefore(span, e.currentTarget)
-                }}
-              />
+              {failedImages.has(index) ? (
+                <span style={{ fontSize: '56px' }}>🔧</span>
+              ) : (
+                <img
+                  src={tool.url}
+                  alt={tool.name}
+                  style={{
+                    width: '56px',
+                    height: '56px',
+                    objectFit: 'contain',
+                    borderRadius: '8px',
+                    transition: 'all 0.3s ease'
+                  }}
+                  onError={() => handleImageError(index)}
+                />
+              )}
               <span style={{
                 fontSize: '13px',
                 fontWeight: '500',
@@ -315,6 +317,7 @@ function Footer({ onContactClick }: { onContactClick: () => void }) {
   const [email, setEmail] = useState('')
   const [isSubscribing, setIsSubscribing] = useState(false)
   const [subscribeMessage, setSubscribeMessage] = useState('')
+  const [logoFailed, setLogoFailed] = useState(false)
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -366,40 +369,32 @@ function Footer({ onContactClick }: { onContactClick: () => void }) {
           {/* Left Column - Logo and Description */}
           <div>
             <div style={{ position: 'relative', height: '60px', marginBottom: '24px' }}>
-              <img
-                src="https://mlwcbcvlqzjbgriwhino.supabase.co/storage/v1/object/public/Photos/tablaniologo.png"
-                alt="Tablan Logo"
-                style={{
+              {logoFailed ? (
+                <div style={{
                   height: '60px',
-                  width: 'auto',
-                  display: 'block',
-                  maxWidth: '200px'
-                }}
-                onLoad={(e) => {
-                  console.log('Footer logo loaded successfully!')
-                  // Apply white filter after load for better visibility
-                  e.currentTarget.style.filter = 'brightness(0) invert(1)'
-                }}
-                onError={(e) => {
-                  console.log('Footer logo failed to load, URL:', e.currentTarget.src)
-                  const target = e.currentTarget
-                  target.style.display = 'none'
-
-                  // Create text fallback
-                  const textFallback = document.createElement('div')
-                  textFallback.innerHTML = 'TABLAN'
-                  textFallback.style.cssText = `
-                    height: 60px;
-                    font-size: 32px;
-                    font-weight: 700;
-                    color: white;
-                    display: flex;
-                    align-items: center;
-                    letter-spacing: 2px;
-                  `
-                  target.parentNode?.appendChild(textFallback)
-                }}
-              />
+                  fontSize: '32px',
+                  fontWeight: '700',
+                  color: 'white',
+                  display: 'flex',
+                  alignItems: 'center',
+                  letterSpacing: '2px'
+                }}>
+                  TABLAN
+                </div>
+              ) : (
+                <img
+                  src="https://mlwcbcvlqzjbgriwhino.supabase.co/storage/v1/object/public/Photos/tablaniologo.png"
+                  alt="Tablan Logo"
+                  style={{
+                    height: '60px',
+                    width: 'auto',
+                    display: 'block',
+                    maxWidth: '200px',
+                    filter: 'brightness(0) invert(1)'
+                  }}
+                  onError={() => setLogoFailed(true)}
+                />
+              )}
             </div>
             <p style={{ 
               fontSize: '18px', 
