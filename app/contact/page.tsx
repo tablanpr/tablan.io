@@ -197,11 +197,13 @@ export default function ContactPage() {
           <div className="form-step">
             <h2>What are your current challenges?</h2>
             <p>Describe the main challenges you're facing that AI automation could help solve</p>
-            <textarea
-              value={formData.current_challenges}
-              onChange={(e) => updateFormData({ current_challenges: e.target.value })}
-              placeholder="e.g., Manual lead qualification takes too much time, struggling to generate consistent content, repetitive tasks slowing down operations..."
-            />
+            <div className="full-width-field">
+              <textarea
+                value={formData.current_challenges}
+                onChange={(e) => updateFormData({ current_challenges: e.target.value })}
+                placeholder="e.g., Manual lead qualification takes too much time, struggling to generate consistent content, repetitive tasks slowing down operations..."
+              />
+            </div>
           </div>
         )
 
@@ -210,11 +212,13 @@ export default function ContactPage() {
           <div className="form-step">
             <h2>What solutions have you tried?</h2>
             <p>Tell me about any current tools or methods you're using to address these challenges</p>
-            <textarea
-              value={formData.current_solutions}
-              onChange={(e) => updateFormData({ current_solutions: e.target.value })}
-              placeholder="e.g., Using basic CRM, manual spreadsheets, hiring more staff, tried some automation tools but they didn't fit our needs..."
-            />
+            <div className="full-width-field">
+              <textarea
+                value={formData.current_solutions}
+                onChange={(e) => updateFormData({ current_solutions: e.target.value })}
+                placeholder="e.g., Using basic CRM, manual spreadsheets, hiring more staff, tried some automation tools but they didn't fit our needs..."
+              />
+            </div>
           </div>
         )
 
@@ -223,11 +227,13 @@ export default function ContactPage() {
           <div className="form-step">
             <h2>What are your business goals?</h2>
             <p>Share your key objectives and what success would look like for your business</p>
-            <textarea
-              value={formData.business_goals}
-              onChange={(e) => updateFormData({ business_goals: e.target.value })}
-              placeholder="e.g., Increase sales by 30%, reduce manual work by 50%, improve customer response time, scale operations without adding staff..."
-            />
+            <div className="full-width-field">
+              <textarea
+                value={formData.business_goals}
+                onChange={(e) => updateFormData({ business_goals: e.target.value })}
+                placeholder="e.g., Increase sales by 30%, reduce manual work by 50%, improve customer response time, scale operations without adding staff..."
+              />
+            </div>
           </div>
         )
 
@@ -236,12 +242,14 @@ export default function ContactPage() {
           <div className="form-step">
             <h2>What's your company website?</h2>
             <p>This helps me understand your business and industry better</p>
-            <input
-              type="url"
-              value={formData.company_website}
-              onChange={(e) => updateFormData({ company_website: e.target.value })}
-              placeholder="https://yourcompany.com"
-            />
+            <div className="full-width-field">
+              <input
+                type="url"
+                value={formData.company_website}
+                onChange={(e) => updateFormData({ company_website: e.target.value })}
+                placeholder="https://yourcompany.com"
+              />
+            </div>
           </div>
         )
 
@@ -250,7 +258,7 @@ export default function ContactPage() {
           <div className="form-step">
             <h2>Contact Information</h2>
             <p>Please provide your contact details so I can reach out to discuss your needs</p>
-            <div className="contact-grid">
+            <div className="full-width-fields">
               <input
                 type="text"
                 value={formData.full_name}
@@ -268,7 +276,6 @@ export default function ContactPage() {
                 value={formData.work_email}
                 onChange={(e) => updateFormData({ work_email: e.target.value })}
                 placeholder="Work Email"
-                className="full-width"
               />
               <input
                 type="tel"
@@ -600,14 +607,20 @@ export default function ContactPage() {
           line-height: 1.3;
         }
 
-        .contact-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 12px;
+        .full-width-field {
+          width: 100%;
+          max-width: none;
         }
 
-        .contact-grid .full-width {
-          grid-column: 1 / -1;
+        .full-width-fields {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          width: 100%;
+        }
+
+        .full-width-fields input {
+          width: 100%;
         }
 
         textarea, input {
@@ -831,8 +844,7 @@ export default function ContactPage() {
             line-height: 1.2;
           }
 
-          .contact-grid {
-            grid-template-columns: 1fr;
+          .full-width-fields {
             gap: 12px;
           }
 
