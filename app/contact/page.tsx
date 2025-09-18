@@ -394,7 +394,8 @@ export default function ContactPage() {
       <style jsx>{`
         .contact-page {
           min-height: 100vh;
-          background: #f8f9fa;
+          background: rgba(0, 0, 0, 0.05);
+          backdrop-filter: blur(2px);
         }
 
         .contact-main {
@@ -403,7 +404,7 @@ export default function ContactPage() {
         }
 
         .container {
-          max-width: 800px;
+          max-width: 1200px;
           margin: 0 auto;
           padding: 0 20px;
         }
@@ -440,13 +441,16 @@ export default function ContactPage() {
         }
 
         .contact-form-container {
-          background: white;
-          border-radius: 12px;
+          background-color: #ffffff;
+          margin: 2% auto;
           padding: 30px;
-          box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-          border: 1px solid #f0f0f0;
+          border-radius: 12px;
+          width: 90%;
           max-width: 680px;
-          margin: 0 auto;
+          max-height: 95vh;
+          overflow-y: auto;
+          position: relative;
+          box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
         .status-container {
@@ -523,6 +527,10 @@ export default function ContactPage() {
         .step-dot:hover:not(.active) {
           border-color: #EC3928;
           color: #EC3928;
+        }
+
+        .form-step {
+          min-height: 300px;
         }
 
         .form-step h2 {
@@ -771,12 +779,14 @@ export default function ContactPage() {
 
           .container {
             padding: 0 16px;
+            max-width: 100%;
           }
 
           .contact-form-container {
+            width: 95%;
+            margin: 2vh auto;
             padding: 24px 20px;
             border-radius: 12px;
-            margin: 0 auto;
             max-width: 100%;
           }
 
