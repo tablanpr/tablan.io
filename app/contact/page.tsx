@@ -431,9 +431,10 @@ export default function ContactPage() {
 
         .contact-form-container {
           background: white;
-          border-radius: 16px;
-          padding: 40px;
-          box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+          border-radius: 20px;
+          padding: 50px 40px;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+          border: 1px solid #f1f3f4;
         }
 
         .progress-container {
@@ -527,19 +528,31 @@ export default function ContactPage() {
           color: #EC3928;
         }
 
+        .form-step {
+          min-height: 400px;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+        }
+
         .form-step h2 {
-          font-size: 24px;
+          font-size: 28px;
           font-weight: 700;
-          color: #333;
-          margin-bottom: 12px;
+          color: #1f2937;
+          margin-bottom: 16px;
           text-align: center;
+          line-height: 1.3;
         }
 
         .form-step p {
-          color: #666;
-          margin-bottom: 24px;
-          line-height: 1.5;
+          color: #6b7280;
+          margin-bottom: 32px;
+          line-height: 1.6;
           text-align: center;
+          font-size: 16px;
+          max-width: 600px;
+          margin-left: auto;
+          margin-right: auto;
         }
 
         .options-grid {
@@ -590,33 +603,47 @@ export default function ContactPage() {
         .contact-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 16px;
+          gap: 20px;
+          align-items: start;
         }
 
         .contact-grid .full-width {
           grid-column: 1 / -1;
         }
 
+        .form-step {
+          width: 100%;
+        }
+
         textarea, input {
           width: 100%;
-          padding: 16px;
-          border: 1.5px solid #e0e0e0;
-          border-radius: 8px;
+          padding: 18px 20px;
+          border: 2px solid #e5e7eb;
+          border-radius: 12px;
           font-size: 16px;
-          font-family: inherit;
-          transition: border-color 0.3s ease;
-          margin-bottom: 16px;
+          font-family: 'Inter', sans-serif;
+          transition: all 0.3s ease;
+          margin-bottom: 20px;
+          background: #ffffff;
+          box-sizing: border-box;
         }
 
         textarea {
           resize: vertical;
-          min-height: 120px;
+          min-height: 140px;
+          line-height: 1.6;
         }
 
         textarea:focus, input:focus {
           outline: none;
           border-color: #EC3928;
-          box-shadow: 0 0 0 3px rgba(236, 57, 40, 0.1);
+          box-shadow: 0 0 0 4px rgba(236, 57, 40, 0.1);
+          background: #ffffff;
+        }
+
+        input::placeholder, textarea::placeholder {
+          color: #9CA3AF;
+          font-size: 15px;
         }
 
         .message {
@@ -714,39 +741,77 @@ export default function ContactPage() {
             padding-bottom: 40px;
           }
 
+          .container {
+            padding: 0 16px;
+          }
+
           .contact-form-container {
-            padding: 24px 20px;
-            border-radius: 12px;
+            padding: 32px 24px;
+            border-radius: 16px;
+            margin: 0 auto;
+          }
+
+          .form-step {
+            min-height: 350px;
+          }
+
+          .form-step h2 {
+            font-size: 24px;
+            margin-bottom: 12px;
+          }
+
+          .form-step p {
+            font-size: 15px;
+            margin-bottom: 28px;
           }
 
           .options-grid {
             grid-template-columns: 1fr;
-            gap: 12px;
+            gap: 16px;
+          }
+
+          .option-card {
+            padding: 20px 16px;
           }
 
           .contact-grid {
             grid-template-columns: 1fr;
-            gap: 12px;
+            gap: 16px;
           }
 
           .form-navigation {
             flex-direction: column-reverse;
-            gap: 12px;
+            gap: 16px;
+            margin-top: 40px;
           }
 
           .nav-button, .next-button, .submit-button {
             width: 100%;
             margin-left: 0;
+            padding: 16px 24px;
+            font-size: 16px;
           }
 
           .step-indicators {
-            gap: 4px;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: center;
           }
 
           .step-dot {
-            width: 28px;
-            height: 28px;
-            font-size: 11px;
+            width: 32px;
+            height: 32px;
+            font-size: 12px;
+          }
+
+          textarea, input {
+            padding: 16px 18px;
+            font-size: 16px;
+            margin-bottom: 16px;
+          }
+
+          textarea {
+            min-height: 120px;
           }
         }
       `}</style>

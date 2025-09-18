@@ -97,24 +97,6 @@ export default function Navbar({ onContactClick }: NavbarProps) {
           </li>
           <li className={styles.navItem}>
             <a
-              href="#why-work-with-me"
-              className={styles.navLink}
-              onClick={(e) => { e.preventDefault(); scrollToSection('why-work-with-me') }}
-            >
-              Why Me
-            </a>
-          </li>
-          <li className={styles.navItem}>
-            <a
-              href="#stats"
-              className={styles.navLink}
-              onClick={(e) => { e.preventDefault(); scrollToSection('stats') }}
-            >
-              Experience
-            </a>
-          </li>
-          <li className={styles.navItem}>
-            <a
               href="#integrations"
               className={styles.navLink}
               onClick={(e) => { e.preventDefault(); scrollToSection('integrations') }}
