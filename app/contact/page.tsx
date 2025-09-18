@@ -431,14 +431,17 @@ export default function ContactPage() {
 
         .contact-form-container {
           background: white;
-          border-radius: 20px;
-          padding: 50px 40px;
-          box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-          border: 1px solid #f1f3f4;
+          border-radius: 12px;
+          padding: 30px;
+          box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+          border: 1px solid #f0f0f0;
+          max-width: 680px;
+          margin: 0 auto;
         }
 
         .progress-container {
-          margin-bottom: 40px;
+          margin-bottom: 32px;
+          padding: 0 4px;
         }
 
         .progress-header {
@@ -464,11 +467,12 @@ export default function ContactPage() {
         }
 
         .step-title {
-          font-size: 18px;
+          font-size: 16px;
           font-weight: 600;
           color: #1F2937;
           margin: 8px 0 16px 0;
           text-align: center;
+          letter-spacing: -0.025em;
         }
 
         .progress-bar {
@@ -494,13 +498,13 @@ export default function ContactPage() {
         }
 
         .step-dot {
-          width: 32px;
-          height: 32px;
+          width: 24px;
+          height: 24px;
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 12px;
+          font-size: 11px;
           font-weight: 500;
           cursor: pointer;
           transition: all 0.15s ease;
@@ -529,10 +533,11 @@ export default function ContactPage() {
         }
 
         .form-step {
-          min-height: 400px;
+          min-height: 320px;
           display: flex;
           flex-direction: column;
           justify-content: flex-start;
+          width: 100%;
         }
 
         .form-step h2 {
@@ -614,17 +619,26 @@ export default function ContactPage() {
           font-family: inherit;
           transition: border-color 0.3s ease;
           margin-bottom: 12px;
+          box-sizing: border-box;
+          background: white;
+          display: block;
         }
 
         textarea {
           resize: vertical;
           min-height: 80px;
+          line-height: 1.4;
         }
 
         textarea:focus, input:focus {
           outline: none;
           border-color: #EC3928;
           box-shadow: 0 0 0 3px rgba(236, 57, 40, 0.1);
+        }
+
+        input[type="url"], input[type="email"], input[type="tel"], input[type="text"] {
+          height: auto;
+          line-height: normal;
         }
 
         .message {
@@ -777,72 +791,103 @@ export default function ContactPage() {
           }
 
           .contact-form-container {
-            padding: 32px 24px;
-            border-radius: 16px;
+            padding: 24px 20px;
+            border-radius: 12px;
             margin: 0 auto;
+            max-width: 100%;
           }
 
           .form-step {
-            min-height: 350px;
+            min-height: 280px;
           }
 
           .form-step h2 {
-            font-size: 24px;
-            margin-bottom: 12px;
+            font-size: 20px;
+            margin-bottom: 8px;
           }
 
           .form-step p {
-            font-size: 15px;
-            margin-bottom: 28px;
+            font-size: 14px;
+            margin-bottom: 20px;
           }
 
           .options-grid {
             grid-template-columns: 1fr;
-            gap: 16px;
+            gap: 12px;
           }
 
           .option-card {
-            padding: 20px 16px;
+            padding: 16px 12px;
+            border-radius: 12px;
+          }
+
+          .option-title {
+            font-size: 15px;
+            margin-bottom: 4px;
+          }
+
+          .option-desc {
+            font-size: 11px;
+            line-height: 1.2;
           }
 
           .contact-grid {
             grid-template-columns: 1fr;
-            gap: 16px;
+            gap: 12px;
           }
 
           .form-navigation {
             flex-direction: column-reverse;
-            gap: 16px;
-            margin-top: 40px;
+            gap: 12px;
+            margin-top: 24px;
           }
 
           .nav-button, .next-button, .submit-button {
             width: 100%;
             margin-left: 0;
-            padding: 16px 24px;
-            font-size: 16px;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
           }
 
           .step-indicators {
-            gap: 6px;
+            gap: 2px;
             flex-wrap: wrap;
             justify-content: center;
           }
 
           .step-dot {
-            width: 32px;
-            height: 32px;
-            font-size: 12px;
+            width: 28px;
+            height: 28px;
+            font-size: 11px;
+          }
+
+          .step-dot.completed {
+            font-size: 10px;
           }
 
           textarea, input {
-            padding: 16px 18px;
+            padding: 14px 16px;
+            border-radius: 12px;
             font-size: 16px;
+            border: 1.5px solid #e0e0e0;
             margin-bottom: 16px;
           }
 
+          textarea:focus, input:focus {
+            border-color: #EC3928;
+            box-shadow: 0 0 0 3px rgba(236, 57, 40, 0.08);
+          }
+
           textarea {
-            min-height: 120px;
+            min-height: 80px;
+          }
+
+          .disclaimer {
+            font-size: 11px;
+            margin-top: 16px;
+            opacity: 0.7;
           }
         }
       `}</style>
