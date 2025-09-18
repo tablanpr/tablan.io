@@ -357,7 +357,7 @@ function SubscribeSection() {
   }
 
   return (
-    <section style={{ padding: '80px 0', background: '#f8f9fa' }}>
+    <section style={{ padding: '40px 0 80px 0', background: '#f8f9fa' }}>
       <div className="container">
         <div style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto', padding: '0 20px' }}>
           <h2 style={{

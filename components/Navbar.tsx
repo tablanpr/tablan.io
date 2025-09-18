@@ -113,6 +113,15 @@ export default function Navbar({ onContactClick }: NavbarProps) {
               FAQ
             </a>
           </li>
+          <li className={styles.navItem}>
+            <a
+              href="/contact"
+              className={styles.navLink}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Contact
+            </a>
+          </li>
         </ul>
         
         <div
