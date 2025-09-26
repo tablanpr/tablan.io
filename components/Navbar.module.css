@@ -58,11 +58,67 @@
   color: #666666;
   font-weight: 500;
   font-size: 15px;
+}
+
+
+.dropdown {
+  position: relative;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  min-width: 260px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-15px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1000;
+  padding: 16px 0;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dropdownMenu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdownLink {
+  display: block;
+  padding: 12px 20px;
+  color: #666;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
   transition: color 0.3s ease;
 }
 
-.navLink:hover {
-  color: #333333;
+.dropdownLink {}
+
+.ctaButton {
+  background: #EC3928;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.ctaButton:hover {
+  background: #d12d1c;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(236, 57, 40, 0.3);
 }
 
 .navToggle {
@@ -130,7 +186,6 @@
     padding: 14px 24px;
     margin: 0;
     border-radius: 8px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     font-size: 16px;
     font-weight: 500;
     letter-spacing: 0.25px;
@@ -140,16 +195,7 @@
     overflow: hidden;
   }
 
-  .navLink:hover {
-    background: rgba(236, 57, 40, 0.05);
-    color: #EC3928;
-    transform: translateX(8px);
-  }
 
-  .navLink:active {
-    transform: translateX(4px);
-    background: rgba(236, 57, 40, 0.1);
-  }
 
   .navToggle {
     display: flex;
@@ -168,4 +214,34 @@
   .navToggle.active .bar:nth-child(3) {
     transform: translateY(-9px) rotate(-45deg);
   }
+
+  .ctaButton {
+    display: none;
+  }
+
+  .dropdown {
+    position: static;
+  }
+
+  .dropdownMenu {
+    position: static;
+    background: rgba(236, 57, 40, 0.05);
+    border: none;
+    border-radius: 8px;
+    box-shadow: none;
+    margin: 8px 0;
+    padding: 8px 0;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: none;
+  }
+
+  .dropdownLink {
+    padding: 8px 32px;
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .dropdownLink {}
 }

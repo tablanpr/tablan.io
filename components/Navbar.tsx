@@ -11,6 +11,7 @@ interface NavbarProps {
 export default function Navbar({ onContactClick }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isServicesOpen, setIsServicesOpen] = useState(false)
   const logoUrl = 'https://mlwcbcvlqzjbgriwhino.supabase.co/storage/v1/object/public/Photos/tablaniologo.png'
 
   useEffect(() => {
@@ -40,6 +41,13 @@ export default function Navbar({ onContactClick }: NavbarProps) {
     // Close mobile menu when opening contact modal
     setTimeout(() => setIsMenuOpen(false), 100)
   }
+
+  const services = [
+    { name: 'Product Configurators', url: '/services/product-configurators' },
+    { name: 'Sales Automation', url: '/services/sales-automation' },
+    { name: 'Content Automation', url: '/services/content-automation' },
+    { name: 'Workflow Optimization', url: '/services/workflow-optimization' }
+  ]
 
   return (
     <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ''}`}>
@@ -92,14 +100,31 @@ export default function Navbar({ onContactClick }: NavbarProps) {
               About
             </a>
           </li>
-          <li className={styles.navItem}>
+          <li className={`${styles.navItem} ${styles.dropdown}`}
+              onMouseEnter={() => setIsServicesOpen(true)}
+              onMouseLeave={() => setIsServicesOpen(false)}>
             <a
               href="#services"
               className={styles.navLink}
-              onClick={(e) => { e.preventDefault(); scrollToSection('services') }}
+              onClick={(e) => {
+                if (window.location.pathname === '/') {
+                  e.preventDefault();
+                  scrollToSection('services');
+                } else {
+                  e.preventDefault();
+                  window.location.href = '/#services';
+                }
+              }}
             >
               Services
             </a>
+            <div className={`${styles.dropdownMenu} ${isServicesOpen ? styles.show : ''}`}>
+              {services.map((service, index) => (
+                <a key={index} href={service.url} className={styles.dropdownLink}>
+                  {service.name}
+                </a>
+              ))}
+            </div>
           </li>
           <li className={styles.navItem}>
             <a
@@ -120,7 +145,14 @@ export default function Navbar({ onContactClick }: NavbarProps) {
             </a>
           </li>
         </ul>
-        
+
+        <button
+          className={styles.ctaButton}
+          onClick={handleContactClick}
+        >
+          Book Intro Call
+        </button>
+
         <div
           className={`${styles.navToggle} ${isMenuOpen ? styles.active : ''}`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
