@@ -486,14 +486,33 @@ function Footer() {
         }}>
           {/* Company Info */}
           <div>
-            <h3 style={{
-              fontSize: '24px',
-              fontWeight: '700',
-              marginBottom: '20px',
-              color: '#ffffff'
+            <div style={{
+              marginBottom: '20px'
             }}>
-              Tablan
-            </h3>
+              <img
+                src="https://mlwcbcvlqzjbgriwhino.supabase.co/storage/v1/object/public/Photos/tablaniologo.png"
+                alt="Tablan Logo"
+                style={{
+                  height: '40px',
+                  width: 'auto'
+                }}
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none'
+                  const fallback = e.currentTarget.nextElementSibling as HTMLElement
+                  if (fallback) {
+                    fallback.style.display = 'block'
+                  }
+                }}
+              />
+              <h3 style={{
+                fontSize: '24px',
+                fontWeight: '700',
+                color: '#ffffff',
+                display: 'none'
+              }}>
+                Tablan
+              </h3>
+            </div>
             <p style={{
               fontSize: '16px',
               lineHeight: '1.6',

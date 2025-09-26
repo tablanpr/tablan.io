@@ -93,9 +93,22 @@ export default function Navbar({ onContactClick }: NavbarProps) {
         <ul className={`${styles.navMenu} ${isMenuOpen ? styles.active : ''}`}>
           <li className={styles.navItem}>
             <a
-              href="#about"
+              href="/"
               className={styles.navLink}
-              onClick={(e) => { e.preventDefault(); scrollToSection('about') }}
+            >
+              Home
+            </a>
+          </li>
+          <li className={styles.navItem}>
+            <a
+              href="/#about"
+              className={styles.navLink}
+              onClick={(e) => {
+                if (window.location.pathname === '/') {
+                  e.preventDefault();
+                  scrollToSection('about');
+                }
+              }}
             >
               About
             </a>
@@ -103,21 +116,9 @@ export default function Navbar({ onContactClick }: NavbarProps) {
           <li className={`${styles.navItem} ${styles.dropdown}`}
               onMouseEnter={() => setIsServicesOpen(true)}
               onMouseLeave={() => setIsServicesOpen(false)}>
-            <a
-              href="#services"
-              className={styles.navLink}
-              onClick={(e) => {
-                if (window.location.pathname === '/') {
-                  e.preventDefault();
-                  scrollToSection('services');
-                } else {
-                  e.preventDefault();
-                  window.location.href = '/#services';
-                }
-              }}
-            >
+            <span className={styles.navLink}>
               Services
-            </a>
+            </span>
             <div className={`${styles.dropdownMenu} ${isServicesOpen ? styles.show : ''}`}>
               {services.map((service, index) => (
                 <a key={index} href={service.url} className={styles.dropdownLink}>
@@ -128,18 +129,28 @@ export default function Navbar({ onContactClick }: NavbarProps) {
           </li>
           <li className={styles.navItem}>
             <a
-              href="#integrations"
+              href="/#integrations"
               className={styles.navLink}
-              onClick={(e) => { e.preventDefault(); scrollToSection('integrations') }}
+              onClick={(e) => {
+                if (window.location.pathname === '/') {
+                  e.preventDefault();
+                  scrollToSection('integrations');
+                }
+              }}
             >
               Integrations
             </a>
           </li>
           <li className={styles.navItem}>
             <a
-              href="#faq"
+              href="/#faq"
               className={styles.navLink}
-              onClick={(e) => { e.preventDefault(); scrollToSection('faq') }}
+              onClick={(e) => {
+                if (window.location.pathname === '/') {
+                  e.preventDefault();
+                  scrollToSection('faq');
+                }
+              }}
             >
               FAQ
             </a>

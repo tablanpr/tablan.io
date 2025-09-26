@@ -63,6 +63,75 @@ function Hero({ onContactClick }: { onContactClick: () => void }) {
   )
 }
 
+function Header({ onContactClick }: { onContactClick: () => void }) {
+  return (
+    <section style={{
+      padding: '150px 0 80px 0',
+      background: 'white',
+      textAlign: 'center'
+    }}>
+      <div className="container" style={{
+        maxWidth: '900px',
+        margin: '0 auto',
+        padding: '0 20px'
+      }}>
+        <h1 style={{
+          fontSize: 'clamp(40px, 8vw, 64px)',
+          fontWeight: '700',
+          color: '#1F3A5F',
+          marginBottom: '24px',
+          lineHeight: '1.1'
+        }}>
+          Custom Product Configurators That Drive Sales
+        </h1>
+        <p style={{
+          fontSize: 'clamp(20px, 4vw, 26px)',
+          color: '#666',
+          marginBottom: '32px',
+          lineHeight: '1.5',
+          maxWidth: '700px',
+          margin: '0 auto 32px auto'
+        }}>
+          Transform complex industrial products into interactive experiences that qualify leads, reduce sales cycles, and boost order values.
+        </p>
+        <p style={{
+          fontSize: 'clamp(16px, 3vw, 18px)',
+          color: '#888',
+          marginBottom: '48px',
+          lineHeight: '1.6'
+        }}>
+          Stop losing qualified prospects to confusing product catalogs. Our AI-powered configurators guide customers through your product options, capture detailed specifications, and generate instant quotes—turning browsers into buyers.
+        </p>
+        <button
+          onClick={onContactClick}
+          style={{
+            background: '#EC3928',
+            color: 'white',
+            padding: '18px 36px',
+            fontSize: '18px',
+            fontWeight: '600',
+            border: 'none',
+            borderRadius: '8px',
+            cursor: 'pointer',
+            boxShadow: '0 4px 16px rgba(236, 57, 40, 0.3)',
+            transition: 'all 0.3s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-2px)'
+            e.currentTarget.style.boxShadow = '0 6px 20px rgba(236, 57, 40, 0.4)'
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)'
+            e.currentTarget.style.boxShadow = '0 4px 16px rgba(236, 57, 40, 0.3)'
+          }}
+        >
+          See How It Works
+        </button>
+      </div>
+    </section>
+  )
+}
+
 function Benefits() {
   const benefits = [
     {
@@ -100,7 +169,7 @@ function Benefits() {
   return (
     <section style={{
       padding: '100px 0',
-      background: 'white'
+      background: '#f8f9fa'
     }}>
       <div className="container" style={{
         maxWidth: '1200px',
@@ -129,17 +198,23 @@ function Benefits() {
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '40px'
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: '30px',
+          alignItems: 'stretch'
         }}>
           {benefits.map((benefit, index) => (
             <div key={index} style={{
-              background: '#f8f9fa',
-              padding: '40px',
+              background: 'white',
+              padding: '40px 30px',
               borderRadius: '12px',
-              border: '2px solid transparent',
+              border: '1px solid #e0e0e0',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
               transition: 'all 0.3s ease',
-              textAlign: 'center'
+              textAlign: 'center',
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'flex-start'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = '#EC3928'
@@ -152,26 +227,37 @@ function Benefits() {
               e.currentTarget.style.boxShadow = 'none'
             }}>
               <div style={{
-                fontSize: '48px',
-                marginBottom: '20px'
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%'
               }}>
-                {benefit.icon}
+                <div style={{
+                  fontSize: '48px',
+                  marginBottom: '20px'
+                }}>
+                  {benefit.icon}
+                </div>
+                <h3 style={{
+                  fontSize: '22px',
+                  fontWeight: '600',
+                  color: '#1F3A5F',
+                  marginBottom: '16px',
+                  minHeight: '60px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  {benefit.title}
+                </h3>
+                <p style={{
+                  color: '#666',
+                  lineHeight: '1.6',
+                  fontSize: '16px',
+                  flex: 1
+                }}>
+                  {benefit.description}
+                </p>
               </div>
-              <h3 style={{
-                fontSize: '22px',
-                fontWeight: '600',
-                color: '#1F3A5F',
-                marginBottom: '16px'
-              }}>
-                {benefit.title}
-              </h3>
-              <p style={{
-                color: '#666',
-                lineHeight: '1.6',
-                fontSize: '16px'
-              }}>
-                {benefit.description}
-              </p>
             </div>
           ))}
         </div>
@@ -234,19 +320,23 @@ function Features() {
           </p>
         </div>
 
-        <div style={{
+        <div className="features-grid" style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '50px'
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          gap: '40px',
+          alignItems: 'stretch'
         }}>
           {features.map((feature, index) => (
             <div key={index} style={{
               background: 'white',
-              padding: '40px',
+              padding: '40px 30px',
               borderRadius: '12px',
-              boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
-              border: '2px solid transparent',
-              transition: 'all 0.3s ease'
+              border: '1px solid #e0e0e0',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+              transition: 'all 0.3s ease',
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = '#EC3928'
@@ -351,10 +441,11 @@ function SocialProof() {
           </div>
         </div>
 
-        <div style={{
+        <div className="social-proof-grid" style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-          gap: '30px'
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          gap: '40px',
+          alignItems: 'stretch'
         }}>
           {[
             { metric: '40%', description: 'More Qualified Leads' },
@@ -612,7 +703,7 @@ export default function ProductConfiguratorsPage() {
   return (
     <main>
       <Navbar onContactClick={openContactModal} />
-      <Hero onContactClick={openContactModal} />
+      <Header onContactClick={openContactModal} />
       <Benefits />
       <Features />
       <SocialProof />

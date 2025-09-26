@@ -186,6 +186,15 @@ img {
     grid-template-columns: 1fr !important;
     gap: 20px !important;
   }
+
+  /* Service page grids responsive */
+  .benefits-grid,
+  .features-grid,
+  .content-types-grid,
+  .workflow-areas-grid,
+  .social-proof-grid {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 /* Mobile touch interactions */

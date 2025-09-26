@@ -63,6 +63,75 @@ function Hero({ onContactClick }: { onContactClick: () => void }) {
   )
 }
 
+function Header({ onContactClick }: { onContactClick: () => void }) {
+  return (
+    <section style={{
+      padding: '150px 0 80px 0',
+      background: 'white',
+      textAlign: 'center'
+    }}>
+      <div className="container" style={{
+        maxWidth: '900px',
+        margin: '0 auto',
+        padding: '0 20px'
+      }}>
+        <h1 style={{
+          fontSize: 'clamp(40px, 8vw, 64px)',
+          fontWeight: '700',
+          color: '#1F3A5F',
+          marginBottom: '24px',
+          lineHeight: '1.1'
+        }}>
+          Optimize Industrial Workflows with Smart Automation
+        </h1>
+        <p style={{
+          fontSize: 'clamp(20px, 4vw, 26px)',
+          color: '#666',
+          marginBottom: '32px',
+          lineHeight: '1.5',
+          maxWidth: '700px',
+          margin: '0 auto 32px auto'
+        }}>
+          Eliminate bottlenecks and reduce operational costs by automating complex manufacturing and logistics workflows.
+        </p>
+        <p style={{
+          fontSize: 'clamp(16px, 3vw, 18px)',
+          color: '#888',
+          marginBottom: '48px',
+          lineHeight: '1.6'
+        }}>
+          Stop losing money to inefficient processes and human error. Our intelligent workflow automation identifies optimization opportunities, streamlines operations, and provides real-time insights that help you make data-driven decisions for maximum efficiency.
+        </p>
+        <button
+          onClick={onContactClick}
+          style={{
+            background: '#EC3928',
+            color: 'white',
+            padding: '18px 36px',
+            fontSize: '18px',
+            fontWeight: '600',
+            border: 'none',
+            borderRadius: '8px',
+            cursor: 'pointer',
+            boxShadow: '0 4px 16px rgba(236, 57, 40, 0.3)',
+            transition: 'all 0.3s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-2px)'
+            e.currentTarget.style.boxShadow = '0 6px 20px rgba(236, 57, 40, 0.4)'
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)'
+            e.currentTarget.style.boxShadow = '0 4px 16px rgba(236, 57, 40, 0.3)'
+          }}
+        >
+          Optimize Your Workflows
+        </button>
+      </div>
+    </section>
+  )
+}
+
 function Benefits() {
   const benefits = [
     {
@@ -100,7 +169,7 @@ function Benefits() {
   return (
     <section style={{
       padding: '100px 0',
-      background: 'white'
+      background: '#f8f9fa'
     }}>
       <div className="container" style={{
         maxWidth: '1200px',
@@ -129,17 +198,23 @@ function Benefits() {
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '40px'
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: '30px',
+          alignItems: 'stretch'
         }}>
           {benefits.map((benefit, index) => (
             <div key={index} style={{
-              background: '#f8f9fa',
-              padding: '40px',
+              background: 'white',
+              padding: '40px 30px',
               borderRadius: '12px',
-              border: '2px solid transparent',
+              border: '1px solid #e0e0e0',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
               transition: 'all 0.3s ease',
-              textAlign: 'center'
+              textAlign: 'center',
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'flex-start'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = '#EC3928'
@@ -152,26 +227,37 @@ function Benefits() {
               e.currentTarget.style.boxShadow = 'none'
             }}>
               <div style={{
-                fontSize: '48px',
-                marginBottom: '20px'
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%'
               }}>
-                {benefit.icon}
+                <div style={{
+                  fontSize: '48px',
+                  marginBottom: '20px'
+                }}>
+                  {benefit.icon}
+                </div>
+                <h3 style={{
+                  fontSize: '22px',
+                  fontWeight: '600',
+                  color: '#1F3A5F',
+                  marginBottom: '16px',
+                  minHeight: '60px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  {benefit.title}
+                </h3>
+                <p style={{
+                  color: '#666',
+                  lineHeight: '1.6',
+                  fontSize: '16px',
+                  flex: 1
+                }}>
+                  {benefit.description}
+                </p>
               </div>
-              <h3 style={{
-                fontSize: '22px',
-                fontWeight: '600',
-                color: '#1F3A5F',
-                marginBottom: '16px'
-              }}>
-                {benefit.title}
-              </h3>
-              <p style={{
-                color: '#666',
-                lineHeight: '1.6',
-                fontSize: '16px'
-              }}>
-                {benefit.description}
-              </p>
             </div>
           ))}
         </div>
@@ -258,10 +344,11 @@ function WorkflowAreas() {
           </p>
         </div>
 
-        <div style={{
+        <div className="workflow-areas-grid" style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '40px'
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          gap: '30px',
+          alignItems: 'stretch'
         }}>
           {areas.map((area, index) => (
             <div key={index} style={{
@@ -565,7 +652,7 @@ export default function WorkflowOptimizationPage() {
   return (
     <main>
       <Navbar onContactClick={openContactModal} />
-      <Hero onContactClick={openContactModal} />
+      <Header onContactClick={openContactModal} />
       <Benefits />
       <WorkflowAreas />
       <CTA onContactClick={openContactModal} />
