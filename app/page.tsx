@@ -146,10 +146,14 @@ function WhyCollaborate({ onContactClick }: { onContactClick: () => void }) {
               grid-template-columns: 1fr 1fr;
               gap: 30px;
               margin-bottom: 40px;
+              max-width: 800px;
+              margin-left: auto;
+              margin-right: auto;
             }
             @media (max-width: 768px) {
               .collaborate-grid {
                 grid-template-columns: 1fr;
+                max-width: 400px;
               }
             }
           `}</style>
