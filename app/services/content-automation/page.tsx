@@ -120,7 +120,7 @@ function PainPoints() {
       title: 'Content Creation Takes Forever',
       description: 'Technical writers spend weeks on documentation that should take days',
       before: 'Technical writer spends 3 weeks creating product manual → Still needs 2 rounds of revisions → Delayed product launch',
-      after: 'ContentFlow AI generates first draft in 2 hours → Minor edits needed → Launch on schedule'
+      after: 'DocuTechAI generates first draft in 2 hours → Minor edits needed → Launch on schedule'
     },
     {
       icon: '😫',
@@ -418,44 +418,44 @@ function ContentTypes() {
   useScrollAnimation()
   const contentTypes = [
     {
-      category: 'Technical Documentation',
+      category: 'Technical Documentation Automation',
       items: [
-        'Product specifications and datasheets',
-        'Installation and operation manuals',
-        'API documentation and guides',
-        'Troubleshooting and maintenance guides'
+        'Create installation guides and operation manuals automatically',
+        'Generate troubleshooting documentation from support data',
+        'Automate safety compliance and regulatory documentation',
+        'Produce maintenance schedules and service instructions'
       ],
       icon: '📋'
     },
     {
-      category: 'Marketing Materials',
+      category: 'Marketing Content Automation',
       items: [
-        'Product descriptions and features',
-        'Case studies and success stories',
-        'White papers and technical articles',
-        'Email campaigns and newsletters'
+        'Generate marketing materials with AI-powered content automation',
+        'Create compelling case studies from customer data',
+        'Automate email campaigns and newsletter content',
+        'Produce white papers and technical articles at scale'
       ],
       icon: '📢'
     },
     {
-      category: 'Sales Enablement',
+      category: 'Multi-Language Content Generation',
       items: [
-        'Proposal templates and responses',
-        'Technical comparison charts',
-        'ROI calculators and value propositions',
-        'Sales presentation content'
+        'Multi-language content generation for global industrial markets',
+        'Maintain technical accuracy across all translations',
+        'Localize content for different regional markets',
+        'Automate translation updates when source content changes'
       ],
-      icon: '💼'
+      icon: '🌍'
     },
     {
-      category: 'Digital Content',
+      category: 'SEO & Distribution Automation',
       items: [
-        'Website copy and landing pages',
-        'Blog posts and thought leadership',
-        'Social media content',
-        'Video scripts and descriptions'
+        'SEO-optimized content creation for manufacturing websites',
+        'Maintain consistent messaging across all industrial platforms',
+        'Content distribution automation for manufacturing businesses',
+        'Automated social media and blog post scheduling'
       ],
-      icon: '🌐'
+      icon: '📊'
     }
   ]
 
@@ -476,7 +476,7 @@ function ContentTypes() {
             color: '#1F3A5F',
             marginBottom: '24px'
           }}>
-            Every Type of Industrial Content You Need
+            How AI & Automation Powers Your Content Creation
           </h2>
           <p style={{
             fontSize: 'clamp(18px, 4vw, 22px)',
@@ -485,7 +485,7 @@ function ContentTypes() {
             margin: '0 auto',
             lineHeight: '1.6'
           }}>
-            From technical documentation to marketing materials, we automate it all
+            DocuTechAI uses advanced AI and automation to transform how industrial businesses create and manage content
           </p>
         </div>
 
