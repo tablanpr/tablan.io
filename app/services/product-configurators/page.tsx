@@ -1,66 +1,124 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '@/components/Navbar'
 import ContactModal from '@/components/ContactModal'
 
-function Hero({ onContactClick }: { onContactClick: () => void }) {
-  return (
-    <section style={{
-      background: '#1F3A5F',
-      color: 'white',
-      padding: '150px 0 100px 0',
-      textAlign: 'center'
-    }}>
-      <div className="container" style={{
-        maxWidth: '800px',
-        margin: '0 auto',
-        padding: '0 20px'
-      }}>
-        <h1 style={{
-          fontSize: 'clamp(36px, 8vw, 56px)',
-          fontWeight: '700',
-          marginBottom: '24px',
-          lineHeight: '1.2'
-        }}>
-          Custom Product Configurators
-        </h1>
-        <p style={{
-          fontSize: 'clamp(18px, 4vw, 24px)',
-          marginBottom: '40px',
-          opacity: 0.9,
-          lineHeight: '1.5'
-        }}>
-          Transform how customers explore and purchase your industrial products with AI-powered configurators
-        </p>
-        <button
-          onClick={onContactClick}
-          style={{
-            background: '#EC3928',
-            color: 'white',
-            padding: '18px 36px',
-            fontSize: '18px',
-            fontWeight: '600',
-            border: 'none',
-            borderRadius: '8px',
-            cursor: 'pointer',
-            boxShadow: '0 4px 16px rgba(236, 57, 40, 0.3)',
-            transition: 'all 0.3s ease'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'translateY(-2px)'
-            e.currentTarget.style.boxShadow = '0 6px 20px rgba(236, 57, 40, 0.4)'
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'translateY(0)'
-            e.currentTarget.style.boxShadow = '0 4px 16px rgba(236, 57, 40, 0.3)'
-          }}
-        >
-          Schedule Demo
-        </button>
-      </div>
-    </section>
-  )
+// Add animations to the page
+if (typeof document !== 'undefined') {
+  const style = document.createElement('style')
+  style.textContent = `
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes slideInStagger {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
+    }
+
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hover-lift {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12) !important;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .pain-points-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  `
+  document.head.appendChild(style)
+}
+
+// Hook for scroll animations
+function useScrollAnimation() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible')
+          }
+        })
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    )
+
+    const animateElements = document.querySelectorAll('.animate-on-scroll')
+    animateElements.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
 }
 
 function Header({ onContactClick }: { onContactClick: () => void }) {
@@ -73,8 +131,21 @@ function Header({ onContactClick }: { onContactClick: () => void }) {
       <div className="container" style={{
         maxWidth: '900px',
         margin: '0 auto',
-        padding: '0 20px'
+        padding: '0 20px',
+        animation: 'fadeInUp 0.8s ease-out'
       }}>
+        <div style={{
+          background: '#EC3928',
+          color: 'white',
+          padding: '8px 20px',
+          borderRadius: '25px',
+          fontSize: '14px',
+          fontWeight: '600',
+          display: 'inline-block',
+          marginBottom: '24px'
+        }}>
+          TechSpecPro™
+        </div>
         <h1 style={{
           fontSize: 'clamp(40px, 8vw, 64px)',
           fontWeight: '700',
@@ -82,7 +153,7 @@ function Header({ onContactClick }: { onContactClick: () => void }) {
           marginBottom: '24px',
           lineHeight: '1.1'
         }}>
-          Custom Product Configurators That Drive Sales
+          Smart Product Configurators That Convert Browsers Into Buyers
         </h1>
         <p style={{
           fontSize: 'clamp(20px, 4vw, 26px)',
@@ -92,7 +163,7 @@ function Header({ onContactClick }: { onContactClick: () => void }) {
           maxWidth: '700px',
           margin: '0 auto 32px auto'
         }}>
-          Transform complex industrial products into interactive experiences that qualify leads, reduce sales cycles, and boost order values.
+          Transform complex industrial products into interactive experiences that qualify leads, reduce sales cycles, and boost order values by 40%.
         </p>
         <p style={{
           fontSize: 'clamp(16px, 3vw, 18px)',
@@ -100,10 +171,11 @@ function Header({ onContactClick }: { onContactClick: () => void }) {
           marginBottom: '48px',
           lineHeight: '1.6'
         }}>
-          Stop losing qualified prospects to confusing product catalogs. Our AI-powered configurators guide customers through your product options, capture detailed specifications, and generate instant quotes—turning browsers into buyers.
+          Stop losing qualified prospects to confusing product catalogs. TechSpecPro guides customers through your product options, captures detailed specifications, and generates instant quotes—turning browsers into buyers.
         </p>
         <button
           onClick={onContactClick}
+          className="hover-lift"
           style={{
             background: '#EC3928',
             color: 'white',
@@ -114,14 +186,14 @@ function Header({ onContactClick }: { onContactClick: () => void }) {
             borderRadius: '8px',
             cursor: 'pointer',
             boxShadow: '0 4px 16px rgba(236, 57, 40, 0.3)',
-            transition: 'all 0.3s ease'
+            animation: 'scaleIn 0.6s ease-out 0.4s both'
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'translateY(-2px)'
-            e.currentTarget.style.boxShadow = '0 6px 20px rgba(236, 57, 40, 0.4)'
+            e.currentTarget.style.transform = 'translateY(-4px) scale(1.02)'
+            e.currentTarget.style.boxShadow = '0 8px 25px rgba(236, 57, 40, 0.4)'
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'translateY(0)'
+            e.currentTarget.style.transform = 'translateY(0) scale(1)'
             e.currentTarget.style.boxShadow = '0 4px 16px rgba(236, 57, 40, 0.3)'
           }}
         >
@@ -132,7 +204,182 @@ function Header({ onContactClick }: { onContactClick: () => void }) {
   )
 }
 
+function PainPoints() {
+  useScrollAnimation()
+
+  const painPoints = [
+    {
+      icon: '😤',
+      title: 'Prospects Leave Without Buying',
+      description: 'Complex product catalogs confuse customers who can\'t find the right configuration',
+      before: 'Customer calls: "I need a valve for my system" → 20-minute back-and-forth → Still unclear on requirements',
+      after: 'Interactive configurator guides them to the exact valve in 3 minutes → Instant quote → Purchase order'
+    },
+    {
+      icon: '⏰',
+      title: 'Sales Team Wastes Time on Unqualified Leads',
+      description: 'Hours spent explaining basic product options to prospects who may never buy',
+      before: 'Sales rep spends 2 hours creating custom quotes for tire-kickers who "might be interested"',
+      after: 'Only pre-qualified prospects with specific requirements and budgets reach your sales team'
+    },
+    {
+      icon: '💸',
+      title: 'Lost Revenue from Configuration Errors',
+      description: 'Wrong specifications lead to returns, delays, and frustrated customers',
+      before: 'Customer orders wrong pump size → $15K manufacturing cost → 6-week delay → Angry customer',
+      after: 'Built-in compatibility rules prevent impossible combinations → Zero configuration errors'
+    },
+    {
+      icon: '📞',
+      title: 'Support Team Overwhelmed with Basic Questions',
+      description: 'Repetitive calls about product compatibility and pricing drain resources',
+      before: '30+ daily calls asking "Does this work with that?" → Support team can\'t focus on real issues',
+      after: 'Self-service configurator answers 90% of compatibility questions automatically'
+    }
+  ]
+
+  return (
+    <section style={{
+      padding: '100px 0',
+      background: '#f8fafc'
+    }}>
+      <div className="container" style={{
+        maxWidth: '1200px',
+        margin: '0 auto',
+        padding: '0 20px'
+      }}>
+        <div style={{ textAlign: 'center', marginBottom: '80px' }}>
+          <h2 style={{
+            fontSize: 'clamp(32px, 6vw, 48px)',
+            fontWeight: '700',
+            color: '#1F3A5F',
+            marginBottom: '24px'
+          }}>
+            Are These Problems Costing You Sales?
+          </h2>
+          <p style={{
+            fontSize: 'clamp(18px, 4vw, 22px)',
+            color: '#666',
+            maxWidth: '600px',
+            margin: '0 auto',
+            lineHeight: '1.6'
+          }}>
+            See how TechSpecPro solves the biggest challenges in industrial product sales
+          </p>
+        </div>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          gap: '30px',
+          alignItems: 'stretch',
+          maxWidth: '1000px',
+          margin: '0 auto'
+        }}
+        className="pain-points-grid">
+          {painPoints.map((point, index) => (
+            <div
+              key={index}
+              className="animate-on-scroll hover-lift"
+              style={{
+                background: 'white',
+                padding: '30px',
+                borderRadius: '12px',
+                border: '1px solid #e2e8f0',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                animationDelay: `${index * 0.1}s`,
+                cursor: 'pointer'
+              }}>
+              <div style={{
+                fontSize: '36px',
+                marginBottom: '15px',
+                textAlign: 'center'
+              }}>
+                {point.icon}
+              </div>
+              <h3 style={{
+                fontSize: '20px',
+                fontWeight: '600',
+                color: '#1F3A5F',
+                marginBottom: '12px',
+                textAlign: 'center'
+              }}>
+                {point.title}
+              </h3>
+              <p style={{
+                color: '#666',
+                lineHeight: '1.6',
+                marginBottom: '20px',
+                fontSize: '16px',
+                textAlign: 'center'
+              }}>
+                {point.description}
+              </p>
+
+              <div style={{ marginTop: 'auto' }}>
+                <div style={{
+                  background: '#fee2e2',
+                  padding: '15px',
+                  borderRadius: '8px',
+                  marginBottom: '15px'
+                }}>
+                  <div style={{
+                    fontSize: '12px',
+                    fontWeight: '600',
+                    color: '#d32f2f',
+                    marginBottom: '8px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.5px'
+                  }}>
+                    ❌ Before TechSpecPro
+                  </div>
+                  <div style={{
+                    fontSize: '14px',
+                    color: '#666',
+                    lineHeight: '1.4'
+                  }}>
+                    {point.before}
+                  </div>
+                </div>
+
+                <div style={{
+                  background: '#dcfce7',
+                  padding: '15px',
+                  borderRadius: '8px'
+                }}>
+                  <div style={{
+                    fontSize: '12px',
+                    fontWeight: '600',
+                    color: '#2e7d32',
+                    marginBottom: '8px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.5px'
+                  }}>
+                    ✅ After TechSpecPro
+                  </div>
+                  <div style={{
+                    fontSize: '14px',
+                    color: '#666',
+                    lineHeight: '1.4'
+                  }}>
+                    {point.after}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function Benefits() {
+  useScrollAnimation()
+
   const benefits = [
     {
       icon: '🎯',
@@ -203,28 +450,32 @@ function Benefits() {
           alignItems: 'stretch'
         }}>
           {benefits.map((benefit, index) => (
-            <div key={index} style={{
-              background: 'white',
-              padding: '40px 30px',
-              borderRadius: '12px',
-              border: '1px solid #e0e0e0',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
-              transition: 'all 0.3s ease',
-              textAlign: 'center',
-              height: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'flex-start'
-            }}
+            <div
+              key={index}
+              className="animate-on-scroll hover-lift"
+              style={{
+                background: 'white',
+                padding: '40px 30px',
+                borderRadius: '12px',
+                border: '1px solid #e0e0e0',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+                textAlign: 'center',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'flex-start',
+                animationDelay: `${index * 0.1}s`,
+                cursor: 'pointer'
+              }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = '#EC3928'
               e.currentTarget.style.transform = 'translateY(-4px)'
               e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,0,0,0.1)'
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'transparent'
+              e.currentTarget.style.borderColor = '#e0e0e0'
               e.currentTarget.style.transform = 'translateY(0)'
-              e.currentTarget.style.boxShadow = 'none'
+              e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.06)'
             }}>
               <div style={{
                 display: 'flex',
@@ -267,6 +518,8 @@ function Benefits() {
 }
 
 function Features() {
+  useScrollAnimation()
+
   const features = [
     {
       title: 'Intelligent Product Matching',
@@ -323,27 +576,33 @@ function Features() {
         <div className="features-grid" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(2, 1fr)',
-          gap: '40px',
-          alignItems: 'stretch'
+          gap: '30px',
+          alignItems: 'stretch',
+          maxWidth: '1000px',
+          margin: '0 auto'
         }}>
           {features.map((feature, index) => (
-            <div key={index} style={{
-              background: 'white',
-              padding: '40px 30px',
-              borderRadius: '12px',
-              border: '1px solid #e0e0e0',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
-              transition: 'all 0.3s ease',
-              height: '100%',
-              display: 'flex',
-              flexDirection: 'column'
-            }}
+            <div
+              key={index}
+              className="animate-on-scroll hover-lift"
+              style={{
+                background: 'white',
+                padding: '40px 30px',
+                borderRadius: '12px',
+                border: '1px solid #e0e0e0',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                animationDelay: `${index * 0.15}s`,
+                cursor: 'pointer'
+              }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = '#EC3928'
               e.currentTarget.style.transform = 'translateY(-2px)'
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'transparent'
+              e.currentTarget.style.borderColor = '#e0e0e0'
               e.currentTarget.style.transform = 'translateY(0)'
             }}>
               <h3 style={{
@@ -417,11 +676,12 @@ function SocialProof() {
         </h2>
 
         <div style={{
-          background: '#f8f9fa',
-          padding: '50px 40px',
+          background: 'white',
+          padding: '40px 30px',
           borderRadius: '12px',
           marginBottom: '50px',
-          border: '2px solid #e9ecef'
+          border: '1px solid #e0e0e0',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.06)'
         }}>
           <div style={{
             fontSize: '20px',
@@ -444,8 +704,10 @@ function SocialProof() {
         <div className="social-proof-grid" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(2, 1fr)',
-          gap: '40px',
-          alignItems: 'stretch'
+          gap: '30px',
+          alignItems: 'stretch',
+          maxWidth: '1000px',
+          margin: '0 auto'
         }}>
           {[
             { metric: '40%', description: 'More Qualified Leads' },
@@ -497,7 +759,7 @@ function CTA({ onContactClick }: { onContactClick: () => void }) {
           fontWeight: '700',
           marginBottom: '24px'
         }}>
-          Ready to Transform Your Sales Process?
+          Ready to Launch TechSpecPro?
         </h2>
         <p style={{
           fontSize: 'clamp(18px, 4vw, 22px)',
@@ -505,7 +767,7 @@ function CTA({ onContactClick }: { onContactClick: () => void }) {
           opacity: 0.9,
           lineHeight: '1.5'
         }}>
-          See how a custom product configurator can increase your qualified leads and reduce your sales cycle
+          See how TechSpecPro can increase your qualified leads by 40% and reduce your sales cycle by 30%
         </p>
         <button
           onClick={onContactClick}
@@ -704,6 +966,7 @@ export default function ProductConfiguratorsPage() {
     <main>
       <Navbar onContactClick={openContactModal} />
       <Header onContactClick={openContactModal} />
+      <PainPoints />
       <Benefits />
       <Features />
       <SocialProof />

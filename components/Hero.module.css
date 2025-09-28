@@ -14,8 +14,33 @@
   font-weight: 700;
   line-height: 1.1;
   color: #1F3A5F;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   letter-spacing: -0.02em;
+}
+
+.dynamicPhrase {
+  font-size: 36px;
+  font-weight: 700;
+  color: #EC3928;
+  margin-bottom: 32px;
+  text-transform: lowercase;
+  letter-spacing: 0.5px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Courier New', monospace;
+}
+
+.cursor {
+  animation: blink 1s infinite;
+  font-weight: 400;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
 }
 
 .heroSubtitle {
@@ -55,7 +80,13 @@
 
   .heroTitle {
     font-size: 40px;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
+  }
+
+  .dynamicPhrase {
+    font-size: 20px;
+    margin-bottom: 24px;
+    min-height: 28px;
   }
 
   .heroSubtitle {

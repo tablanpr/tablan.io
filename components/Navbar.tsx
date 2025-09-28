@@ -12,6 +12,7 @@ export default function Navbar({ onContactClick }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isServicesOpen, setIsServicesOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const logoUrl = 'https://mlwcbcvlqzjbgriwhino.supabase.co/storage/v1/object/public/Photos/tablaniologo.png'
 
   useEffect(() => {
@@ -19,8 +20,17 @@ export default function Navbar({ onContactClick }: NavbarProps) {
       setIsScrolled(window.scrollY > 50)
     }
 
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+
+    handleResize() // Check initial size
     window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleResize)
+    }
   }, [])
 
   const scrollToSection = (sectionId: string) => {
@@ -39,14 +49,17 @@ export default function Navbar({ onContactClick }: NavbarProps) {
   const handleContactClick = () => {
     onContactClick()
     // Close mobile menu when opening contact modal
-    setTimeout(() => setIsMenuOpen(false), 100)
+    setTimeout(() => {
+      setIsMenuOpen(false)
+      setIsServicesOpen(false)
+    }, 100)
   }
 
   const services = [
-    { name: 'Product Configurators', url: '/services/product-configurators' },
-    { name: 'Sales Automation', url: '/services/sales-automation' },
-    { name: 'Content Automation', url: '/services/content-automation' },
-    { name: 'Workflow Optimization', url: '/services/workflow-optimization' }
+    { name: 'TechSpecPro™ - Product Configurators', url: '/services/product-configurators' },
+    { name: 'SalesFlow AI™ - Sales Automation', url: '/services/sales-automation' },
+    { name: 'DocuTechAI™ - Content Automation', url: '/services/content-automation' },
+    { name: 'OptiFlow™ - Workflow Optimization', url: '/services/workflow-optimization' }
   ]
 
   return (
@@ -95,6 +108,7 @@ export default function Navbar({ onContactClick }: NavbarProps) {
             <a
               href="/"
               className={styles.navLink}
+              onClick={() => setIsMenuOpen(false)}
             >
               Home
             </a>
@@ -108,20 +122,21 @@ export default function Navbar({ onContactClick }: NavbarProps) {
                   e.preventDefault();
                   scrollToSection('about');
                 }
+                setIsMenuOpen(false)
               }}
             >
               About
             </a>
           </li>
           <li className={`${styles.navItem} ${styles.dropdown}`}
-              onMouseEnter={() => setIsServicesOpen(true)}
-              onMouseLeave={() => setIsServicesOpen(false)}>
+              onMouseEnter={() => !isMobile && setIsServicesOpen(true)}
+              onMouseLeave={() => !isMobile && setIsServicesOpen(false)}>
             <span className={styles.navLink}>
-              Services
+              <span>Services</span>
             </span>
-            <div className={`${styles.dropdownMenu} ${isServicesOpen ? styles.show : ''}`}>
+            <div className={`${styles.dropdownMenu} ${isMobile ? styles.show : (isServicesOpen ? styles.show : '')}`}>
               {services.map((service, index) => (
-                <a key={index} href={service.url} className={styles.dropdownLink}>
+                <a key={index} href={service.url} className={styles.dropdownLink} onClick={() => setIsMenuOpen(false)}>
                   {service.name}
                 </a>
               ))}
@@ -136,6 +151,7 @@ export default function Navbar({ onContactClick }: NavbarProps) {
                   e.preventDefault();
                   scrollToSection('integrations');
                 }
+                setIsMenuOpen(false)
               }}
             >
               Integrations
@@ -150,10 +166,19 @@ export default function Navbar({ onContactClick }: NavbarProps) {
                   e.preventDefault();
                   scrollToSection('faq');
                 }
+                setIsMenuOpen(false)
               }}
             >
               FAQ
             </a>
+          </li>
+          <li className={styles.navItem}>
+            <button
+              className={styles.mobileCta}
+              onClick={handleContactClick}
+            >
+              Book Intro Call
+            </button>
           </li>
         </ul>
 

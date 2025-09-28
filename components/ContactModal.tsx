@@ -231,22 +231,6 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
               style={{ width: `${(currentStep / totalSteps) * 100}%` }}
             />
           </div>
-          <div className={styles.stepIndicators}>
-            {Array.from({ length: totalSteps }, (_, i) => i + 1).map((step) => (
-              <div
-                key={step}
-                className={`${styles.stepDot} ${
-                  step === currentStep ? styles.active :
-                  step < currentStep ? styles.completed :
-                  styles.upcoming
-                }`}
-                onClick={() => goToStep(step)}
-                title={`Step ${step}: ${stepTitles[step - 1]}`}
-              >
-                {step < currentStep ? '✓' : step}
-              </div>
-            ))}
-          </div>
         </div>
 
         {message && (

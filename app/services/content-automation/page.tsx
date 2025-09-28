@@ -1,67 +1,36 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '@/components/Navbar'
 import ContactModal from '@/components/ContactModal'
 
-function Hero({ onContactClick }: { onContactClick: () => void }) {
-  return (
-    <section style={{
-      background: '#1F3A5F',
-      color: 'white',
-      padding: '150px 0 100px 0',
-      textAlign: 'center'
-    }}>
-      <div className="container" style={{
-        maxWidth: '800px',
-        margin: '0 auto',
-        padding: '0 20px'
-      }}>
-        <h1 style={{
-          fontSize: 'clamp(36px, 8vw, 56px)',
-          fontWeight: '700',
-          marginBottom: '24px',
-          lineHeight: '1.2'
-        }}>
-          Technical Writing & Content Automation
-        </h1>
-        <p style={{
-          fontSize: 'clamp(18px, 4vw, 24px)',
-          marginBottom: '40px',
-          opacity: 0.9,
-          lineHeight: '1.5'
-        }}>
-          Generate consistent, high-quality technical documentation and marketing content at scale
-        </p>
-        <button
-          onClick={onContactClick}
-          style={{
-            background: '#EC3928',
-            color: 'white',
-            padding: '18px 36px',
-            fontSize: '18px',
-            fontWeight: '600',
-            border: 'none',
-            borderRadius: '8px',
-            cursor: 'pointer',
-            boxShadow: '0 4px 16px rgba(236, 57, 40, 0.3)',
-            transition: 'all 0.3s ease'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'translateY(-2px)'
-            e.currentTarget.style.boxShadow = '0 6px 20px rgba(236, 57, 40, 0.4)'
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'translateY(0)'
-            e.currentTarget.style.boxShadow = '0 4px 16px rgba(236, 57, 40, 0.3)'
-          }}
-        >
-          See Content Examples
-        </button>
-      </div>
-    </section>
-  )
+// Add animations to the page
+if (typeof document !== 'undefined') {
+  const style = document.createElement('style')
+  style.textContent = `
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+    .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: all 0.6s ease-out; }
+    .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+    .hover-lift { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    .hover-lift:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.12) !important; }
+    @media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+    @media (max-width: 768px) { .pain-points-grid { grid-template-columns: 1fr !important; } }
+  `
+  document.head.appendChild(style)
 }
+
+function useScrollAnimation() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add('visible')),
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    )
+    document.querySelectorAll('.animate-on-scroll').forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
+}
+
 
 function Header({ onContactClick }: { onContactClick: () => void }) {
   return (
@@ -75,6 +44,18 @@ function Header({ onContactClick }: { onContactClick: () => void }) {
         margin: '0 auto',
         padding: '0 20px'
       }}>
+        <div style={{
+          background: '#EC3928',
+          color: 'white',
+          padding: '8px 20px',
+          borderRadius: '25px',
+          fontSize: '14px',
+          fontWeight: '600',
+          display: 'inline-block',
+          marginBottom: '24px'
+        }}>
+          DocuTechAI™
+        </div>
         <h1 style={{
           fontSize: 'clamp(40px, 8vw, 64px)',
           fontWeight: '700',
@@ -82,7 +63,7 @@ function Header({ onContactClick }: { onContactClick: () => void }) {
           marginBottom: '24px',
           lineHeight: '1.1'
         }}>
-          Scale Your Content Creation with AI Automation
+          Create Technical Content That Converts in Minutes, Not Weeks
         </h1>
         <p style={{
           fontSize: 'clamp(20px, 4vw, 26px)',
@@ -92,7 +73,7 @@ function Header({ onContactClick }: { onContactClick: () => void }) {
           maxWidth: '700px',
           margin: '0 auto 32px auto'
         }}>
-          Generate consistent, high-quality technical documentation and marketing content at 10x the speed of manual processes.
+          Generate consistent, high-quality technical documentation and marketing content at 10x the speed, maintaining your brand voice while converting prospects into customers.
         </p>
         <p style={{
           fontSize: 'clamp(16px, 3vw, 18px)',
@@ -100,7 +81,7 @@ function Header({ onContactClick }: { onContactClick: () => void }) {
           marginBottom: '48px',
           lineHeight: '1.6'
         }}>
-          Stop spending weeks creating product descriptions, technical specs, and marketing materials. Our AI content automation maintains your brand voice while producing documentation, proposals, and sales materials that convert prospects into customers.
+          Stop spending weeks creating product descriptions, technical specs, and marketing materials. DocuTechAI maintains your brand voice while producing documentation, proposals, and sales materials that convert prospects into customers.
         </p>
         <button
           onClick={onContactClick}
@@ -132,7 +113,174 @@ function Header({ onContactClick }: { onContactClick: () => void }) {
   )
 }
 
+function PainPoints() {
+  const painPoints = [
+    {
+      icon: '⏰',
+      title: 'Content Creation Takes Forever',
+      description: 'Technical writers spend weeks on documentation that should take days',
+      before: 'Technical writer spends 3 weeks creating product manual → Still needs 2 rounds of revisions → Delayed product launch',
+      after: 'ContentFlow AI generates first draft in 2 hours → Minor edits needed → Launch on schedule'
+    },
+    {
+      icon: '😫',
+      title: 'Inconsistent Brand Voice Across Content',
+      description: 'Different writers create conflicting messaging and technical explanations',
+      before: 'Sales sheet says "easy installation" → Manual says "requires expert technician" → Confused customers',
+      after: 'Unified brand voice across all content → Consistent messaging → Clear customer understanding'
+    },
+    {
+      icon: '🔍',
+      title: 'Content Doesn\'t Rank or Convert',
+      description: 'Technical content fails to attract prospects or drive sales',
+      before: 'Amazing product → Boring technical content → No organic traffic → Zero inbound leads',
+      after: 'SEO-optimized content → Higher search rankings → 300% more qualified traffic → Sales inquiries'
+    },
+    {
+      icon: '📚',
+      title: 'Documentation Always Out of Date',
+      description: 'Product updates leave documentation behind, creating support headaches',
+      before: 'Product update → Forget to update manual → 50+ support calls → "Instructions don\'t match"',
+      after: 'Automated content updates → Always current documentation → Self-service support → Happy customers'
+    }
+  ]
+
+  return (
+    <section style={{
+      padding: '100px 0',
+      background: '#f8fafc'
+    }}>
+      <div className="container" style={{
+        maxWidth: '1200px',
+        margin: '0 auto',
+        padding: '0 20px'
+      }}>
+        <div style={{ textAlign: 'center', marginBottom: '80px' }}>
+          <h2 style={{
+            fontSize: 'clamp(32px, 6vw, 48px)',
+            fontWeight: '700',
+            color: '#1F3A5F',
+            marginBottom: '24px'
+          }}>
+            Is Slow Content Creation Killing Your Growth?
+          </h2>
+          <p style={{
+            fontSize: 'clamp(18px, 4vw, 22px)',
+            color: '#666',
+            maxWidth: '600px',
+            margin: '0 auto',
+            lineHeight: '1.6'
+          }}>
+            See how DocuTechAI solves the biggest content challenges in industrial marketing
+          </p>
+        </div>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          gap: '30px',
+          alignItems: 'stretch',
+          maxWidth: '1000px',
+          margin: '0 auto'
+        }}
+        className="pain-points-grid">
+          {painPoints.map((point, index) => (
+            <div key={index} style={{
+              background: 'white',
+              padding: '30px',
+              borderRadius: '12px',
+              border: '1px solid #e2e8f0',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column'
+            }}>
+              <div style={{
+                fontSize: '36px',
+                marginBottom: '15px',
+                textAlign: 'center'
+              }}>
+                {point.icon}
+              </div>
+              <h3 style={{
+                fontSize: '20px',
+                fontWeight: '600',
+                color: '#1F3A5F',
+                marginBottom: '12px',
+                textAlign: 'center'
+              }}>
+                {point.title}
+              </h3>
+              <p style={{
+                color: '#666',
+                lineHeight: '1.6',
+                marginBottom: '20px',
+                fontSize: '16px',
+                textAlign: 'center'
+              }}>
+                {point.description}
+              </p>
+
+              <div style={{ marginTop: 'auto' }}>
+                <div style={{
+                  background: '#fee2e2',
+                  padding: '15px',
+                  borderRadius: '8px',
+                  marginBottom: '15px'
+                }}>
+                  <div style={{
+                    fontSize: '12px',
+                    fontWeight: '600',
+                    color: '#d32f2f',
+                    marginBottom: '8px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.5px'
+                  }}>
+                    ❌ Before DocuTechAI
+                  </div>
+                  <div style={{
+                    fontSize: '14px',
+                    color: '#666',
+                    lineHeight: '1.4'
+                  }}>
+                    {point.before}
+                  </div>
+                </div>
+
+                <div style={{
+                  background: '#dcfce7',
+                  padding: '15px',
+                  borderRadius: '8px'
+                }}>
+                  <div style={{
+                    fontSize: '12px',
+                    fontWeight: '600',
+                    color: '#2e7d32',
+                    marginBottom: '8px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.5px'
+                  }}>
+                    ✅ After DocuTechAI
+                  </div>
+                  <div style={{
+                    fontSize: '14px',
+                    color: '#666',
+                    lineHeight: '1.4'
+                  }}>
+                    {point.after}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function Benefits() {
+  useScrollAnimation()
   const benefits = [
     {
       icon: '⚡',
@@ -222,9 +370,9 @@ function Benefits() {
               e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,0,0,0.1)'
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'transparent'
+              e.currentTarget.style.borderColor = '#e0e0e0'
               e.currentTarget.style.transform = 'translateY(0)'
-              e.currentTarget.style.boxShadow = 'none'
+              e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.06)'
             }}>
               <div style={{
                 display: 'flex',
@@ -267,6 +415,7 @@ function Benefits() {
 }
 
 function ContentTypes() {
+  useScrollAnimation()
   const contentTypes = [
     {
       category: 'Technical Documentation',
@@ -343,25 +492,32 @@ function ContentTypes() {
         <div className="content-types-grid" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(2, 1fr)',
-          gap: '30px',
-          alignItems: 'stretch'
+          gap: '25px',
+          alignItems: 'stretch',
+          maxWidth: '1000px',
+          margin: '0 auto'
         }}>
           {contentTypes.map((type, index) => (
             <div key={index} style={{
               background: 'white',
-              padding: '30px',
+              padding: '40px 30px',
               borderRadius: '12px',
-              boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
-              border: '2px solid transparent',
-              transition: 'all 0.3s ease'
+              border: '1px solid #e0e0e0',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+              transition: 'all 0.3s ease',
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = '#EC3928'
-              e.currentTarget.style.transform = 'translateY(-2px)'
+              e.currentTarget.style.transform = 'translateY(-4px)'
+              e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,0,0,0.1)'
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'transparent'
+              e.currentTarget.style.borderColor = '#e0e0e0'
               e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.06)'
             }}>
               <div style={{
                 fontSize: '36px',
@@ -431,7 +587,7 @@ function CTA({ onContactClick }: { onContactClick: () => void }) {
           fontWeight: '700',
           marginBottom: '24px'
         }}>
-          Ready to Scale Your Content Creation?
+          Ready to Launch DocuTechAI?
         </h2>
         <p style={{
           fontSize: 'clamp(18px, 4vw, 22px)',
@@ -439,7 +595,7 @@ function CTA({ onContactClick }: { onContactClick: () => void }) {
           opacity: 0.9,
           lineHeight: '1.5'
         }}>
-          See how content automation can transform your marketing and sales materials
+          See how DocuTechAI can create technical content 10x faster while maintaining your brand voice
         </p>
         <button
           onClick={onContactClick}
@@ -638,6 +794,7 @@ export default function ContentAutomationPage() {
     <main>
       <Navbar onContactClick={openContactModal} />
       <Header onContactClick={openContactModal} />
+      <PainPoints />
       <Benefits />
       <ContentTypes />
       <CTA onContactClick={openContactModal} />

@@ -118,57 +118,6 @@
   border-radius: 0 6px 6px 0;
 }
 
-.stepIndicators {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.stepDot {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  background: #F3F4F6;
-  border: 1.5px solid #E5E7EB;
-  color: #6B7280;
-}
-
-.stepDot.completed {
-  background: #EC3928;
-  border-color: #EC3928;
-  color: white;
-  font-size: 9px;
-}
-
-.stepDot.active {
-  background: #EC3928;
-  border-color: #EC3928;
-  color: white;
-  transform: scale(1.05);
-}
-
-.stepDot.upcoming {
-  background: #F3F4F6;
-  border-color: #E5E7EB;
-  color: #6B7280;
-}
-
-.stepDot:hover:not(.active) {
-  border-color: #EC3928;
-  color: #EC3928;
-}
-
-.stepDot.completed:hover {
-  background: #d32f2f;
-  border-color: #d32f2f;
-}
 
 .message {
   padding: 12px;
@@ -448,37 +397,29 @@
     margin-bottom: 20px;
   }
 
-  .stepIndicators {
-    gap: 2px;
-  }
-
-  .stepDot {
-    width: 28px;
-    height: 28px;
-    font-size: 11px;
-  }
-
-  .stepDot.completed {
-    font-size: 10px;
-  }
 
   .progressBar {
     height: 4px;
     margin-bottom: 12px;
   }
 
+  .optionsGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
   .optionCard {
-    padding: 16px 12px;
-    border-radius: 12px;
+    padding: 14px 10px;
+    border-radius: 10px;
   }
 
   .optionTitle {
-    font-size: 15px;
-    margin-bottom: 4px;
+    font-size: 14px;
+    margin-bottom: 3px;
   }
 
   .optionDesc {
-    font-size: 11px;
+    font-size: 10px;
     line-height: 1.2;
   }
 
@@ -552,15 +493,6 @@
     min-width: 40px;
   }
 
-  .stepDot {
-    width: 24px;
-    height: 24px;
-    font-size: 11px;
-  }
-
-  .stepDot.completed {
-    font-size: 9px;
-  }
 
   .progressBar {
     height: 5px;
@@ -568,8 +500,8 @@
   }
 
   .optionsGrid {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
   }
 
   .optionCard {

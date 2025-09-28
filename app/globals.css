@@ -180,6 +180,17 @@ img {
   }
 }
 
+/* 2-column grid desktop constraints */
+@media (min-width: 769px) {
+  .features-grid,
+  .content-types-grid,
+  .workflow-areas-grid,
+  .social-proof-grid {
+    max-width: 1000px !important;
+    margin: 0 auto !important;
+  }
+}
+
 /* Solutions grid responsive */
 @media (max-width: 768px) {
   .solutions-grid {

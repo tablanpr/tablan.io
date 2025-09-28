@@ -54,21 +54,29 @@ function Services({ onContactClick }: { onContactClick: () => void }) {
             {
               icon: '⚙️',
               title: 'Custom Product Configurators',
+              productName: 'TechSpecPro™',
+              url: '/services/product-configurators',
               features: ['Let leads explore, customize, and request pricing with AI-powered tools.', 'No-code AI automation solution for industrial products.', 'Streamlines the industrial sales process automatically.', 'Captures qualified lead data for manufacturing businesses.', 'Delivers smooth user experience with workflow automation', 'Integration with existing industrial systems and CRM'],
             },
             {
               icon: '📊',
               title: 'Industrial Sales Automation',
+              productName: 'SalesFlow AI™',
+              url: '/services/sales-automation',
               features: ['Use AI to capture and qualify industrial leads automatically.', 'Answer technical questions with AI-powered automation 24/7.', 'Send proposals and schedule meetings with workflow automation.', 'Scale industrial sales without adding more staff.', 'Fully no-code AI solution for manufacturing businesses.', 'Performance analytics dashboard for industrial sales tracking.'],
             },
             {
               icon: '📝',
               title: 'Technical Writing & Content Automation',
+              productName: 'DocuTechAI™',
+              url: '/services/content-automation',
               features: ['Create product descriptions and technical documentation automatically.', 'Generate marketing materials with AI-powered content automation.', 'Multi-language content generation for global industrial markets.', 'SEO-optimized content creation for manufacturing websites.', 'Maintain consistent messaging across all industrial platforms.', 'Content distribution automation for manufacturing businesses.'],
             },
             {
               icon: '⚡',
               title: 'Industrial Workflow Automation',
+              productName: 'OptiFlow™',
+              url: '/services/workflow-optimization',
               features: ['Cut down on manual tasks with AI-powered workflow automation.', 'Reduce human error in manufacturing and distribution processes.', 'Custom no-code automation solutions to fit your industrial business.', 'Performance metrics and reporting for industrial operations', 'Cross-system integration for manufacturing and distribution'],
             }
           ].map((service, index) => (

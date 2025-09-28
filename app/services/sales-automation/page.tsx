@@ -1,67 +1,52 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '@/components/Navbar'
 import ContactModal from '@/components/ContactModal'
 
-function Hero({ onContactClick }: { onContactClick: () => void }) {
-  return (
-    <section style={{
-      background: '#1F3A5F',
-      color: 'white',
-      padding: '150px 0 100px 0',
-      textAlign: 'center'
-    }}>
-      <div className="container" style={{
-        maxWidth: '800px',
-        margin: '0 auto',
-        padding: '0 20px'
-      }}>
-        <h1 style={{
-          fontSize: 'clamp(36px, 8vw, 56px)',
-          fontWeight: '700',
-          marginBottom: '24px',
-          lineHeight: '1.2'
-        }}>
-          Industrial Sales Automation
-        </h1>
-        <p style={{
-          fontSize: 'clamp(18px, 4vw, 24px)',
-          marginBottom: '40px',
-          opacity: 0.9,
-          lineHeight: '1.5'
-        }}>
-          Scale your industrial sales without adding staff with AI-powered lead qualification and nurturing
-        </p>
-        <button
-          onClick={onContactClick}
-          style={{
-            background: '#EC3928',
-            color: 'white',
-            padding: '18px 36px',
-            fontSize: '18px',
-            fontWeight: '600',
-            border: 'none',
-            borderRadius: '8px',
-            cursor: 'pointer',
-            boxShadow: '0 4px 16px rgba(236, 57, 40, 0.3)',
-            transition: 'all 0.3s ease'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'translateY(-2px)'
-            e.currentTarget.style.boxShadow = '0 6px 20px rgba(236, 57, 40, 0.4)'
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'translateY(0)'
-            e.currentTarget.style.boxShadow = '0 4px 16px rgba(236, 57, 40, 0.3)'
-          }}
-        >
-          See How It Works
-        </button>
-      </div>
-    </section>
-  )
+// Add animations to the page
+if (typeof document !== 'undefined') {
+  const style = document.createElement('style')
+  style.textContent = `
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .animate-on-scroll {
+      opacity: 0; transform: translateY(30px); transition: all 0.6s ease-out;
+    }
+    .animate-on-scroll.visible {
+      opacity: 1; transform: translateY(0);
+    }
+    .hover-lift {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .hover-lift:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12) !important;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  `
+  document.head.appendChild(style)
 }
+
+function useScrollAnimation() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add('visible')),
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    )
+    document.querySelectorAll('.animate-on-scroll').forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
+}
+
 
 function Header({ onContactClick }: { onContactClick: () => void }) {
   return (
@@ -75,6 +60,18 @@ function Header({ onContactClick }: { onContactClick: () => void }) {
         margin: '0 auto',
         padding: '0 20px'
       }}>
+        <div style={{
+          background: '#EC3928',
+          color: 'white',
+          padding: '8px 20px',
+          borderRadius: '25px',
+          fontSize: '14px',
+          fontWeight: '600',
+          display: 'inline-block',
+          marginBottom: '24px'
+        }}>
+          SalesFlow AI™
+        </div>
         <h1 style={{
           fontSize: 'clamp(40px, 8vw, 64px)',
           fontWeight: '700',
@@ -82,7 +79,7 @@ function Header({ onContactClick }: { onContactClick: () => void }) {
           marginBottom: '24px',
           lineHeight: '1.1'
         }}>
-          AI-Powered Sales Automation for Industrial Companies
+          Intelligent Sales Automation That Never Lets Leads Slip Away
         </h1>
         <p style={{
           fontSize: 'clamp(20px, 4vw, 26px)',
@@ -92,7 +89,7 @@ function Header({ onContactClick }: { onContactClick: () => void }) {
           maxWidth: '700px',
           margin: '0 auto 32px auto'
         }}>
-          Automate your entire sales process from lead capture to quote generation, freeing your team to focus on closing deals.
+          Automate your entire sales process from lead capture to quote generation, increasing qualified leads by 3x while your team focuses on closing deals.
         </p>
         <p style={{
           fontSize: 'clamp(16px, 3vw, 18px)',
@@ -100,7 +97,7 @@ function Header({ onContactClick }: { onContactClick: () => void }) {
           marginBottom: '48px',
           lineHeight: '1.6'
         }}>
-          Stop losing deals to slow response times and manual processes. Our intelligent automation handles lead qualification, follow-ups, and proposal generation—ensuring no opportunity falls through the cracks while accelerating your sales velocity.
+          Stop losing deals to slow response times and manual processes. SalesFlow AI handles lead qualification, follow-ups, and proposal generation—ensuring no opportunity falls through the cracks while accelerating your sales velocity.
         </p>
         <button
           onClick={onContactClick}
@@ -133,6 +130,7 @@ function Header({ onContactClick }: { onContactClick: () => void }) {
 }
 
 function Benefits() {
+  useScrollAnimation()
   const benefits = [
     {
       icon: '🔥',
@@ -203,28 +201,32 @@ function Benefits() {
           alignItems: 'stretch'
         }}>
           {benefits.map((benefit, index) => (
-            <div key={index} style={{
-              background: 'white',
-              padding: '40px 30px',
-              borderRadius: '12px',
-              border: '1px solid #e0e0e0',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
-              transition: 'all 0.3s ease',
-              textAlign: 'center',
-              height: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'flex-start'
-            }}
+            <div
+              key={index}
+              className="animate-on-scroll hover-lift"
+              style={{
+                background: 'white',
+                padding: '40px 30px',
+                borderRadius: '12px',
+                border: '1px solid #e0e0e0',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+                textAlign: 'center',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'flex-start',
+                animationDelay: `${index * 0.1}s`,
+                cursor: 'pointer'
+              }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = '#EC3928'
               e.currentTarget.style.transform = 'translateY(-4px)'
               e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,0,0,0.1)'
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'transparent'
+              e.currentTarget.style.borderColor = '#e0e0e0'
               e.currentTarget.style.transform = 'translateY(0)'
-              e.currentTarget.style.boxShadow = 'none'
+              e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.06)'
             }}>
               <div style={{
                 display: 'flex',
@@ -267,6 +269,7 @@ function Benefits() {
 }
 
 function Process() {
+  useScrollAnimation()
   const steps = [
     {
       number: '01',
@@ -285,6 +288,12 @@ function Process() {
       title: 'Convert & Close',
       description: 'Warm, qualified prospects are seamlessly handed to your sales team with complete context and recommended next steps.',
       features: ['Sales handoff automation', 'Meeting scheduling', 'Proposal generation']
+    },
+    {
+      number: '04',
+      title: 'Analyze & Optimize',
+      description: 'Continuous performance tracking and AI-driven insights help refine your sales process for maximum conversion rates.',
+      features: ['Performance analytics', 'A/B testing', 'Process optimization']
     }
   ]
 
@@ -314,32 +323,39 @@ function Process() {
             margin: '0 auto',
             lineHeight: '1.6'
           }}>
-            A proven 3-step process that turns prospects into customers automatically
+            A proven 4-step process that turns prospects into customers automatically
           </p>
         </div>
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '50px'
+          gridTemplateColumns: 'repeat(2, 1fr)',
+          gap: '40px',
+          maxWidth: '900px',
+          margin: '0 auto'
         }}>
           {steps.map((step, index) => (
             <div key={index} style={{
               background: 'white',
-              padding: '40px',
+              padding: '40px 30px',
               borderRadius: '12px',
-              boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
-              border: '2px solid transparent',
+              border: '1px solid #e0e0e0',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
               transition: 'all 0.3s ease',
-              position: 'relative'
+              position: 'relative',
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = '#EC3928'
-              e.currentTarget.style.transform = 'translateY(-2px)'
+              e.currentTarget.style.transform = 'translateY(-4px)'
+              e.currentTarget.style.boxShadow = '0 8px 25px rgba(0,0,0,0.1)'
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'transparent'
+              e.currentTarget.style.borderColor = '#e0e0e0'
               e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.06)'
             }}>
               <div style={{
                 position: 'absolute',
