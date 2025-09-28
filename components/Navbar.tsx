@@ -56,10 +56,10 @@ export default function Navbar({ onContactClick }: NavbarProps) {
   }
 
   const services = [
-    { name: 'TechSpecPro™ - Product Configurators', url: '/services/product-configurators' },
-    { name: 'SalesFlow AI™ - Sales Automation', url: '/services/sales-automation' },
-    { name: 'DocuTechAI™ - Content Automation', url: '/services/content-automation' },
-    { name: 'OptiFlow™ - Workflow Optimization', url: '/services/workflow-optimization' }
+    { name: 'TechSpecPro - Product Configurators', url: '/services/product-configurators' },
+    { name: 'SalesFlow AI - Sales Automation', url: '/services/sales-automation' },
+    { name: 'DocuTechAI - Content Automation', url: '/services/content-automation' },
+    { name: 'OptiFlow - Workflow Optimization', url: '/services/workflow-optimization' }
   ]
 
   return (
