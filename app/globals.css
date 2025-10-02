@@ -52,6 +52,15 @@ footer a:hover {
   color: rgba(255, 255, 255, 0.8) !important;
 }
 
+/* Exception for mobile navigation links */
+nav a {
+  color: inherit !important;
+}
+
+nav a:hover {
+  color: inherit !important;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -168,6 +177,16 @@ img {
 
   footer a:hover, footer a:active {
     color: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  /* Exception for mobile navigation links */
+  nav a {
+    color: inherit !important;
+    -webkit-tap-highlight-color: rgba(31, 58, 95, 0.1) !important;
+  }
+
+  nav a:hover, nav a:active {
+    color: inherit !important;
   }
 
   /* Override any blue button styling on mobile */
