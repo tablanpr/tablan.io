@@ -66,6 +66,12 @@ button[class*="cta"], button[class*="Cta"], button[class*="nextButton"], button[
   color: white !important;
 }
 
+/* Force white text on all red background buttons */
+button[style*="background: #EC3928"], button[style*="background:#EC3928"],
+button[style*="background: #ec3928"], button[style*="background:#ec3928"] {
+  color: white !important;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -201,13 +207,41 @@ img {
     outline: none !important;
   }
 
+  /* Force white text on buttons with red background */
+  button[style*="background"]:not([style*="white"]):not([style*="#fff"]):not([style*="#FFF"]) {
+    color: white !important;
+  }
+
+  /* Target buttons that likely contain "Call", "Book", "Submit", etc. */
+  button:is([class*="cta" i], [class*="call" i], [class*="book" i], [class*="submit" i], [class*="next" i]) {
+    color: white !important;
+  }
+
   button:focus, button:active {
     outline: none !important;
     box-shadow: none !important;
   }
 
-  /* Ensure CTA buttons have white text */
+  /* Ensure CTA buttons have white text on mobile */
   button[class*="cta"], button[class*="Cta"], button[class*="nextButton"], button[class*="submitButton"] {
+    color: white !important;
+  }
+
+  /* Additional mobile-specific CTA button overrides */
+  button[style*="background"] {
+    color: white !important;
+  }
+
+  button[style*="#EC3928"], button[style*="#ec3928"] {
+    color: white !important;
+  }
+
+  /* Target all red background buttons */
+  button {
+    background-color: var(--bg-color);
+  }
+
+  button[class*="mobile"] {
     color: white !important;
   }
 }
