@@ -170,6 +170,15 @@
   transition: all 0.3s ease;
   background: white;
   font-family: inherit;
+  color: #333333;
+  outline: none;
+}
+
+.optionCard:focus {
+  border-color: #EC3928 !important;
+  background: #fef2f2 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(236, 57, 40, 0.1) !important;
 }
 
 .optionCard:hover {
@@ -411,6 +420,16 @@
   .optionCard {
     padding: 14px 10px;
     border-radius: 10px;
+    color: #333333 !important;
+    outline: none !important;
+    -webkit-tap-highlight-color: rgba(236, 57, 40, 0.2) !important;
+  }
+
+  .optionCard:focus, .optionCard:active {
+    border-color: #EC3928 !important;
+    background: #fef2f2 !important;
+    outline: none !important;
+    box-shadow: none !important;
   }
 
   .optionTitle {

@@ -150,6 +150,18 @@ img {
   a:hover, a:active {
     color: #d32f2f !important;
   }
+
+  /* Override any blue button styling on mobile */
+  button {
+    color: inherit !important;
+    -webkit-tap-highlight-color: rgba(236, 57, 40, 0.2) !important;
+    outline: none !important;
+  }
+
+  button:focus, button:active {
+    outline: none !important;
+    box-shadow: none !important;
+  }
 }
 
 @media (max-width: 768px) {
