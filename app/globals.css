@@ -43,6 +43,15 @@ a:hover {
   text-decoration: underline;
 }
 
+/* Exception for footer links on blue background */
+footer a {
+  color: white !important;
+}
+
+footer a:hover {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -149,6 +158,16 @@ img {
 
   a:hover, a:active {
     color: #d32f2f !important;
+  }
+
+  /* Exception for footer links on mobile */
+  footer a {
+    color: white !important;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2) !important;
+  }
+
+  footer a:hover, footer a:active {
+    color: rgba(255, 255, 255, 0.8) !important;
   }
 
   /* Override any blue button styling on mobile */
